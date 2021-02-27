@@ -22,7 +22,7 @@ public class Project {
     private int id;
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "project", fetch = FetchType.EAGER)
-    private Set<ProjectStep> steps = new HashSet<>();
+    private final Set<ProjectStep> steps = new HashSet<>();
 
     @PersistenceConstructor
     public Project() {
