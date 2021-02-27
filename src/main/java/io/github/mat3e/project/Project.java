@@ -32,11 +32,11 @@ public class Project {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -44,7 +44,7 @@ public class Project {
         this.name = name;
     }
 
-    public Set<ProjectStep> getSteps() {
+    Set<ProjectStep> getSteps() {
         return steps;
     }
 
@@ -56,7 +56,7 @@ public class Project {
         step.setProject(this);
     }
 
-    public void removeStep(ProjectStep step) {
+    void removeStep(ProjectStep step) {
         if (!steps.contains(step)) {
             return;
         }
