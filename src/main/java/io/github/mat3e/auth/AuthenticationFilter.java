@@ -1,6 +1,5 @@
-package io.github.mat3e.filter;
+package io.github.mat3e.auth;
 
-import io.github.mat3e.service.TokenService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

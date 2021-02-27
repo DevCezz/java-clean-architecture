@@ -1,6 +1,5 @@
-package io.github.mat3e.service;
+package io.github.mat3e.auth;
 
-import io.github.mat3e.configuration.JwtConfigurationProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

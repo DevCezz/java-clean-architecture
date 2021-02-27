@@ -1,4 +1,4 @@
-package io.github.mat3e.configuration;
+package io.github.mat3e.auth;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
