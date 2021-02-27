@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-public class AuthenticationFilter extends OncePerRequestFilter {
+class AuthenticationFilter extends OncePerRequestFilter {
     private static final String BEARER = "Bearer ";
 
     private final UserDetailsService userDetailsService;
     private final TokenService tokenService;
 
-    public AuthenticationFilter(UserDetailsService userDetailsService, TokenService tokenService) {
+    AuthenticationFilter(UserDetailsService userDetailsService, TokenService tokenService) {
         this.userDetailsService = userDetailsService;
         this.tokenService = tokenService;
     }
@@ -50,5 +50,4 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                 });
         filterChain.doFilter(request, response);
     }
-
 }
