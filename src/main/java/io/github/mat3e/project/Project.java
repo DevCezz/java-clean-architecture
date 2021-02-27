@@ -36,7 +36,7 @@ public class Project {
         this.id = id;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -44,7 +44,7 @@ public class Project {
         this.name = name;
     }
 
-    Set<ProjectStep> getSteps() {
+    public Set<ProjectStep> getSteps() {
         return steps;
     }
 
