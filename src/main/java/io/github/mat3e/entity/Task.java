@@ -43,7 +43,7 @@ public class Task {
         return id;
     }
 
-    public void setId(int id) {
+    void setId(int id) {
         this.id = id;
     }
 
@@ -91,7 +91,7 @@ public class Task {
         return project;
     }
 
-    public void setProject(Project project) {
+    void setProject(Project project) {
         this.project = project;
     }
 }
