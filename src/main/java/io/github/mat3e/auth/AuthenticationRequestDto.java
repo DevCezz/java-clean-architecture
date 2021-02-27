@@ -1,10 +1,10 @@
 package io.github.mat3e.auth;
 
-public class AuthenticationRequestDto {
+class AuthenticationRequestDto {
     private String username;
     private String password;
 
-    public String getUsername() {
+    String getUsername() {
         return username;
     }
 
@@ -12,7 +12,7 @@ public class AuthenticationRequestDto {
         this.username = username;
     }
 
-    public String getPassword() {
+    String getPassword() {
         return password;
     }
 
