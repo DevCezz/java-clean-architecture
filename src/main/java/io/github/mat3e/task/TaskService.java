@@ -1,9 +1,5 @@
-package io.github.mat3e.service;
+package io.github.mat3e.task;
 
-import io.github.mat3e.dto.TaskDto;
-import io.github.mat3e.dto.TaskWithChangesDto;
-import io.github.mat3e.entity.Task;
-import io.github.mat3e.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

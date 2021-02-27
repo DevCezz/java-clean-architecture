@@ -1,6 +1,5 @@
-package io.github.mat3e.repository;
+package io.github.mat3e.task;
 
-import io.github.mat3e.entity.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

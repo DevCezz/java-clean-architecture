@@ -1,7 +1,7 @@
 package io.github.mat3e.controller;
 
 import io.github.mat3e.dto.ProjectDeadlineDto;
-import io.github.mat3e.dto.TaskDto;
+import io.github.mat3e.task.TaskDto;
 import io.github.mat3e.entity.Project;
 import io.github.mat3e.service.ProjectService;
 import org.springframework.http.ResponseEntity;
