@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 @Service
-public class ProjectService {
+class ProjectService {
     private final ProjectRepository projectRepository;
     private final ProjectStepRepository projectStepRepository;
     private final TaskRepository taskRepository;
@@ -26,7 +26,7 @@ public class ProjectService {
         this.taskRepository = taskRepository;
     }
 
-    public Project save(Project toSave) {
+    Project save(Project toSave) {
         if (toSave.getId() != 0) {
             return saveWithId(toSave);
         }
@@ -80,15 +80,15 @@ public class ProjectService {
                 });
     }
 
-    public List<Project> list() {
+    List<Project> list() {
         return projectRepository.findAll();
     }
 
-    public Optional<Project> get(int id) {
+    Optional<Project> get(int id) {
         return projectRepository.findById(id);
     }
 
-    public List<TaskDto> createTasks(int projectId, ZonedDateTime projectDeadline) {
+    List<TaskDto> createTasks(int projectId, ZonedDateTime projectDeadline) {
         if (taskRepository.findAllByProject_Id(projectId).stream().anyMatch(task -> !task.isDone())) {
             throw new IllegalStateException("There are still some undone tasks from a previous project instance!");
         }
