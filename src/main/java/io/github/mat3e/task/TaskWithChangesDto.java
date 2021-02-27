@@ -3,7 +3,7 @@ package io.github.mat3e.task;
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
-public class TaskWithChangesDto {
+class TaskWithChangesDto {
     private int id;
     @NotNull
     private String description;
@@ -11,7 +11,7 @@ public class TaskWithChangesDto {
     private ZonedDateTime deadline;
     private int changesCount;
 
-    public TaskWithChangesDto(Task source) {
+    TaskWithChangesDto(Task source) {
         id = source.getId();
         description = source.getDescription();
         done = source.isDone();
