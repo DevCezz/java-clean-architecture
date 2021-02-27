@@ -8,14 +8,14 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 @Service
-public class TaskService {
+class TaskService {
     private final TaskRepository taskRepository;
 
     TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
-    public TaskDto save(TaskDto toSave) {
+    TaskDto save(TaskDto toSave) {
         return new TaskDto(
                 taskRepository.save(
                         taskRepository.findById(toSave.getId())
@@ -37,23 +37,23 @@ public class TaskService {
         );
     }
 
-    public List<TaskDto> list() {
+    List<TaskDto> list() {
         return taskRepository.findAll().stream()
                 .map(TaskDto::new)
                 .collect(toList());
     }
 
-    public List<TaskWithChangesDto> listWithChanges() {
+    List<TaskWithChangesDto> listWithChanges() {
         return taskRepository.findAll().stream()
                 .map(TaskWithChangesDto::new)
                 .collect(toList());
     }
 
-    public Optional<TaskDto> get(int id) {
+    Optional<TaskDto> get(int id) {
         return taskRepository.findById(id).map(TaskDto::new);
     }
 
-    public void delete(int id) {
+    void delete(int id) {
         taskRepository.deleteById(id);
     }
 }
