@@ -1,11 +1,7 @@
-package io.github.mat3e.service;
+package io.github.mat3e.project;
 
 import io.github.mat3e.task.TaskDto;
-import io.github.mat3e.entity.Project;
-import io.github.mat3e.entity.ProjectStep;
 import io.github.mat3e.task.Task;
-import io.github.mat3e.repository.ProjectRepository;
-import io.github.mat3e.repository.ProjectStepRepository;
 import io.github.mat3e.task.TaskRepository;
 import org.springframework.stereotype.Service;
 

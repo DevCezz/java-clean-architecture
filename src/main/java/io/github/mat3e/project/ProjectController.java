@@ -1,9 +1,6 @@
-package io.github.mat3e.controller;
+package io.github.mat3e.project;
 
-import io.github.mat3e.dto.ProjectDeadlineDto;
 import io.github.mat3e.task.TaskDto;
-import io.github.mat3e.entity.Project;
-import io.github.mat3e.service.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

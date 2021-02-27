@@ -1,4 +1,4 @@
-package io.github.mat3e.dto;
+package io.github.mat3e.project;
 
 import java.time.ZonedDateTime;
 
