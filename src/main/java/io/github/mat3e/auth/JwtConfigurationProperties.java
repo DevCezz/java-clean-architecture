@@ -5,11 +5,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties("jwt")
-public class JwtConfigurationProperties {
+class JwtConfigurationProperties {
     private String secret;
     private long validity;
 
-    public String getSecret() {
+    String getSecret() {
         return secret;
     }
 
@@ -17,7 +17,7 @@ public class JwtConfigurationProperties {
         this.secret = secret;
     }
 
-    public long getValidity() {
+    long getValidity() {
         return validity;
     }
 
