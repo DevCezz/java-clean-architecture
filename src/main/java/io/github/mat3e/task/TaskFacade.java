@@ -8,10 +8,10 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 
 @Service
-class TaskService {
+public class TaskFacade {
     private final TaskRepository taskRepository;
 
-    TaskService(TaskRepository taskRepository) {
+    TaskFacade(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
