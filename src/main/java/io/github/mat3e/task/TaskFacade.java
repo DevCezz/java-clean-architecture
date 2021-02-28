@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -16,7 +17,9 @@ public class TaskFacade {
     }
 
     public List<TaskDto> saveAll(final List<Task> tasks) {
-        return null;
+        return taskRepository.saveAll(tasks).stream()
+                .map(TaskDto::new)
+                .collect(Collectors.toList());
     }
 
     public boolean areUndoneTasksWithProjectId(int projectId) {
