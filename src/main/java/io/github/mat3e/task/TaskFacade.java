@@ -15,6 +15,10 @@ public class TaskFacade {
         this.taskRepository = taskRepository;
     }
 
+    public List<TaskDto> saveAll(final List<Task> tasks) {
+        return null;
+    }
+
     public boolean areUndoneTasksWithProjectId(int projectId) {
         return taskRepository.existsByDoneIsFalseAndProject_Id(projectId);
     }
