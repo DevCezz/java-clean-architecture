@@ -15,12 +15,12 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 @Service
-class ProjectService {
+class ProjectFacade {
     private final ProjectRepository projectRepository;
     private final ProjectStepRepository projectStepRepository;
     private final TaskRepository taskRepository;
 
-    ProjectService(ProjectRepository projectRepository, ProjectStepRepository projectStepRepository, TaskRepository taskRepository) {
+    ProjectFacade(ProjectRepository projectRepository, ProjectStepRepository projectStepRepository, TaskRepository taskRepository) {
         this.projectRepository = projectRepository;
         this.projectStepRepository = projectStepRepository;
         this.taskRepository = taskRepository;
