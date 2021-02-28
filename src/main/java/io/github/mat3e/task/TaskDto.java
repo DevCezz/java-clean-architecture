@@ -36,32 +36,16 @@ public class TaskDto {
         return description;
     }
 
-    void setDescription(String description) {
-        this.description = description;
-    }
-
     public boolean isDone() {
         return done;
-    }
-
-    void setDone(boolean done) {
-        this.done = done;
     }
 
     public ZonedDateTime getDeadline() {
         return deadline;
     }
 
-    void setDeadline(ZonedDateTime deadline) {
-        this.deadline = deadline;
-    }
-
     public String getAdditionalComment() {
         return additionalComment;
-    }
-
-    void setAdditionalComment(String additionalComment) {
-        this.additionalComment = additionalComment;
     }
 
     public static class Builder {
