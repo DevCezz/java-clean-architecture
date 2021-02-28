@@ -4,6 +4,11 @@ import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
 public class TaskDto {
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
     private int id;
     @NotNull
     private String description;
