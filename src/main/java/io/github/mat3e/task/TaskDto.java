@@ -70,27 +70,27 @@ public class TaskDto {
         private ZonedDateTime deadline;
         private String additionalComment;
 
-        Builder withId(final int id) {
+        public Builder withId(final int id) {
             this.id = id;
             return this;
         }
 
-        Builder withDescription(final String description) {
+        public Builder withDescription(final String description) {
             this.description = description;
             return this;
         }
 
-        Builder withDone(final boolean done) {
+        public Builder withDone(final boolean done) {
             this.done = done;
             return this;
         }
 
-        Builder withDeadline(final ZonedDateTime deadline) {
+        public Builder withDeadline(final ZonedDateTime deadline) {
             this.deadline = deadline;
             return this;
         }
 
-        Builder withAdditionalComment(final String additionalComment) {
+        public Builder withAdditionalComment(final String additionalComment) {
             this.additionalComment = additionalComment;
             return this;
         }
