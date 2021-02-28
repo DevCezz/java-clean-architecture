@@ -2,9 +2,11 @@ package io.github.mat3e.task;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
 import java.time.ZonedDateTime;
 
+@Component("taskWarmup")
 class Warmup implements ApplicationListener<ContextRefreshedEvent> {
 
     private final TaskRepository taskRepository;
