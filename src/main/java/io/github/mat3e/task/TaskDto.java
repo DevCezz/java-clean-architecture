@@ -9,12 +9,12 @@ public class TaskDto {
         return new Builder();
     }
 
-    private int id;
+    private final int id;
     @NotNull
-    private String description;
-    private boolean done;
-    private ZonedDateTime deadline;
-    private String additionalComment;
+    private final String description;
+    private final boolean done;
+    private final ZonedDateTime deadline;
+    private final String additionalComment;
 
     private TaskDto(final Builder builder) {
         id = builder.id;
