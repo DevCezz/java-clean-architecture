@@ -67,6 +67,8 @@ public class TaskDto {
         private ZonedDateTime deadline;
         private String additionalComment;
 
+        private Builder() {}
+
         public TaskDto build() {
             return new TaskDto(this);
         }
