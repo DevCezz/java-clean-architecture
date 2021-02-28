@@ -11,12 +11,12 @@ public class TaskDto {
     private ZonedDateTime deadline;
     private String additionalComment;
 
-    public TaskDto(Task source) {
-        id = source.getId();
-        description = source.getDescription();
-        done = source.isDone();
-        deadline = source.getDeadline();
-        additionalComment = source.getAdditionalComment();
+    private TaskDto(final Builder builder) {
+        id = builder.id;
+        description = builder.description;
+        done = builder.done;
+        deadline = builder.deadline;
+        additionalComment = builder.additionalComment;
     }
 
     public int getId() {
