@@ -95,7 +95,7 @@ public class ProjectFacade {
         if (taskFacade.areUndoneTasksWithProjectId(projectId)) {
             throw new IllegalStateException("There are still some undone tasks from a previous project instance!");
         }
-        return taskRepository.saveAll(projectRepository.findById(projectId).stream()
+        return taskFacade.saveAll(projectRepository.findById(projectId).stream()
                 .flatMap(project -> project.getSteps().stream()
                         .map(step -> new Task(
                                         step.getDescription(),
@@ -103,8 +103,6 @@ public class ProjectFacade {
                                         project
                                 )
                         )
-                ).collect(toList())).stream()
-                .map(TaskDto::new)
-                .collect(toList());
+                ).collect(toList()));
     }
 }
