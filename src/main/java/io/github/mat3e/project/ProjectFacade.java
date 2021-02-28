@@ -2,6 +2,7 @@ package io.github.mat3e.project;
 
 import io.github.mat3e.task.Task;
 import io.github.mat3e.task.TaskDto;
+import io.github.mat3e.task.TaskFacade;
 import io.github.mat3e.task.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +20,13 @@ public class ProjectFacade {
     private final ProjectRepository projectRepository;
     private final ProjectStepRepository projectStepRepository;
     private final TaskRepository taskRepository;
+    private final TaskFacade taskFacade;
 
-    ProjectFacade(ProjectRepository projectRepository, ProjectStepRepository projectStepRepository, TaskRepository taskRepository) {
+    ProjectFacade(ProjectRepository projectRepository, ProjectStepRepository projectStepRepository, TaskRepository taskRepository, final TaskFacade taskFacade) {
         this.projectRepository = projectRepository;
         this.projectStepRepository = projectStepRepository;
         this.taskRepository = taskRepository;
+        this.taskFacade = taskFacade;
     }
 
     Project save(Project toSave) {
