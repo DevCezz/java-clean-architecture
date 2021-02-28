@@ -92,7 +92,7 @@ public class ProjectFacade {
     }
 
     List<TaskDto> createTasks(int projectId, ZonedDateTime projectDeadline) {
-        if (taskRepository.existsByDoneIsFalseAndProject_Id(projectId)) {
+        if (taskFacade.areUndoneTasksWithProjectId(projectId)) {
             throw new IllegalStateException("There are still some undone tasks from a previous project instance!");
         }
         return taskRepository.saveAll(projectRepository.findById(projectId).stream()
