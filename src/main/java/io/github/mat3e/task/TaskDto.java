@@ -11,9 +11,6 @@ public class TaskDto {
     private ZonedDateTime deadline;
     private String additionalComment;
 
-    public TaskDto() {
-    }
-
     public TaskDto(Task source) {
         id = source.getId();
         description = source.getDescription();
