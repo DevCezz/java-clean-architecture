@@ -61,4 +61,38 @@ public class TaskDto {
     void setAdditionalComment(String additionalComment) {
         this.additionalComment = additionalComment;
     }
+
+    public static class Builder {
+        private int id;
+        @NotNull
+        private String description;
+        private boolean done;
+        private ZonedDateTime deadline;
+        private String additionalComment;
+
+        Builder withId(final int id) {
+            this.id = id;
+            return this;
+        }
+
+        Builder withDescription(final String description) {
+            this.description = description;
+            return this;
+        }
+
+        Builder withDone(final boolean done) {
+            this.done = done;
+            return this;
+        }
+
+        Builder withDeadline(final ZonedDateTime deadline) {
+            this.deadline = deadline;
+            return this;
+        }
+
+        Builder withAdditionalComment(final String additionalComment) {
+            this.additionalComment = additionalComment;
+            return this;
+        }
+    }
 }
