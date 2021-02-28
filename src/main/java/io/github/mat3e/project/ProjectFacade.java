@@ -22,7 +22,7 @@ public class ProjectFacade {
     private final TaskRepository taskRepository;
     private final TaskFacade taskFacade;
 
-    ProjectFacade(ProjectRepository projectRepository, ProjectStepRepository projectStepRepository, TaskRepository taskRepository, final TaskFacade taskFacade) {
+    ProjectFacade(final ProjectRepository projectRepository, final ProjectStepRepository projectStepRepository, final TaskRepository taskRepository, final TaskFacade taskFacade) {
         this.projectRepository = projectRepository;
         this.projectStepRepository = projectStepRepository;
         this.taskRepository = taskRepository;
