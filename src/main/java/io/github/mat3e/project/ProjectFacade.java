@@ -3,7 +3,6 @@ package io.github.mat3e.project;
 import io.github.mat3e.task.Task;
 import io.github.mat3e.task.TaskDto;
 import io.github.mat3e.task.TaskFacade;
-import io.github.mat3e.task.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
@@ -19,13 +18,11 @@ import static java.util.stream.Collectors.toSet;
 public class ProjectFacade {
     private final ProjectRepository projectRepository;
     private final ProjectStepRepository projectStepRepository;
-    private final TaskRepository taskRepository;
     private final TaskFacade taskFacade;
 
-    ProjectFacade(final ProjectRepository projectRepository, final ProjectStepRepository projectStepRepository, final TaskRepository taskRepository, final TaskFacade taskFacade) {
+    ProjectFacade(final ProjectRepository projectRepository, final ProjectStepRepository projectStepRepository, final TaskFacade taskFacade) {
         this.projectRepository = projectRepository;
         this.projectStepRepository = projectStepRepository;
-        this.taskRepository = taskRepository;
         this.taskFacade = taskFacade;
     }
 
