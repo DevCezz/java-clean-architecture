@@ -40,7 +40,7 @@ public class Project {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
@@ -48,7 +48,7 @@ public class Project {
         return steps;
     }
 
-    public void addStep(ProjectStep step) {
+    void addStep(ProjectStep step) {
         if (steps.contains(step)) {
             return;
         }
