@@ -10,7 +10,7 @@ public interface ProjectQueryRepository extends Repository<Project, Integer> {
 
     int count();
 
-    Optional<ProjectDto> findById(int id);
+    Optional<ProjectDto> findDtoById(int id);
 
-    List<ProjectDto> findAll();
+    List<ProjectDto> findAllBy();
 }

@@ -28,12 +28,12 @@ class ProjectController {
 
     @GetMapping
     List<ProjectDto> list() {
-        return projectQueryRepository.findAll();
+        return projectQueryRepository.findAllBy();
     }
 
     @GetMapping("/{id}")
     ResponseEntity<ProjectDto> get(@PathVariable int id) {
-        return projectQueryRepository.findById(id)
+        return projectQueryRepository.findDtoById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
