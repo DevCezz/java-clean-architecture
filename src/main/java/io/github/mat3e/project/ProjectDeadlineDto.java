@@ -5,7 +5,7 @@ import java.time.ZonedDateTime;
 public class ProjectDeadlineDto {
     private ZonedDateTime deadline;
 
-    ZonedDateTime getDeadline() {
+    public ZonedDateTime getDeadline() {
         return deadline;
     }
 }
