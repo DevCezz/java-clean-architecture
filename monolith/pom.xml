@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>engineering.full-stack</groupId>
-    <artifactId>java-clean-architecture</artifactId>
+    <artifactId>monolith</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>java-clean-architecture</name>
+    <name>monolith</name>
     <description>Monolith Spring app for Clean Architecture course.</description>
 
     <properties>
