@@ -49,8 +49,8 @@ class ProjectController {
     }
 
     @PostMapping
-    ResponseEntity<Project> create(@RequestBody Project toCreate) {
-        Project result = projectFacade.save(toCreate);
+    ResponseEntity<ProjectDto> create(@RequestBody ProjectDto toCreate) {
+        ProjectDto result = projectFacade.save(toCreate);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 
