@@ -11,9 +11,11 @@ import java.util.List;
 @RequestMapping("/projects")
 class ProjectController {
     private final ProjectFacade projectFacade;
+    private final ProjectQueryRepository projectQueryRepository;
 
-    ProjectController(ProjectFacade projectFacade) {
+    ProjectController(ProjectFacade projectFacade, final ProjectQueryRepository projectQueryRepository) {
         this.projectFacade = projectFacade;
+        this.projectQueryRepository = projectQueryRepository;
     }
 
     @GetMapping
