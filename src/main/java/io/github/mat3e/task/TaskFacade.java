@@ -12,8 +12,10 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class TaskFacade {
     private final TaskRepository taskRepository;
+    private final TaskFactory taskFactory;
 
-    TaskFacade(TaskRepository taskRepository) {
+    TaskFacade(final TaskFactory taskFactory, final TaskRepository taskRepository) {
+        this.taskFactory = taskFactory;
         this.taskRepository = taskRepository;
     }
 
