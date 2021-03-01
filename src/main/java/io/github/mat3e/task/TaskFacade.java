@@ -58,12 +58,6 @@ public class TaskFacade {
                 .collect(toList());
     }
 
-    List<TaskWithChangesDto> listWithChanges() {
-        return taskQueryRepository.findAll().stream()
-                .map(TaskWithChangesDto::new)
-                .collect(toList());
-    }
-
     Optional<TaskDto> get(int id) {
         return taskRepository.findById(id).map(Task::toDto);
     }
