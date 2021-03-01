@@ -1,4 +1,4 @@
-package io.github.mat3e.project.query;
+package io.github.mat3e.project.dto;
 
 import java.util.List;
 
