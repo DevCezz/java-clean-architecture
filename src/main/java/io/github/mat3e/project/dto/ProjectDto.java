@@ -1,7 +1,10 @@
 package io.github.mat3e.project.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.List;
 
+@JsonDeserialize(as = ProjectDto.DeserializationImpl.class)
 public interface ProjectDto {
 
     int getId();
