@@ -20,12 +20,18 @@ public class TaskDto {
     private final ZonedDateTime deadline;
     private final String additionalComment;
 
-    private TaskDto(final Builder builder) {
-        id = builder.id;
-        description = builder.description;
-        done = builder.done;
-        deadline = builder.deadline;
-        additionalComment = builder.additionalComment;
+    public TaskDto(
+            final int id,
+            @NotNull final String description,
+            final boolean done,
+            final ZonedDateTime deadline,
+            final String additionalComment
+    ) {
+        this.id = id;
+        this.description = description;
+        this.done = done;
+        this.deadline = deadline;
+        this.additionalComment = additionalComment;
     }
 
     public Builder toBuilder() {
