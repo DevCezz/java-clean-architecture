@@ -20,7 +20,7 @@ public class TaskFacade {
     }
 
     public List<TaskDto> saveAll(final List<TaskDto> tasks, Project project) {
-        return taskRepository.saveAll(tasks).stream()
+        return taskRepository.saveAll(tasks.stream().map(dto -> taskFactory.from(dto, project)).collect(toList())).stream()
                 .map(Task::toDto)
                 .collect(Collectors.toList());
     }
