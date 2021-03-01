@@ -27,17 +27,17 @@ public interface ProjectStepDto {
 
         @Override
         public int getId() {
-            return 0;
+            return id;
         }
 
         @Override
         public String getDescription() {
-            return null;
+            return description;
         }
 
         @Override
         public int getDaysToProjectDeadline() {
-            return 0;
+            return daysToProjectDeadline;
         }
     }
 }
