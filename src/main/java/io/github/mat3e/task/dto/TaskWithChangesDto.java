@@ -2,7 +2,7 @@ package io.github.mat3e.task.dto;
 
 import java.time.ZonedDateTime;
 
-interface TaskWithChangesDto {
+public interface TaskWithChangesDto {
 
     int getId();
 
