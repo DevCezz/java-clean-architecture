@@ -2,6 +2,7 @@ package io.github.mat3e.task.dto;
 
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 public class TaskDto {
 
@@ -57,6 +58,23 @@ public class TaskDto {
 
     public String getAdditionalComment() {
         return additionalComment;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final TaskDto taskDto = (TaskDto) o;
+        return id == taskDto.id &&
+                done == taskDto.done &&
+                description.equals(taskDto.description) &&
+                Objects.equals(deadline, taskDto.deadline) &&
+                Objects.equals(additionalComment, taskDto.additionalComment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, done, deadline, additionalComment);
     }
 
     public static class Builder {
