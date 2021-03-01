@@ -16,7 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "projects")
-public class Project {
+class Project {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
