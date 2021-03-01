@@ -75,7 +75,7 @@ public class TaskDto {
         private Builder() {}
 
         public TaskDto build() {
-            return new TaskDto(this);
+            return new TaskDto(id, description, done, deadline, additionalComment);
         }
 
         public Builder withId(final int id) {
