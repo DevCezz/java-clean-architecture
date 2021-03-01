@@ -1,4 +1,4 @@
-package io.github.mat3e.project.query;
+package io.github.mat3e.project.dto;
 
 import org.springframework.data.annotation.PersistenceConstructor;
 
@@ -11,16 +11,16 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "projects")
-public class SimpleProjectQueryDto {
+public class SimpleProjectQueryEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
     private String name;
 
     @PersistenceConstructor
-    protected SimpleProjectQueryDto() {}
+    protected SimpleProjectQueryEntity() {}
 
-    public SimpleProjectQueryDto(final int id, final String name) {
+    public SimpleProjectQueryEntity(final int id, final String name) {
         this.id = id;
         this.name = name;
     }
