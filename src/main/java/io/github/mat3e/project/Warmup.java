@@ -17,7 +17,7 @@ class Warmup implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent contextRefreshedEvent) {
-        if (projectRepository.count() == 0) {
+        if (projectQueryRepository.count() == 0) {
             var project = new Project();
             project.setName("Example project");
             project.addStep(new ProjectStep("First", -3, project));
