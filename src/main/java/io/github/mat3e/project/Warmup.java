@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 class Warmup implements ApplicationListener<ContextRefreshedEvent> {
 
     private final ProjectRepository projectRepository;
+    private final ProjectQueryRepository projectQueryRepository;
 
-    Warmup(final ProjectRepository projectRepository) {
+    Warmup(final ProjectRepository projectRepository, final ProjectQueryRepository projectQueryRepository) {
         this.projectRepository = projectRepository;
+        this.projectQueryRepository = projectQueryRepository;
     }
 
     @Override
