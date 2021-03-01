@@ -13,7 +13,7 @@ class TaskController {
     private final TaskFacade taskFacade;
     private final TaskQueryRepository taskQueryRepository;
 
-    TaskController(TaskFacade taskFacade, final TaskQueryRepository taskQueryRepository) {
+    TaskController(final TaskFacade taskFacade, final TaskQueryRepository taskQueryRepository) {
         this.taskFacade = taskFacade;
         this.taskQueryRepository = taskQueryRepository;
     }
