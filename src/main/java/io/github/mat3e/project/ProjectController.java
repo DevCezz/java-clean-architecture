@@ -20,12 +20,12 @@ class ProjectController {
 
     @GetMapping
     List<Project> list() {
-        return projectFacade.list();
+        return projectQueryRepository.findAll();
     }
 
     @GetMapping("/{id}")
     ResponseEntity<Project> get(@PathVariable int id) {
-        return projectFacade.get(id)
+        return projectQueryRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
