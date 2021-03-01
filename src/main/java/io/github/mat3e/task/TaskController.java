@@ -11,9 +11,11 @@ import java.util.List;
 @RequestMapping("/tasks")
 class TaskController {
     private final TaskFacade taskFacade;
+    private final TaskQueryRepository taskQueryRepository;
 
-    TaskController(TaskFacade taskFacade) {
+    TaskController(TaskFacade taskFacade, final TaskQueryRepository taskQueryRepository) {
         this.taskFacade = taskFacade;
+        this.taskQueryRepository = taskQueryRepository;
     }
 
     @GetMapping
