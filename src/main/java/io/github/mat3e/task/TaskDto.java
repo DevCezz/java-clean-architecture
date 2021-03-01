@@ -1,8 +1,12 @@
 package io.github.mat3e.task;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
 import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 
+@JsonDeserialize(builder = TaskDto.Builder.class)
 public class TaskDto {
 
     public static Builder builder() {
@@ -48,6 +52,7 @@ public class TaskDto {
         return additionalComment;
     }
 
+    @JsonPOJOBuilder
     public static class Builder {
         private int id;
         @NotNull
