@@ -1,5 +1,6 @@
 package io.github.mat3e.project;
 
+import io.github.mat3e.project.query.ProjectDto;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface ProjectQueryRepository extends Repository<Project, Integer> {
 
     int count();
 
-    Optional<Project> findById(int id);
+    Optional<ProjectDto> findById(int id);
 
-    List<Project> findAll();
+    List<ProjectDto> findAll();
 }
