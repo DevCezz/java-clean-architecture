@@ -16,17 +16,19 @@ import static java.util.stream.Collectors.toSet;
 
 @Service
 public class ProjectFacade {
+    private final ProjectFactory projectFactory;
     private final ProjectRepository projectRepository;
     private final ProjectStepRepository projectStepRepository;
     private final TaskFacade taskFacade;
     private final TaskQueryRepository taskQueryRepository;
 
     ProjectFacade(
-            final ProjectRepository projectRepository,
+            final ProjectFactory projectFactory, final ProjectRepository projectRepository,
             final ProjectStepRepository projectStepRepository,
             final TaskFacade taskFacade,
             final TaskQueryRepository taskQueryRepository
     ) {
+        this.projectFactory = projectFactory;
         this.projectRepository = projectRepository;
         this.projectStepRepository = projectStepRepository;
         this.taskFacade = taskFacade;
