@@ -1,7 +1,6 @@
 package io.github.mat3e.task;
 
 import io.github.mat3e.project.query.SimpleProjectQueryDto;
-import io.github.mat3e.task.dto.TaskWithChangesDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
