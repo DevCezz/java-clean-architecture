@@ -7,6 +7,10 @@ import java.util.List;
 @JsonDeserialize(as = ProjectDto.DeserializationImpl.class)
 public interface ProjectDto {
 
+    static ProjectDto create(final int id, final String name, final List<ProjectStepDto> steps) {
+        return new DeserializationImpl(id, name, steps);
+    }
+
     int getId();
 
     String getName();
