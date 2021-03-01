@@ -40,7 +40,7 @@ class ProjectController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<Project> update(@PathVariable int id, @RequestBody Project toUpdate) {
+    ResponseEntity<Void> update(@PathVariable int id, @RequestBody Project toUpdate) {
         if (id != toUpdate.getId() && toUpdate.getId() != 0) {
             throw new IllegalStateException("Id in URL is different than in body: " + id + " and " + toUpdate.getId());
         }
