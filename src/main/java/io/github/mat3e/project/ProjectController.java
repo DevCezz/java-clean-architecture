@@ -44,7 +44,6 @@ class ProjectController {
         if (id != toUpdate.getId()) {
             throw new IllegalStateException("Id in URL is different than in body: " + id + " and " + toUpdate.getId());
         }
-        toUpdate.setId(id);
         projectFacade.save(toUpdate);
         return ResponseEntity.noContent().build();
     }
