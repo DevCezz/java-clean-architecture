@@ -1,10 +1,12 @@
 package io.github.mat3e.project.dto;
 
+import javax.validation.constraints.NotNull;
+
 public interface ProjectStepDto {
 
     int getId();
 
-    String getDescription();
+    @NotNull String getDescription();
 
     int getDaysToProjectDeadline();
 
