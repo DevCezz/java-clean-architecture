@@ -1,4 +1,4 @@
-package io.github.mat3e.task;
+package io.github.mat3e.task.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;

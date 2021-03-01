@@ -1,6 +1,6 @@
 package io.github.mat3e.project;
 
-import io.github.mat3e.task.TaskDto;
+import io.github.mat3e.task.dto.TaskDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

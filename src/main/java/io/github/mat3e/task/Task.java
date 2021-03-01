@@ -1,6 +1,7 @@
 package io.github.mat3e.task;
 
 import io.github.mat3e.project.query.SimpleProjectQueryDto;
+import io.github.mat3e.task.dto.TaskDto;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import javax.persistence.Entity;

@@ -1,7 +1,7 @@
 package io.github.mat3e.project;
 
 import io.github.mat3e.project.query.SimpleProjectQueryDto;
-import io.github.mat3e.task.TaskDto;
+import io.github.mat3e.task.dto.TaskDto;
 import io.github.mat3e.task.TaskFacade;
 import io.github.mat3e.task.TaskQueryRepository;
 import org.springframework.stereotype.Service;
