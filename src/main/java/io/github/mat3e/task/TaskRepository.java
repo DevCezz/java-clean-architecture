@@ -14,6 +14,4 @@ interface TaskRepository extends Repository<Task, Integer> {
     <S extends Task> List<S> saveAll(Iterable<S> entities);
 
     void deleteById(Integer id);
-
-    boolean existsByDoneIsFalseAndProject_Id(int id);
 }
