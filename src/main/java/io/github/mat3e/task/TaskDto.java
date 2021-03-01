@@ -28,6 +28,15 @@ public class TaskDto {
         additionalComment = builder.additionalComment;
     }
 
+    public Builder toBuilder() {
+        return builder()
+                .withId(id)
+                .withDescription(description)
+                .withDone(done)
+                .withDeadline(deadline)
+                .withAdditionalComment(additionalComment);
+    }
+
     public int getId() {
         return id;
     }
