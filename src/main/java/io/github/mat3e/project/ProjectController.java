@@ -1,5 +1,6 @@
 package io.github.mat3e.project;
 
+import io.github.mat3e.project.query.ProjectDto;
 import io.github.mat3e.task.dto.TaskDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -26,12 +27,12 @@ class ProjectController {
     }
 
     @GetMapping
-    List<Project> list() {
+    List<ProjectDto> list() {
         return projectQueryRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Project> get(@PathVariable int id) {
+    ResponseEntity<ProjectDto> get(@PathVariable int id) {
         return projectQueryRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
