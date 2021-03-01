@@ -41,10 +41,6 @@ public class TaskDto {
         return id;
     }
 
-    void setId(int id) {
-        this.id = id;
-    }
-
     public String getDescription() {
         return description;
     }
