@@ -5,7 +5,6 @@ import io.github.mat3e.task.dto.TaskDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -46,16 +45,6 @@ public class TaskFacade {
                     return result;
                 })
         ).toDto();
-    }
-
-    List<TaskDto> list() {
-        return taskQueryRepository.findAll().stream()
-                .map(Task::toDto)
-                .collect(toList());
-    }
-
-    Optional<TaskDto> get(int id) {
-        return taskRepository.findById(id).map(Task::toDto);
     }
 
     void delete(int id) {
