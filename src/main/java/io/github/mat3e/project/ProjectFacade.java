@@ -1,15 +1,14 @@
 package io.github.mat3e.project;
 
 import io.github.mat3e.project.query.SimpleProjectQueryDto;
-import io.github.mat3e.task.dto.TaskDto;
 import io.github.mat3e.task.TaskFacade;
 import io.github.mat3e.task.TaskQueryRepository;
+import io.github.mat3e.task.dto.TaskDto;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
@@ -86,14 +85,6 @@ public class ProjectFacade {
                     });
                     return projectRepository.save(toSave);
                 });
-    }
-
-    List<Project> list() {
-        return projectRepository.findAll();
-    }
-
-    Optional<Project> get(int id) {
-        return projectRepository.findById(id);
     }
 
     List<TaskDto> createTasks(int projectId, ZonedDateTime projectDeadline) {
