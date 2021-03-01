@@ -5,7 +5,7 @@ import org.springframework.data.repository.Repository;
 
 import java.util.List;
 
-interface TaskQueryRepository extends Repository<Task, Integer> {
+public interface TaskQueryRepository extends Repository<Task, Integer> {
 
     int count();
 
