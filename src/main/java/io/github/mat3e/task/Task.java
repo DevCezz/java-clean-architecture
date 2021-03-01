@@ -16,7 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "tasks")
-public class Task {
+class Task {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
@@ -31,10 +31,10 @@ public class Task {
     private Project project;
 
     @PersistenceConstructor
-    public Task() {
+    protected Task() {
     }
 
-    public Task(@NotNull String description, ZonedDateTime deadline, Project project) {
+    Task(@NotNull String description, ZonedDateTime deadline, Project project) {
         this.description = description;
         this.deadline = deadline;
         this.project = project;
@@ -66,7 +66,7 @@ public class Task {
         this.description = description;
     }
 
-    public boolean isDone() {
+    boolean isDone() {
         return done;
     }
 
