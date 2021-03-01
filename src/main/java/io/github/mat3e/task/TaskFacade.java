@@ -1,5 +1,6 @@
 package io.github.mat3e.task;
 
+import io.github.mat3e.project.Project;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class TaskFacade {
         this.taskRepository = taskRepository;
     }
 
-    public List<TaskDto> saveAll(final List<Task> tasks) {
+    public List<TaskDto> saveAll(final List<TaskDto> tasks, Project project) {
         return taskRepository.saveAll(tasks).stream()
                 .map(Task::toDto)
                 .collect(Collectors.toList());
