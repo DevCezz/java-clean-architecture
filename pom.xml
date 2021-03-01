@@ -13,4 +13,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>java-clean-architecture</name>
     <description>Parent for a Clean Architecture project example app.</description>
+
+    <modules>
+        <module>monolith</module>
+    </modules>
 </project>
