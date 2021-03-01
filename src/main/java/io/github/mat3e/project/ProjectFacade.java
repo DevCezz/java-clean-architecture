@@ -1,5 +1,6 @@
 package io.github.mat3e.project;
 
+import io.github.mat3e.project.dto.ProjectDto;
 import io.github.mat3e.project.dto.SimpleProjectQueryEntity;
 import io.github.mat3e.task.TaskFacade;
 import io.github.mat3e.task.TaskQueryRepository;
@@ -35,19 +36,15 @@ public class ProjectFacade {
         this.taskQueryRepository = taskQueryRepository;
     }
 
-    Project save(Project toSave) {
+    ProjectDto save(ProjectDto dtoToSave) {
+        var toSave = projectFactory.from(dtoToSave);
         if (toSave.getId() != 0) {
-            return saveWithId(toSave);
+            return saveWithId(toSave).toDto();
         }
-        if (toSave.getSteps().stream().anyMatch(step -> step.getId() != 0)) {
+        if (dtoToSave.getSteps().stream().anyMatch(step -> step.getId() != 0)) {
             throw new IllegalStateException("Cannot add project with existing steps");
         }
-        toSave.getSteps().forEach(step -> {
-            if (step.getProject() == null) {
-                step.setProject(toSave);
-            }
-        });
-        return projectRepository.save(toSave);
+        return projectRepository.save(toSave).toDto();
     }
 
     private Project saveWithId(Project toSave) {
