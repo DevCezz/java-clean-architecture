@@ -12,7 +12,7 @@
     <artifactId>java-clean-architecture</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>java-clean-architecture</name>
-    <description>Example project for a Clean Architecture course.</description>
+    <description>Parent for a Clean Architecture project example app.</description>
 
     <properties>
         <java.version>11</java.version>
