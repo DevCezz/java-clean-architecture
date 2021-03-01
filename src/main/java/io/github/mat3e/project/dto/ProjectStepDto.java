@@ -7,6 +7,10 @@ import javax.validation.constraints.NotNull;
 @JsonDeserialize(as = ProjectStepDto.DeserializationImpl.class)
 public interface ProjectStepDto {
 
+    static ProjectStepDto create(final int id, final String description, final int daysToProjectDeadline) {
+        return new DeserializationImpl(id, description, daysToProjectDeadline);
+    }
+
     int getId();
 
     @NotNull String getDescription();
