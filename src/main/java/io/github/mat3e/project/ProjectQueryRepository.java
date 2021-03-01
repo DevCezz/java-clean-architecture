@@ -5,7 +5,7 @@ import org.springframework.data.repository.Repository;
 import java.util.List;
 import java.util.Optional;
 
-interface ProjectQueryRepository extends Repository<Project, Integer> {
+public interface ProjectQueryRepository extends Repository<Project, Integer> {
 
     int count();
 
