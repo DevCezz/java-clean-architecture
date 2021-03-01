@@ -2,7 +2,7 @@ package io.github.mat3e.project.query;
 
 import java.util.List;
 
-interface ProjectDto {
+public interface ProjectDto {
 
     int getId();
 

@@ -1,6 +1,6 @@
 package io.github.mat3e.project.query;
 
-interface ProjectStepDto {
+public interface ProjectStepDto {
 
     int getId();
 
