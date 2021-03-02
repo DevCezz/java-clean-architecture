@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 class ProjectWarmup implements ApplicationListener<ContextRefreshedEvent> {
 
-    private final ProjectFacade projectFacade;
+    private final ProjectInitializer projectInitializer;
 
-    ProjectWarmup(final ProjectFacade projectFacade) {
-        this.projectFacade = projectFacade;
+    ProjectWarmup(final ProjectRepository projectRepository, final ProjectQueryRepository projectQueryRepository) {
+        this.projectInitializer = new ProjectInitializer(projectRepository, projectQueryRepository);
     }
 
     @Override
