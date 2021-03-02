@@ -12,6 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -103,6 +104,10 @@ public class ProjectFacade {
                             return taskFacade.saveAll(tasks, new SimpleProjectQueryEntity(projectId, project.getName()));
                         }
                 ).orElseThrow(() -> new IllegalArgumentException("No project found with id: " + projectId));
+    }
+
+    private ProjectDto toDto(Project project) {
+        return ProjectDto.create(project.getId(), project.getName(), project.getSteps().stream().map(this::toDto).collect(Collectors.toList()));
     }
 
     ProjectStepDto toDto(ProjectStep step) {
