@@ -41,12 +41,12 @@ public class ProjectFacade {
     ProjectDto save(ProjectDto dtoToSave) {
         var toSave = projectFactory.from(dtoToSave);
         if (toSave.getId() != 0) {
-            return saveWithId(toSave).toDto();
+            return toDto(saveWithId(toSave));
         }
         if (dtoToSave.getSteps().stream().anyMatch(step -> step.getId() != 0)) {
             throw new IllegalStateException("Cannot add project with existing steps");
         }
-        return projectRepository.save(toSave).toDto();
+        return toDto(projectRepository.save(toSave));
     }
 
     private Project saveWithId(Project toSave) {
