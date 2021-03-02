@@ -10,11 +10,13 @@ import static java.util.stream.Collectors.toList;
 
 public class TaskFacade {
     private final TaskRepository taskRepository;
+    private final TaskQueryRepository taskQueryRepository;
     private final TaskFactory taskFactory;
 
-    TaskFacade(final TaskFactory taskFactory, final TaskRepository taskRepository) {
+    TaskFacade(final TaskFactory taskFactory, final TaskRepository taskRepository, final TaskQueryRepository taskQueryRepository) {
         this.taskFactory = taskFactory;
         this.taskRepository = taskRepository;
+        this.taskQueryRepository = taskQueryRepository;
     }
 
     public List<TaskDto> saveAll(final List<TaskDto> tasks, SimpleProjectQueryEntity project) {
