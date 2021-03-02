@@ -3,7 +3,6 @@ package io.github.mat3e.task;
 import io.github.mat3e.project.dto.SimpleProjectQueryEntity;
 import io.github.mat3e.task.dto.TaskDto;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
