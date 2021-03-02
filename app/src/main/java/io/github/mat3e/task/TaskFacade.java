@@ -42,7 +42,8 @@ public class TaskFacade {
                     result.setAdditionalComment(toSave.getAdditionalComment());
                     return result;
                 })
-        ).toDto();
+        );
+        return toDto(save);
     }
 
     void delete(int id) {
