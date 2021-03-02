@@ -2,14 +2,12 @@ package io.github.mat3e.task;
 
 import io.github.mat3e.project.dto.SimpleProjectQueryEntity;
 import io.github.mat3e.task.dto.TaskDto;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
-@Service
 public class TaskFacade {
     private final TaskRepository taskRepository;
     private final TaskFactory taskFactory;
