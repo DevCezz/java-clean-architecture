@@ -20,20 +20,18 @@ public class ProjectFacade {
     private final ProjectFactory projectFactory;
     private final ProjectRepository projectRepository;
     private final ProjectStepRepository projectStepRepository;
-    private final ProjectQueryRepository projectQueryRepository;
     private final TaskFacade taskFacade;
     private final TaskQueryRepository taskQueryRepository;
 
     ProjectFacade(
             final ProjectFactory projectFactory, final ProjectRepository projectRepository,
             final ProjectStepRepository projectStepRepository,
-            final ProjectQueryRepository projectQueryRepository, final TaskFacade taskFacade,
+            final TaskFacade taskFacade,
             final TaskQueryRepository taskQueryRepository
     ) {
         this.projectFactory = projectFactory;
         this.projectRepository = projectRepository;
         this.projectStepRepository = projectStepRepository;
-        this.projectQueryRepository = projectQueryRepository;
         this.taskFacade = taskFacade;
         this.taskQueryRepository = taskQueryRepository;
     }
