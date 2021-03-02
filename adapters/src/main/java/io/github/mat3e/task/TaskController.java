@@ -34,7 +34,7 @@ class TaskController {
 
     @GetMapping(params = "changes")
     List<TaskWithChangesDto> listWithChanges() {
-        return taskQueryRepository.findAllWithChangesBy();
+        return new ArrayList<>(taskQueryRepository.findBy(TaskWithChangesDto.class));
     }
 
     @GetMapping("/{id}")
