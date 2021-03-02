@@ -110,7 +110,7 @@ public class ProjectFacade {
         return ProjectDto.create(project.getId(), project.getName(), project.getSteps().stream().map(this::toDto).collect(Collectors.toList()));
     }
 
-    ProjectStepDto toDto(ProjectStep step) {
+    private ProjectStepDto toDto(ProjectStep step) {
         return ProjectStepDto.create(step.getId(), step.getDescription(), step.getDaysToProjectDeadline());
     }
 }
