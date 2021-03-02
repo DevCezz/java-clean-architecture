@@ -4,12 +4,12 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-@Component("projectWarmup")
-class Warmup implements ApplicationListener<ContextRefreshedEvent> {
+@Component
+class ProjectWarmup implements ApplicationListener<ContextRefreshedEvent> {
 
     private final ProjectFacade projectFacade;
 
-    Warmup(final ProjectFacade projectFacade) {
+    ProjectWarmup(final ProjectFacade projectFacade) {
         this.projectFacade = projectFacade;
     }
 
