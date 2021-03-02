@@ -26,7 +26,7 @@ public class TaskFacade {
     }
 
     TaskDto save(TaskDto toSave) {
-        return taskRepository.save(
+        Task save = taskRepository.save(
                 taskRepository.findById(toSave.getId())
                         .map(existingTask -> {
                             if (existingTask.isDone() != toSave.isDone()) {
