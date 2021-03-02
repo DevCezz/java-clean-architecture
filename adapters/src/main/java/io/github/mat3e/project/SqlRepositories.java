@@ -7,3 +7,6 @@ interface SqlProjectRepository extends ProjectRepository, Repository<Project, In
 
 interface SqlProjectStepRepository extends ProjectStepRepository, Repository<ProjectStep, Integer> {
 }
+
+interface SqlProjectQueryRepository extends ProjectQueryRepository, Repository<Project, Integer> {
+}
