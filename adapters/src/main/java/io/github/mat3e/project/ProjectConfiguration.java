@@ -12,7 +12,6 @@ class ProjectConfiguration {
     ProjectFacade projectFacade(
             final ProjectRepository projectRepository,
             final ProjectStepRepository projectStepRepository,
-            final ProjectQueryRepository projectQueryRepository,
             final TaskFacade taskFacade,
             final TaskQueryRepository taskQueryRepository
     ) {
@@ -20,7 +19,6 @@ class ProjectConfiguration {
                 new ProjectFactory(),
                 projectRepository,
                 projectStepRepository,
-                projectQueryRepository,
                 taskFacade,
                 taskQueryRepository
         );
