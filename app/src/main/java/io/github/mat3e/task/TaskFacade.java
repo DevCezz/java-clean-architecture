@@ -3,6 +3,7 @@ package io.github.mat3e.task;
 import io.github.mat3e.project.dto.SimpleProjectQueryEntity;
 import io.github.mat3e.task.dto.TaskDto;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,13 @@ public class TaskFacade {
 
     void delete(int id) {
         taskRepository.deleteById(id);
+    }
+
+    void initializeData() {
+        if (taskQueryRepository.count() == 0) {
+            var task = new Task("Example task", ZonedDateTime.now(), null);
+            taskRepository.save(task);
+        }
     }
 
     private TaskDto toDto(Task task) {
