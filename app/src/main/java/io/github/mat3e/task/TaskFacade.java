@@ -48,4 +48,14 @@ public class TaskFacade {
     void delete(int id) {
         taskRepository.deleteById(id);
     }
+
+    private TaskDto toDto(Task task) {
+        return TaskDto.builder()
+                .withId(task.getId())
+                .withDescription(task.getDescription())
+                .withDone(task.isDone())
+                .withDeadline(task.getDeadline())
+                .withAdditionalComment(task.getAdditionalComment())
+                .build();
+    }
 }
