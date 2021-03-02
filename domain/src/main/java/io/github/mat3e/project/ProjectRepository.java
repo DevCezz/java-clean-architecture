@@ -1,10 +1,8 @@
 package io.github.mat3e.project;
 
-import org.springframework.data.repository.Repository;
-
 import java.util.Optional;
 
-interface ProjectRepository extends Repository<Project, Integer> {
+interface ProjectRepository {
 
     Optional<Project> findById(int id);
 
