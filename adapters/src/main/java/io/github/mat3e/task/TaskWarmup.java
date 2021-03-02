@@ -15,6 +15,6 @@ class TaskWarmup implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent contextRefreshedEvent) {
-        taskFacade.initializeData();
+        taskInitializer.init();
     }
 }
