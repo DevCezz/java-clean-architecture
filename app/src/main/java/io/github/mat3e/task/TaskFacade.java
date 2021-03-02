@@ -25,21 +25,21 @@ public class TaskFacade {
                 .collect(Collectors.toList());
     }
 
-    TaskDto save(TaskDto toSave) {
+    TaskDto save(TaskDto dtoToSave) {
         Task save = taskRepository.save(
-                taskRepository.findById(toSave.getId())
+                taskRepository.findById(dtoToSave.getId())
                         .map(existingTask -> {
-                            if (existingTask.isDone() != toSave.isDone()) {
+                            if (existingTask.isDone() != dtoToSave.isDone()) {
                                 existingTask.setChangesCount(existingTask.getChangesCount() + 1);
-                                existingTask.setDone(toSave.isDone());
+                                existingTask.setDone(dtoToSave.isDone());
                             }
-                            existingTask.setAdditionalComment(toSave.getAdditionalComment());
-                            existingTask.setDeadline(toSave.getDeadline());
-                            existingTask.setDescription(toSave.getDescription());
+                            existingTask.setAdditionalComment(dtoToSave.getAdditionalComment());
+                            existingTask.setDeadline(dtoToSave.getDeadline());
+                            existingTask.setDescription(dtoToSave.getDescription());
                             return existingTask;
                         }).orElseGet(() -> {
-                    var result = new Task(toSave.getDescription(), toSave.getDeadline(), null);
-                    result.setAdditionalComment(toSave.getAdditionalComment());
+                    var result = new Task(dtoToSave.getDescription(), dtoToSave.getDeadline(), null);
+                    result.setAdditionalComment(dtoToSave.getAdditionalComment());
                     return result;
                 })
         );
