@@ -9,12 +9,10 @@ import java.time.ZonedDateTime;
 @Component("taskWarmup")
 class Warmup implements ApplicationListener<ContextRefreshedEvent> {
 
-    private final TaskRepository taskRepository;
-    private final TaskQueryRepository taskQueryRepository;
+    private final TaskFacade taskFacade;
 
-    Warmup(final TaskRepository taskRepository, final TaskQueryRepository taskQueryRepository) {
-        this.taskRepository = taskRepository;
-        this.taskQueryRepository = taskQueryRepository;
+    Warmup(final TaskFacade taskFacade) {
+        this.taskFacade = taskFacade;
     }
 
     @Override
