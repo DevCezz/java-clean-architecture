@@ -21,7 +21,7 @@ public class TaskFacade {
 
     public List<TaskDto> saveAll(final List<TaskDto> tasks, SimpleProjectQueryEntity project) {
         return taskRepository.saveAll(tasks.stream().map(dto -> taskFactory.from(dto, project)).collect(toList())).stream()
-                .map(Task::toDto)
+                .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
