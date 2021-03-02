@@ -4,8 +4,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-@Component("taskWarmup")
-class Warmup implements ApplicationListener<ContextRefreshedEvent> {
+@Component
+class TaskWarmup implements ApplicationListener<ContextRefreshedEvent> {
 
     private final TaskFacade taskFacade;
 
