@@ -15,6 +15,6 @@ class ProjectWarmup implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent contextRefreshedEvent) {
-        projectFacade.initializeData();
+        projectInitializer.init();
     }
 }
