@@ -106,6 +106,17 @@ public class ProjectFacade {
                 ).orElseThrow(() -> new IllegalArgumentException("No project found with id: " + projectId));
     }
 
+    void initializeData() {
+        if (projectQueryRepository.count() == 0) {
+            var project = new Project();
+            project.setName("Example project");
+            project.addStep(new ProjectStep("First", -3, project));
+            project.addStep(new ProjectStep("Second", -2, project));
+            project.addStep(new ProjectStep("Third", 0, project));
+            projectRepository.save(project);
+        }
+    }
+
     private ProjectDto toDto(Project project) {
         return ProjectDto.create(project.getId(), project.getName(), project.getSteps().stream().map(this::toDto).collect(Collectors.toList()));
     }
