@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 class TaskWarmup implements ApplicationListener<ContextRefreshedEvent> {
 
-    private final TaskFacade taskFacade;
+    private final TaskInitializer taskInitializer;
 
-    Warmup(final TaskFacade taskFacade) {
-        this.taskFacade = taskFacade;
+    TaskWarmup(final TaskRepository taskRepository, final TaskQueryRepository taskQueryRepository) {
+        this.taskInitializer = new TaskInitializer(taskRepository, taskQueryRepository);
     }
 
     @Override
