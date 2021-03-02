@@ -51,13 +51,6 @@ public class TaskFacade {
         taskRepository.deleteById(id);
     }
 
-    void initializeData() {
-        if (taskQueryRepository.count() == 0) {
-            var task = new Task("Example task", ZonedDateTime.now(), null);
-            taskRepository.save(task);
-        }
-    }
-
     private TaskDto toDto(Task task) {
         return TaskDto.builder()
                 .withId(task.getId())
