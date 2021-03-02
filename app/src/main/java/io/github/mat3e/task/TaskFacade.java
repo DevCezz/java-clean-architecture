@@ -26,7 +26,7 @@ public class TaskFacade {
     }
 
     TaskDto save(TaskDto dtoToSave) {
-        Task save = taskRepository.save(
+        Task toSave = taskRepository.save(
                 taskRepository.findById(dtoToSave.getId())
                         .map(existingTask -> {
                             if (existingTask.isDone() != dtoToSave.isDone()) {
@@ -43,7 +43,7 @@ public class TaskFacade {
                     return result;
                 })
         );
-        return toDto(save);
+        return toDto(toSave);
     }
 
     void delete(int id) {
