@@ -46,4 +46,13 @@ class SqlTask {
     @PersistenceConstructor
     protected SqlTask() {
     }
+
+    Task toTask() {
+        var result = new Task(description, deadline, project != null ? new SimpleProjectQueryEntity(project.getId(), project.getName()) : null);
+        result.setId(id);
+        result.setDone(done);
+        result.setChangesCount(changesCount);
+        result.setAdditionalComment(additionalComment);
+        return result;
+    }
 }
