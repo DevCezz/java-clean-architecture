@@ -17,5 +17,6 @@
 
     <modules>
         <module>monolith</module>
+        <module>adapters</module>
     </modules>
 </project>
