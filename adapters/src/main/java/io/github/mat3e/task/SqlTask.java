@@ -17,6 +17,19 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "tasks")
 class SqlTask {
+
+    static SqlTask fromTask(Task source) {
+        var result = new SqlTask();
+        result.id = source.getId();
+        result.description = source.getDescription();
+        result.done = source.isDone();
+        result.deadline = source.getDeadline();
+        result.changesCount = source.getChangesCount();
+        result.additionalComment = source.getAdditionalComment();
+        result.project = source.getProject() == null ? null : new SimpleProjectQueryEntity(source.getProject().getId(), source.getProject().getName());
+        return result;
+    }
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
