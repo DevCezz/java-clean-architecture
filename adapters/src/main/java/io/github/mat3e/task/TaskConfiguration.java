@@ -8,12 +8,10 @@ class TaskConfiguration {
 
     @Bean
     TaskFacade taskFacade(
-            final TaskRepository taskRepository,
-            final TaskQueryRepository taskQueryRepository
+            final TaskRepository taskRepository
     ) {
         return new TaskFacade(
                 new TaskFactory(),
-                taskRepository,
-                taskQueryRepository);
+                taskRepository);
     }
 }
