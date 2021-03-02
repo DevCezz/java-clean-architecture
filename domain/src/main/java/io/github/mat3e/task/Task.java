@@ -41,16 +41,6 @@ class Task {
         this.project = project;
     }
 
-    TaskDto toDto() {
-        return TaskDto.builder()
-                .withId(id)
-                .withDescription(description)
-                .withDone(done)
-                .withDeadline(deadline)
-                .withAdditionalComment(additionalComment)
-                .build();
-    }
-
     int getId() {
         return id;
     }
