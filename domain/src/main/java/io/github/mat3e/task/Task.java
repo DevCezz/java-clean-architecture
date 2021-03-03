@@ -13,7 +13,7 @@ class Task {
     private String additionalComment;
     private SimpleProjectQueryEntity project;
 
-    Task(String description, ZonedDateTime deadline, SimpleProjectQueryEntity project) {
+    Task(final String description, final ZonedDateTime deadline, final SimpleProjectQueryEntity project) {
         this.description = description;
         this.deadline = deadline;
         this.project = project;
