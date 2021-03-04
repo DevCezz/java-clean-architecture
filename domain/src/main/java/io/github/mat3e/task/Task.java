@@ -46,4 +46,8 @@ class Task {
         this.deadline = deadline;
         this.additionalComment = additionalComment;
     }
+
+    TaskSnapshot getSnapshot() {
+        return new TaskSnapshot(id, description, done, deadline, changesCount, additionalComment, project != null ? project.getSnapshot() : null);
+    }
 }
