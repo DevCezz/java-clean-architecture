@@ -9,9 +9,9 @@ public interface TaskQueryRepository {
 
     int count();
 
-    Optional<TaskDto> findDtoById(int id);
+    Optional<TaskDto> findDtoById(Integer id);
 
-    boolean existsByDoneIsFalseAndProject_Id(int id);
+    boolean existsByDoneIsFalseAndProject_Id(Integer id);
 
     <T> Set<T> findBy(Class<T> type);
 }
