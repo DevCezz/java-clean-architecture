@@ -39,8 +39,8 @@ class SqlProjectStep {
     public SqlProjectStep() {
     }
 
-    ProjectStep toProjectStep() {
-        var result = new ProjectStep(description, daysToProjectDeadline, project == null ? null : project.toProject());
+    ProjectStep toStep(Project originalProject) {
+        var result = new ProjectStep(description, daysToProjectDeadline, originalProject);
         result.setId(id);
         return result;
     }
