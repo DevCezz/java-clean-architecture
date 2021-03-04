@@ -23,7 +23,10 @@ class SqlProject {
         var result = new SqlProject();
         result.id = source.getId();
         result.name = source.getName();
-        result.steps.addAll(source.getSteps().stream().map(SqlProjectStep::from).collect(Collectors.toSet()));
+        result.steps.addAll(source.getSteps().stream()
+                .map(step -> SqlProjectStep.from(step, result))
+                .collect(Collectors.toSet())
+        );
         return result;
     }
 
@@ -42,7 +45,7 @@ class SqlProject {
         var result = new Project();
         result.setId(id);
         result.setName(name);
-        steps.stream().map(SqlProjectStep::toProjectStep).forEach(result::addStep);
+        steps.stream().map(step -> step.toStep(result)).forEach(result::addStep);
         return result;
     }
 }
