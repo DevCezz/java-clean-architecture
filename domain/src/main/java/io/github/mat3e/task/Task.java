@@ -24,7 +24,7 @@ class Task {
     private ZonedDateTime deadline;
     private int changesCount;
     private String additionalComment;
-    private SimpleProject project;
+    private final SimpleProject project;
 
     private Task(final int id, final String description, final boolean done, final ZonedDateTime deadline, final int changesCount, final String additionalComment, final SimpleProject project) {
         this.id = id;
