@@ -14,7 +14,16 @@ class TaskInitializer {
 
     void init() {
         if (taskQueryRepository.count() == 0) {
-            var task = new Task("Example task", ZonedDateTime.now(), null);
+            var task = Task.restore(new TaskSnapshot(
+                            0,
+                            "Example task",
+                            false,
+                            ZonedDateTime.now(),
+                            0,
+                            null,
+                            null
+                    )
+            );
             taskRepository.save(task);
         }
     }
