@@ -8,7 +8,7 @@ interface SqlProjectRepository extends Repository<SqlProject, Integer> {
 
     Optional<SqlProject> findById(Integer id);
 
-    Project save(SqlProject entity);
+    SqlProject save(SqlProject entity);
 }
 
 @org.springframework.stereotype.Repository
@@ -27,7 +27,7 @@ class ProjectRepositoryImpl implements ProjectRepository {
 
     @Override
     public Project save(final Project entity) {
-        return sqlProjectRepository.save(SqlProject.from(entity));
+        return sqlProjectRepository.save(SqlProject.from(entity)).toProject();
     }
 }
 
