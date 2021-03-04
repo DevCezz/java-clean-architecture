@@ -4,7 +4,7 @@ import java.util.Optional;
 
 interface ProjectRepository {
 
-    Optional<Project> findById(int id);
+    Optional<Project> findById(Integer id);
 
     <S extends Project> S save(S entity);
 }
