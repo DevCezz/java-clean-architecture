@@ -13,6 +13,13 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "projects")
 public class SqlSimpleProject {
 
+    public SqlSimpleProject from(SimpleProject source) {
+        var result = new SqlSimpleProject();
+        result.id = source.getId();
+        result.name = source.getName();
+        return result;
+    }
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
