@@ -33,7 +33,7 @@ class ProjectRepositoryImpl implements ProjectRepository {
 
 interface SqlProjectStepRepository extends Repository<SqlProjectStep, Integer> {
 
-    void delete(SqlProjectStep entity);
+    void deleteById(int id);
 }
 
 @org.springframework.stereotype.Repository
@@ -47,7 +47,7 @@ class ProjectStepRepositoryImpl implements ProjectStepRepository {
 
     @Override
     public void delete(final ProjectStep entity) {
-        sqlProjectStepRepository.delete(SqlProjectStep.from(entity));
+        sqlProjectStepRepository.deleteById(entity.getId());
     }
 }
 
