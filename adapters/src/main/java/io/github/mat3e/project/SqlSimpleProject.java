@@ -13,7 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "projects")
 public class SqlSimpleProject {
 
-    public SqlSimpleProject from(SimpleProject source) {
+    public static SqlSimpleProject from(SimpleProject source) {
         var result = new SqlSimpleProject();
         result.id = source.getId();
         result.name = source.getName();
