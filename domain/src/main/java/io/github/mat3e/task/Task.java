@@ -23,4 +23,10 @@ class Task {
         done = !done;
         ++changesCount;
     }
+
+    void updateInfo(String description, ZonedDateTime deadline, String additionalComment) {
+        this.description = description;
+        this.deadline = deadline;
+        this.additionalComment = additionalComment;
+    }
 }
