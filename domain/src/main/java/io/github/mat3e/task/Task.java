@@ -11,7 +11,7 @@ class Task {
     private ZonedDateTime deadline;
     private int changesCount;
     private String additionalComment;
-    private SimpleProject project;
+    private final SimpleProject project;
 
     Task(final String description, final ZonedDateTime deadline, final SimpleProject project) {
         this.description = description;
@@ -69,9 +69,5 @@ class Task {
 
     SimpleProject getProject() {
         return project;
-    }
-
-    void setProject(SimpleProject project) {
-        this.project = project;
     }
 }
