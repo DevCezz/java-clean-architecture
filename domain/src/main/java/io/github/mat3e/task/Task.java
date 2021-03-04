@@ -18,13 +18,13 @@ class Task {
         );
     }
 
-    private final int id;
-    private final String description;
-    private final boolean done;
-    private final ZonedDateTime deadline;
-    private final int changesCount;
-    private final String additionalComment;
-    private final SimpleProject project;
+    private int id;
+    private String description;
+    private boolean done;
+    private ZonedDateTime deadline;
+    private int changesCount;
+    private String additionalComment;
+    private SimpleProject project;
 
     private Task(final int id, final String description, final boolean done, final ZonedDateTime deadline, final int changesCount, final String additionalComment, final SimpleProject project) {
         this.id = id;
