@@ -28,12 +28,13 @@ public class TaskFacade {
                 taskRepository.findById(dtoToSave.getId())
                         .map(existingTask -> {
                             if (existingTask.isDone() != dtoToSave.isDone()) {
-                                existingTask.setChangesCount(existingTask.getChangesCount() + 1);
-                                existingTask.setDone(dtoToSave.isDone());
+                                existingTask.toggle();
                             }
-                            existingTask.setAdditionalComment(dtoToSave.getAdditionalComment());
-                            existingTask.setDeadline(dtoToSave.getDeadline());
-                            existingTask.setDescription(dtoToSave.getDescription());
+                            existingTask.updateInfo(
+                                    dtoToSave.getAdditionalComment(),
+                                    dtoToSave.getDeadline(),
+                                    dtoToSave.getDescription()
+                            );
                             return existingTask;
                         }).orElseGet(() -> {
                     var result = new Task(dtoToSave.getDescription(), dtoToSave.getDeadline(), null);
