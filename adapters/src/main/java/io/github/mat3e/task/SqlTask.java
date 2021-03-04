@@ -1,6 +1,6 @@
 package io.github.mat3e.task;
 
-import io.github.mat3e.project.dto.SimpleProjectQueryEntity;
+import io.github.mat3e.project.dto.SimpleProject;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "tasks")
 class SqlTask {
 
-    static SqlTask fromTask(Task source) {
+    static SqlTask from(Task source) {
         var result = new SqlTask();
         result.id = source.getId();
         result.description = source.getDescription();
@@ -26,7 +26,7 @@ class SqlTask {
         result.deadline = source.getDeadline();
         result.changesCount = source.getChangesCount();
         result.additionalComment = source.getAdditionalComment();
-        result.project = source.getProject() == null ? null : new SimpleProjectQueryEntity(source.getProject().getId(), source.getProject().getName());
+        result.project = source.getProject() == null ? null : new SimpleProject(source.getProject().getId(), source.getProject().getName());
         return result;
     }
 
@@ -41,14 +41,14 @@ class SqlTask {
     private String additionalComment;
     @ManyToOne
     @JoinColumn(name = "source_id")
-    private SimpleProjectQueryEntity project;
+    private SimpleProject project;
 
     @PersistenceConstructor
     protected SqlTask() {
     }
 
     Task toTask() {
-        var result = new Task(description, deadline, project != null ? new SimpleProjectQueryEntity(project.getId(), project.getName()) : null);
+        var result = new Task(description, deadline, project != null ? new SimpleProject(project.getId(), project.getName()) : null);
         result.setId(id);
         result.setDone(done);
         result.setChangesCount(changesCount);
