@@ -16,12 +16,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "project_steps")
 class SqlProjectStep {
 
-    static SqlProjectStep from(ProjectStep source) {
+    static SqlProjectStep from(ProjectStep source, SqlProject mappedProject) {
         var result = new SqlProjectStep();
         result.id = source.getId();
         result.description = source.getDescription();
         result.daysToProjectDeadline = source.getDaysToProjectDeadline();
-        result.project = source.getProject() == null ? null : SqlProject.from(source.getProject());
+        result.project = mappedProject;
         return result;
     }
 
