@@ -27,7 +27,7 @@ public class TaskFacade {
         Task toSave = taskRepository.save(
                 taskRepository.findById(dtoToSave.getId())
                         .map(existingTask -> {
-                            if (existingTask.isDone() != dtoToSave.isDone()) {
+                            if (existingTask.getSnapshot().isDone() != dtoToSave.isDone()) {
                                 existingTask.toggle();
                             }
                             existingTask.updateInfo(
