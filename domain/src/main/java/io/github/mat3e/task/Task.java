@@ -6,6 +6,18 @@ import java.time.ZonedDateTime;
 
 class Task {
 
+    static Task restore(TaskSnapshot snapshot) {
+        return new Task(
+                snapshot.getId(),
+                snapshot.getDescription(),
+                snapshot.isDone(),
+                snapshot.getDeadline(),
+                snapshot.getChangesCount(),
+                snapshot.getAdditionalComment(),
+                snapshot.getProject() != null ? SimpleProject.restore(snapshot.getProject()) : null
+        );
+    }
+
     private final int id;
     private final String description;
     private final boolean done;
