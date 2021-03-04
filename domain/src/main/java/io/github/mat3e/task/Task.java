@@ -18,4 +18,9 @@ class Task {
         this.deadline = deadline;
         this.project = project;
     }
+
+    void toggle() {
+        done = !done;
+        ++changesCount;
+    }
 }
