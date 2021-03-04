@@ -13,4 +13,8 @@ public class SimpleProject {
         this.id = id;
         this.name = name;
     }
+
+    public SimpleProjectSnapshot getSnapshot() {
+        return new SimpleProjectSnapshot(id, name);
+    }
 }
