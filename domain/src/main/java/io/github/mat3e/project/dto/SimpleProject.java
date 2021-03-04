@@ -9,7 +9,7 @@ public class SimpleProject {
     private final int id;
     private final String name;
 
-    public SimpleProject(final int id, final String name) {
+    private SimpleProject(final int id, final String name) {
         this.id = id;
         this.name = name;
     }
