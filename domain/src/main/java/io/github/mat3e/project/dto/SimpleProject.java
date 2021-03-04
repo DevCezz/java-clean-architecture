@@ -11,16 +11,16 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "projects")
-public class SimpleProjectQueryEntity {
+public class SimpleProject {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private int id;
     private String name;
 
     @PersistenceConstructor
-    protected SimpleProjectQueryEntity() {}
+    protected SimpleProject() {}
 
-    public SimpleProjectQueryEntity(final int id, final String name) {
+    public SimpleProject(final int id, final String name) {
         this.id = id;
         this.name = name;
     }
