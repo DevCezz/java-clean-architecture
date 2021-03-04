@@ -1,5 +1,7 @@
 package io.github.mat3e.project;
 
+import io.github.mat3e.project.dto.SimpleProject;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,4 +17,8 @@ public class SqlSimpleProject {
     @GeneratedValue(strategy = IDENTITY)
     private int id;
     private String name;
+
+    public SimpleProject toProject() {
+        return new SimpleProject(id, name);
+    }
 }
