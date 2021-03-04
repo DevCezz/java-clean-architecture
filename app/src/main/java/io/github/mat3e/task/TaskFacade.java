@@ -36,11 +36,7 @@ public class TaskFacade {
                                     dtoToSave.getDescription()
                             );
                             return existingTask;
-                        }).orElseGet(() -> {
-                    var result = new Task(dtoToSave.getDescription(), dtoToSave.getDeadline(), null);
-                    result.setAdditionalComment(dtoToSave.getAdditionalComment());
-                    return result;
-                })
+                        }).orElseGet(() -> taskFactory.from(dtoToSave, null))
         );
         return toDto(toSave);
     }
