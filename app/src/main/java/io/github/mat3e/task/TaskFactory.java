@@ -5,14 +5,14 @@ import io.github.mat3e.task.dto.TaskDto;
 
 class TaskFactory {
     Task from(TaskDto source, SimpleProject project) {
-        var result = new Task(
+        return Task.restore(new TaskSnapshot(
+                source.getId(),
                 source.getDescription(),
+                source.isDone(),
                 source.getDeadline(),
-                project
-        );
-        result.setId(source.getId());
-        result.setDone(source.isDone());
-        result.setAdditionalComment(source.getAdditionalComment());
-        return result;
+                0,
+                source.getAdditionalComment(),
+                project.getSnapshot()
+        ));
     }
 }
