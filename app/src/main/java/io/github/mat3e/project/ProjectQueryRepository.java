@@ -2,8 +2,8 @@ package io.github.mat3e.project;
 
 import io.github.mat3e.project.dto.ProjectDto;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface ProjectQueryRepository {
 
@@ -11,5 +11,5 @@ public interface ProjectQueryRepository {
 
     Optional<ProjectDto> findDtoById(int id);
 
-    List<ProjectDto> findAllBy();
+    <T> Set<T> findBy(Class<T> type);
 }
