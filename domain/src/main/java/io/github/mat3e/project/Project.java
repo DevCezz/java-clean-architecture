@@ -44,6 +44,34 @@ class Project {
         return new ProjectSnapshot(id, name, steps.stream().map(Step::getSnapshot).collect(Collectors.toSet()));
     }
 
+    Set<Step> modifyAs(final ProjectSnapshot snapshot) {
+        name = snapshot.getName();
+
+        Set<Step> stepsToRemove = new HashSet<>();
+        steps
+                .forEach(existingStep -> snapshot.getSteps().stream()
+                        .filter(potentialOverride -> existingStep.id == potentialOverride.getId())
+                        .findFirst()
+                        .ifPresentOrElse(
+                                overridingStep -> {
+                                    existingStep.description = overridingStep.getDescription();
+                                    existingStep.daysToProjectDeadline = overridingStep.getDaysToProjectDeadline();
+                                },
+                                () -> stepsToRemove.add(existingStep)
+                        )
+                );
+        stepsToRemove.forEach(this::removeStep);
+        snapshot.getSteps().stream()
+                .filter(newStep -> steps.stream()
+                        .noneMatch(existingStep -> existingStep.id == newStep.getId())
+                ).map(Step::restore)
+                .collect(Collectors.toSet())
+                // collecting first to allow multiple id=0
+                .forEach(this::addStep);
+
+        return stepsToRemove;
+    }
+
     static class Step {
 
         static Step restore(ProjectStepSnapshot snapshot) {
