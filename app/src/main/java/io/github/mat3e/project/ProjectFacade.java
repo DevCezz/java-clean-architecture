@@ -7,6 +7,7 @@ import io.github.mat3e.project.dto.SimpleProjectSnapshot;
 import io.github.mat3e.task.TaskFacade;
 import io.github.mat3e.task.TaskQueryRepository;
 import io.github.mat3e.task.dto.TaskDto;
+import io.github.mat3e.task.vo.TaskCreator;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -59,14 +60,8 @@ public class ProjectFacade {
         }
         return projectRepository.findById(projectId)
                 .map(project -> {
-                            List<TaskDto> tasks = project.getSnapshot().getSteps().stream()
-                                    .map(step -> TaskDto.builder()
-                                            .withDescription(step.getDescription())
-                                            .withDeadline(projectDeadline.plusDays(step.getDaysToProjectDeadline()))
-                                            .build()
-                                    ).collect(toList());
-
-                            return taskFacade.saveAll(tasks, SimpleProject.restore(new SimpleProjectSnapshot(projectId, project.getSnapshot().getName())));
+                            Set<TaskCreator> tasks = project.convertToTasks(projectDeadline);
+                            return taskFacade.createTasks(tasks);
                         }
                 ).orElseThrow(() -> new IllegalArgumentException("No project found with id: " + projectId));
     }
