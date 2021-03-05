@@ -44,8 +44,9 @@ public class ProjectFacade {
 
     private Project saveWithId(ProjectDto dtoToSave) {
         return projectRepository.findById(dtoToSave.getId()).map(existingProject -> {
-            Project toSave = projectFactory.from(dtoToSave);
-            Set<Project.Step> removedSteps = existingProject.modifyAs(toSave.getSnapshot());
+            ProjectSnapshot toSave = projectFactory.from(dtoToSave).getSnapshot();
+            existingProject.updateInfo(toSave.getName());
+            Set<Project.Step> removedSteps = existingProject.modifyAs(toSave);
             projectRepository.save(existingProject);
             removedSteps.forEach(projectRepository::delete);
             return existingProject;
