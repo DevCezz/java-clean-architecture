@@ -64,7 +64,7 @@ class Project {
         stepSnapshots.stream()
                 .map(Step::restore)
                 .filter(newStep -> steps.stream()
-                        .noneMatch(existingStep -> existingStep.equals(newStep))
+                        .noneMatch(newStep::equals)
                 )
                 .collect(toSet())
                 // collecting first to allow multiple id=0
