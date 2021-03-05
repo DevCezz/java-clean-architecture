@@ -89,6 +89,11 @@ class Project {
             this.daysToProjectDeadline = daysToProjectDeadline;
         }
 
+        void updateInfo(String description, int daysToProjectDeadline) {
+            this.description = description;
+            this.daysToProjectDeadline = daysToProjectDeadline;
+        }
+
         ProjectStepSnapshot getSnapshot() {
             return new ProjectStepSnapshot(id, description, daysToProjectDeadline);
         }
