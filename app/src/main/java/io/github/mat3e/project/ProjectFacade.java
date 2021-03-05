@@ -3,6 +3,7 @@ package io.github.mat3e.project;
 import io.github.mat3e.project.dto.ProjectDto;
 import io.github.mat3e.project.dto.ProjectStepDto;
 import io.github.mat3e.project.dto.SimpleProject;
+import io.github.mat3e.project.dto.SimpleProjectSnapshot;
 import io.github.mat3e.task.TaskFacade;
 import io.github.mat3e.task.TaskQueryRepository;
 import io.github.mat3e.task.dto.TaskDto;
@@ -99,7 +100,7 @@ public class ProjectFacade {
                                             .build()
                                     ).collect(toList());
 
-                            return taskFacade.saveAll(tasks, new SimpleProject(projectId, project.getName()));
+                            return taskFacade.saveAll(tasks, SimpleProject.restore(new SimpleProjectSnapshot(projectId, project.getName())));
                         }
                 ).orElseThrow(() -> new IllegalArgumentException("No project found with id: " + projectId));
     }
