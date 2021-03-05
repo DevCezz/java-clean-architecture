@@ -7,4 +7,6 @@ interface ProjectRepository {
     Optional<Project> findById(Integer id);
 
     Project save(Project entity);
+
+    void delete(Project.Step entity);
 }
