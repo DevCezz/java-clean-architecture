@@ -2,7 +2,8 @@ package io.github.mat3e.project;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toSet;
 
 class Project {
 
@@ -12,7 +13,7 @@ class Project {
                 snapshot.getName(),
                 snapshot.getSteps().stream()
                         .map(Step::restore)
-                        .collect(Collectors.toSet())
+                        .collect(toSet())
         );
     }
 
@@ -41,7 +42,7 @@ class Project {
     }
 
     ProjectSnapshot getSnapshot() {
-        return new ProjectSnapshot(id, name, steps.stream().map(Step::getSnapshot).collect(Collectors.toSet()));
+        return new ProjectSnapshot(id, name, steps.stream().map(Step::getSnapshot).collect(toSet()));
     }
 
     Set<Step> modifyAs(final ProjectSnapshot snapshot) {
@@ -65,7 +66,7 @@ class Project {
                 .filter(newStep -> steps.stream()
                         .noneMatch(existingStep -> existingStep.id == newStep.getId())
                 ).map(Step::restore)
-                .collect(Collectors.toSet())
+                .collect(toSet())
                 // collecting first to allow multiple id=0
                 .forEach(this::addStep);
 
