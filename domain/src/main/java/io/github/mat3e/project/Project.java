@@ -8,6 +8,12 @@ class Project {
     private String name;
     private final Set<ProjectStep> steps = new HashSet<>();
 
+    private Project(final int id, final String name, final Set<ProjectStep> steps) {
+        this.id = id;
+        this.name = name;
+        steps.forEach(this::addStep);
+    }
+
     public int getId() {
         return id;
     }
