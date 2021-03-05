@@ -1,6 +1,5 @@
 package io.github.mat3e.task;
 
-import io.github.mat3e.project.dto.SimpleProject;
 import io.github.mat3e.task.dto.TaskDto;
 import io.github.mat3e.task.vo.TaskCreator;
 
