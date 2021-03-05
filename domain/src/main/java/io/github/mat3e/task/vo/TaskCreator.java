@@ -13,15 +13,15 @@ public class TaskCreator {
         this.deadline = deadline;
     }
 
-    TaskSourceId getId() {
+    public TaskSourceId getId() {
         return id;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    ZonedDateTime getDeadline() {
+    public ZonedDateTime getDeadline() {
         return deadline;
     }
 }
