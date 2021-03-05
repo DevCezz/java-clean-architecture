@@ -25,12 +25,6 @@ public class TaskFacade {
                 .collect(Collectors.toList());
     }
 
-    public List<TaskDto> saveAll(final List<TaskDto> tasks, SimpleProject project) {
-        return taskRepository.saveAll(tasks.stream().map(dto -> taskFactory.from(dto, project)).collect(toList())).stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
-    }
-
     TaskDto save(TaskDto dtoToSave) {
         Task toSave = taskRepository.save(
                 taskRepository.findById(dtoToSave.getId())
