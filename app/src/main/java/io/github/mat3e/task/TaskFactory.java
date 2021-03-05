@@ -12,7 +12,7 @@ class TaskFactory {
                 source.getDeadline(),
                 0,
                 source.getAdditionalComment(),
-                project.getSnapshot()
+                project != null ? project.getSnapshot() : null
         ));
     }
 }
