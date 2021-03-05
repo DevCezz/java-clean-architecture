@@ -75,6 +75,10 @@ class Project {
         return stepsToRemove;
     }
 
+    void updateInfo(String name) {
+        this.name = name;
+    }
+
     static class Step {
 
         static Step restore(ProjectStepSnapshot snapshot) {
