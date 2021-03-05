@@ -1,6 +1,6 @@
 package io.github.mat3e.task;
 
-import io.github.mat3e.project.dto.SimpleProjectSnapshot;
+import io.github.mat3e.task.vo.TaskSourceId;
 
 import java.time.ZonedDateTime;
 
@@ -12,18 +12,18 @@ class TaskSnapshot {
     private ZonedDateTime deadline;
     private int changesCount;
     private String additionalComment;
-    private SimpleProjectSnapshot project;
+    private TaskSourceId sourceId;
 
     TaskSnapshot() {}
 
-    TaskSnapshot(final int id, final String description, final boolean done, final ZonedDateTime deadline, final int changesCount, final String additionalComment, final SimpleProjectSnapshot project) {
+    TaskSnapshot(final int id, final String description, final boolean done, final ZonedDateTime deadline, final int changesCount, final String additionalComment, final TaskSourceId sourceId) {
         this.id = id;
         this.description = description;
         this.done = done;
         this.deadline = deadline;
         this.changesCount = changesCount;
         this.additionalComment = additionalComment;
-        this.project = project;
+        this.sourceId = sourceId;
     }
 
     int getId() {
@@ -50,7 +50,7 @@ class TaskSnapshot {
         return additionalComment;
     }
 
-    SimpleProjectSnapshot getProject() {
-        return project;
+    TaskSourceId getSourceId() {
+        return sourceId;
     }
 }
