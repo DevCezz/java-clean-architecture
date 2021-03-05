@@ -53,9 +53,7 @@ class Project {
                 .filter(potentialOverride -> existingStep.id == potentialOverride.getId())
                 .findFirst()
                 .ifPresentOrElse(
-                        overridingStep -> {
-                            existingStep.updateInfo(overridingStep.getDescription(), overridingStep.getDaysToProjectDeadline());
-                        },
+                        overridingStep -> existingStep.updateInfo(overridingStep.getDescription(), overridingStep.getDaysToProjectDeadline()),
                         () -> stepsToRemove.add(existingStep)
                 )
         );
