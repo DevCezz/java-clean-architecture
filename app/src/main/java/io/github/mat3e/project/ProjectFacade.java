@@ -35,15 +35,14 @@ public class ProjectFacade {
         this.taskQueryRepository = taskQueryRepository;
     }
 
-    ProjectDto save(ProjectDto dtoToSave) {
-        var toSave = projectFactory.from(dtoToSave);
-        if (toSave.getId() != 0) {
-            return toDto(saveWithId(toSave));
+    public ProjectDto save(ProjectDto dtoToSave) {
+        if (dtoToSave.getId() != 0) {
+            return toDto(saveWithId(dtoToSave));
         }
         if (dtoToSave.getSteps().stream().anyMatch(step -> step.getId() != 0)) {
             throw new IllegalStateException("Cannot add project with existing steps");
         }
-        return toDto(projectRepository.save(toSave));
+        return toDto(projectRepository.save(projectFactory.from(dtoToSave)));
     }
 
     private Project saveWithId(Project toSave) {
