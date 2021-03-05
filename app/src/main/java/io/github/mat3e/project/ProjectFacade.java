@@ -48,7 +48,7 @@ public class ProjectFacade {
     private Project saveWithId(Project toSave) {
         return projectRepository.findById(toSave.getId())
                 .map(existingProject -> {
-                    Set<ProjectStep> stepsToRemove = new HashSet<>();
+                    Set<Project.Step> stepsToRemove = new HashSet<>();
                     existingProject.setName(toSave.getName());
                     existingProject.getSteps()
                             .forEach(existingStep -> toSave.getSteps().stream()
@@ -64,7 +64,7 @@ public class ProjectFacade {
                             );
                     stepsToRemove.forEach(toRemove -> {
                         existingProject.removeStep(toRemove);
-                        projectStepRepository.delete(toRemove);
+                        projectRepository.delete(toRemove);
                     });
                     toSave.getSteps().stream()
                             .filter(newStep -> existingProject.getSteps().stream()
@@ -106,7 +106,7 @@ public class ProjectFacade {
         return ProjectDto.create(project.getId(), project.getName(), project.getSteps().stream().map(this::toDto).collect(Collectors.toList()));
     }
 
-    private ProjectStepDto toDto(ProjectStep step) {
+    private ProjectStepDto toDto(Project.Step step) {
         return ProjectStepDto.create(step.getId(), step.getDescription(), step.getDaysToProjectDeadline());
     }
 }
