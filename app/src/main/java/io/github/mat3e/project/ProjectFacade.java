@@ -24,7 +24,8 @@ public class ProjectFacade {
     private final TaskQueryRepository taskQueryRepository;
 
     ProjectFacade(
-            final ProjectFactory projectFactory, final ProjectRepository projectRepository,
+            final ProjectFactory projectFactory,
+            final ProjectRepository projectRepository,
             final TaskFacade taskFacade,
             final TaskQueryRepository taskQueryRepository
     ) {
