@@ -2,8 +2,8 @@ package io.github.mat3e.project;
 
 class ProjectStep {
 
-    static ProjectStep restore(ProjectStepSnapshot snapshot, Project project) {
-        return new ProjectStep(snapshot.getId(), snapshot.getDescription(), snapshot.getDaysToProjectDeadline(), project);
+    static ProjectStep restore(ProjectStepSnapshot snapshot) {
+        return new ProjectStep(snapshot.getId(), snapshot.getDescription(), snapshot.getDaysToProjectDeadline());
     }
 
     private int id;
@@ -11,11 +11,10 @@ class ProjectStep {
     private int daysToProjectDeadline;
     private Project project;
 
-    private ProjectStep(final int id, final String description, final int daysToProjectDeadline, final Project project) {
+    private ProjectStep(final int id, final String description, final int daysToProjectDeadline) {
         this.id = id;
         this.description = description;
         this.daysToProjectDeadline = daysToProjectDeadline;
-        this.project = project;
     }
 
     public int getId() {
@@ -48,5 +47,9 @@ class ProjectStep {
 
     void setProject(Project project) {
         this.project = project;
+    }
+
+    ProjectStepSnapshot getSnapshot() {
+        return new ProjectStepSnapshot(id, description, daysToProjectDeadline);
     }
 }
