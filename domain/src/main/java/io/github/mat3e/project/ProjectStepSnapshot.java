@@ -2,9 +2,11 @@ package io.github.mat3e.project;
 
 class ProjectStepSnapshot {
 
-    private final int id;
-    private final String description;
-    private final int daysToProjectDeadline;
+    private int id;
+    private String description;
+    private int daysToProjectDeadline;
+
+    ProjectStepSnapshot() {}
 
     ProjectStepSnapshot(final int id, final String description, final int daysToProjectDeadline) {
         this.id = id;

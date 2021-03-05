@@ -5,9 +5,11 @@ import java.util.Set;
 
 class ProjectSnapshot {
 
-    private final int id;
-    private final String name;
+    private int id;
+    private String name;
     private final Set<ProjectStepSnapshot> steps = new HashSet<>();
+
+    ProjectSnapshot() {}
 
     ProjectSnapshot(final int id, final String name, final Set<ProjectStepSnapshot> steps) {
         this.id = id;

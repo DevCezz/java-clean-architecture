@@ -6,13 +6,15 @@ import java.time.ZonedDateTime;
 
 class TaskSnapshot {
 
-    private final int id;
-    private final String description;
-    private final boolean done;
-    private final ZonedDateTime deadline;
-    private final int changesCount;
-    private final String additionalComment;
-    private final SimpleProjectSnapshot project;
+    private int id;
+    private String description;
+    private boolean done;
+    private ZonedDateTime deadline;
+    private int changesCount;
+    private String additionalComment;
+    private SimpleProjectSnapshot project;
+
+    TaskSnapshot() {}
 
     TaskSnapshot(final int id, final String description, final boolean done, final ZonedDateTime deadline, final int changesCount, final String additionalComment, final SimpleProjectSnapshot project) {
         this.id = id;

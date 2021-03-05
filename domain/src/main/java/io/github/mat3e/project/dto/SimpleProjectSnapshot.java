@@ -2,8 +2,10 @@ package io.github.mat3e.project.dto;
 
 public class SimpleProjectSnapshot {
 
-    private final int id;
-    private final String name;
+    private int id;
+    private String name;
+
+    SimpleProjectSnapshot() {}
 
     public SimpleProjectSnapshot(final int id, final String name) {
         this.id = id;
