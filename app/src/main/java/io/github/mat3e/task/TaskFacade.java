@@ -2,8 +2,10 @@ package io.github.mat3e.task;
 
 import io.github.mat3e.project.dto.SimpleProject;
 import io.github.mat3e.task.dto.TaskDto;
+import io.github.mat3e.task.vo.TaskCreator;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -15,6 +17,12 @@ public class TaskFacade {
     TaskFacade(final TaskFactory taskFactory, final TaskRepository taskRepository) {
         this.taskFactory = taskFactory;
         this.taskRepository = taskRepository;
+    }
+
+    public List<TaskDto> createTasks(final Set<TaskCreator> tasks) {
+        return taskRepository.saveAll(tasks.stream().map(Task::createFrom).collect(toList())).stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     public List<TaskDto> saveAll(final List<TaskDto> tasks, SimpleProject project) {
