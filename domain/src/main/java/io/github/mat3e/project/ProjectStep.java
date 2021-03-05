@@ -1,6 +1,11 @@
 package io.github.mat3e.project;
 
 class ProjectStep {
+
+    static ProjectStep restore(ProjectStepSnapshot snapshot, Project project) {
+        return new ProjectStep(snapshot.getId(), snapshot.getDescription(), snapshot.getDaysToProjectDeadline(), project);
+    }
+
     private int id;
     private String description;
     private int daysToProjectDeadline;
