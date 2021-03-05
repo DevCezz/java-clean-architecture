@@ -6,7 +6,8 @@ class ProjectStep {
     private int daysToProjectDeadline;
     private Project project;
 
-    ProjectStep(String description, int daysToProjectDeadline, Project project) {
+    private ProjectStep(final int id, final String description, final int daysToProjectDeadline, final Project project) {
+        this.id = id;
         this.description = description;
         this.daysToProjectDeadline = daysToProjectDeadline;
         this.project = project;
