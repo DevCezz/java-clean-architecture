@@ -70,4 +70,12 @@
             </one-to-many>
         </attributes>
     </entity>
+
+    <embeddable class="io.github.mat3e.task.vo.TaskSourceId">
+        <attributes>
+            <basic name="id">
+                <column nullable="false"/>
+            </basic>
+        </attributes>
+    </embeddable>
 </entity-mappings>
