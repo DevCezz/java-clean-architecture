@@ -78,7 +78,7 @@ class Project {
             return new Step(snapshot.getId(), snapshot.getDescription(), snapshot.getDaysToProjectDeadline());
         }
 
-        private int id;
+        private final int id;
         private String description;
         private int daysToProjectDeadline;
 
