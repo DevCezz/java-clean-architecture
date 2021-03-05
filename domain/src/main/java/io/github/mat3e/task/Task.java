@@ -1,7 +1,7 @@
 package io.github.mat3e.task;
 
-import io.github.mat3e.project.dto.SimpleProject;
 import io.github.mat3e.task.vo.TaskCreator;
+import io.github.mat3e.task.vo.TaskSourceId;
 
 import java.time.ZonedDateTime;
 
@@ -15,7 +15,7 @@ class Task {
                 snapshot.getDeadline(),
                 snapshot.getChangesCount(),
                 snapshot.getAdditionalComment(),
-                snapshot.getProject() != null ? SimpleProject.restore(snapshot.getProject()) : null
+                snapshot.getSourceId()
         );
     }
 
@@ -33,22 +33,22 @@ class Task {
     private ZonedDateTime deadline;
     private int changesCount;
     private String additionalComment;
-    private final SimpleProject project;
+    private final TaskSourceId sourceId;
 
-    private Task(final int id, final String description, final boolean done, final ZonedDateTime deadline, final int changesCount, final String additionalComment, final SimpleProject project) {
+    private Task(final int id, final String description, final boolean done, final ZonedDateTime deadline, final int changesCount, final String additionalComment, final TaskSourceId sourceId) {
         this.id = id;
         this.description = description;
         this.done = done;
         this.deadline = deadline;
         this.changesCount = changesCount;
         this.additionalComment = additionalComment;
-        this.project = project;
+        this.sourceId = sourceId;
     }
 
-    private Task(final String description, final ZonedDateTime deadline, final SimpleProject project) {
+    private Task(final String description, final ZonedDateTime deadline, final TaskSourceId sourceId) {
         this.description = description;
         this.deadline = deadline;
-        this.project = project;
+        this.sourceId = sourceId;
     }
 
     void toggle() {
@@ -63,6 +63,6 @@ class Task {
     }
 
     TaskSnapshot getSnapshot() {
-        return new TaskSnapshot(id, description, done, deadline, changesCount, additionalComment, project != null ? project.getSnapshot() : null);
+        return new TaskSnapshot(id, description, done, deadline, changesCount, additionalComment, sourceId);
     }
 }
