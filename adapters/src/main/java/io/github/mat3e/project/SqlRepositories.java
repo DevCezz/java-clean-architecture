@@ -4,11 +4,11 @@ import org.springframework.data.repository.Repository;
 
 import java.util.Optional;
 
-interface SqlProjectRepository extends Repository<SqlProject, Integer> {
+interface SqlProjectRepository extends Repository<ProjectSnapshot, Integer> {
 
-    Optional<SqlProject> findById(Integer id);
+    Optional<ProjectSnapshot> findById(Integer id);
 
-    SqlProject save(SqlProject entity);
+    ProjectSnapshot save(ProjectSnapshot entity);
 }
 
 @org.springframework.stereotype.Repository
@@ -22,16 +22,16 @@ class ProjectRepositoryImpl implements ProjectRepository {
 
     @Override
     public Optional<Project> findById(final Integer id) {
-        return sqlProjectRepository.findById(id).map(SqlProject::toProject);
+        return sqlProjectRepository.findById(id).map(Project::restore);
     }
 
     @Override
     public Project save(final Project entity) {
-        return sqlProjectRepository.save(SqlProject.from(entity)).toProject();
+        return Project.restore(sqlProjectRepository.save(entity.getSnapshot()));
     }
 }
 
-interface SqlProjectStepRepository extends Repository<SqlProjectStep, Integer> {
+interface SqlProjectStepRepository extends Repository<ProjectStepSnapshot, Integer> {
 
     void deleteById(int id);
 }
@@ -51,5 +51,5 @@ class ProjectStepRepositoryImpl implements ProjectStepRepository {
     }
 }
 
-interface SqlProjectQueryRepository extends ProjectQueryRepository, Repository<SqlProject, Integer> {
+interface SqlProjectQueryRepository extends ProjectQueryRepository, Repository<ProjectSnapshot, Integer> {
 }
