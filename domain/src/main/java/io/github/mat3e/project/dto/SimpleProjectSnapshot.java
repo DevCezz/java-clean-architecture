@@ -5,7 +5,7 @@ public class SimpleProjectSnapshot {
     private final int id;
     private final String name;
 
-    SimpleProjectSnapshot(final int id, final String name) {
+    public SimpleProjectSnapshot(final int id, final String name) {
         this.id = id;
         this.name = name;
     }
