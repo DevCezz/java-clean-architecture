@@ -17,7 +17,7 @@ class Project {
         );
     }
 
-    private int id;
+    private final int id;
     private String name;
     private final Set<Step> steps = new HashSet<>();
 
