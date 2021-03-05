@@ -55,7 +55,10 @@ class Project {
                 .filter(existingStep::equals)
                 .findFirst()
                 .ifPresentOrElse(
-                        overridingStep -> existingStep.updateInfo(overridingStep.description, overridingStep.daysToProjectDeadline),
+                        overridingStep -> existingStep.updateInfo(
+                                overridingStep.description,
+                                overridingStep.daysToProjectDeadline
+                        ),
                         () -> stepsToRemove.add(existingStep)
                 )
         );
