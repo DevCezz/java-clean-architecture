@@ -2,8 +2,20 @@ package io.github.mat3e.project;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 class Project {
+
+    static Project restore(ProjectSnapshot snapshot) {
+        return new Project(
+                snapshot.getId(),
+                snapshot.getName(),
+                snapshot.getSteps().stream()
+                        .map(ProjectStep::restore)
+                        .collect(Collectors.toSet())
+        );
+    }
+
     private int id;
     private String name;
     private final Set<ProjectStep> steps = new HashSet<>();
