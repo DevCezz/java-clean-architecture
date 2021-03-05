@@ -30,7 +30,7 @@
         </attributes>
     </entity>
 
-    <entity class="io.github.mat3e.project.dto.SimpleProjectSnapshot">
+    <entity class="io.github.mat3e.project.dto.SimpleProjectSnapshot" access="FIELD">
         <table name="projects"/>
         <attributes>
             <id name="id">
@@ -40,7 +40,7 @@
         </attributes>
     </entity>
 
-    <entity class="io.github.mat3e.project.ProjectStepSnapshot">
+    <entity class="io.github.mat3e.project.ProjectStepSnapshot" access="FIELD">
         <table name="project_steps"/>
         <attributes>
             <id name="id">
@@ -55,7 +55,7 @@
         </attributes>
     </entity>
 
-    <entity class="io.github.mat3e.project.ProjectSnapshot">
+    <entity class="io.github.mat3e.project.ProjectSnapshot" access="FIELD">
         <table name="projects"/>
         <attributes>
             <id name="id">
