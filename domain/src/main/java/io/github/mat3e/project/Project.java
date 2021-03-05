@@ -46,11 +46,9 @@ class Project {
         return new ProjectSnapshot(id, name, steps.stream().map(Step::getSnapshot).collect(toSet()));
     }
 
-    Set<Step> modifyAs(final ProjectSnapshot snapshot) {
-        name = snapshot.getName();
-
+    Set<Step> modifyStepsAs(final Set<ProjectStepSnapshot> stepSnapshots) {
         Set<Step> stepsToRemove = new HashSet<>();
-        steps.forEach(existingStep -> snapshot.getSteps().stream()
+        steps.forEach(existingStep -> stepSnapshots.stream()
                 .map(Step::restore)
                 .filter(existingStep::equals)
                 .findFirst()
@@ -63,7 +61,7 @@ class Project {
                 )
         );
         stepsToRemove.forEach(this::removeStep);
-        snapshot.getSteps().stream()
+        stepSnapshots.stream()
                 .map(Step::restore)
                 .filter(newStep -> steps.stream()
                         .noneMatch(existingStep -> existingStep.equals(newStep))
