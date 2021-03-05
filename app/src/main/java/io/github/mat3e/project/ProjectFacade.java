@@ -74,10 +74,11 @@ public class ProjectFacade {
     }
 
     private ProjectDto toDto(Project project) {
-        return ProjectDto.create(project.getId(), project.getName(), project.getSteps().stream().map(this::toDto).collect(Collectors.toList()));
+        var snap = project.getSnapshot();
+        return ProjectDto.create(snap.getId(), snap.getName(), snap.getSteps().stream().map(this::toDto).collect(toList()));
     }
 
-    private ProjectStepDto toDto(Project.Step step) {
+    private ProjectStepDto toDto(ProjectStepSnapshot step) {
         return ProjectStepDto.create(step.getId(), step.getDescription(), step.getDaysToProjectDeadline());
     }
 }
