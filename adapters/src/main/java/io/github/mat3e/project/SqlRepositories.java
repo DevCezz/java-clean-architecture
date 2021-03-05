@@ -15,9 +15,11 @@ interface SqlProjectRepository extends Repository<ProjectSnapshot, Integer> {
 class ProjectRepositoryImpl implements ProjectRepository {
 
     private final SqlProjectRepository sqlProjectRepository;
+    private final SqlProjectStepRepository sqlProjectStepRepository;
 
-    ProjectRepositoryImpl(final SqlProjectRepository sqlProjectRepository) {
+    ProjectRepositoryImpl(final SqlProjectRepository sqlProjectRepository, final SqlProjectStepRepository sqlProjectStepRepository) {
         this.sqlProjectRepository = sqlProjectRepository;
+        this.sqlProjectStepRepository = sqlProjectStepRepository;
     }
 
     @Override
