@@ -29,4 +29,14 @@
             </many-to-one>
         </attributes>
     </entity>
+
+    <entity class="io.github.mat3e.project.dto.SimpleProjectSnapshot">
+        <table name="projects"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="name"/>
+        </attributes>
+    </entity>
 </entity-mappings>
