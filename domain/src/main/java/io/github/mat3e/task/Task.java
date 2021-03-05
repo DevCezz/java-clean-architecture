@@ -36,6 +36,12 @@ class Task {
         this.project = project;
     }
 
+    private Task(final String description, final ZonedDateTime deadline, final SimpleProject project) {
+        this.description = description;
+        this.deadline = deadline;
+        this.project = project;
+    }
+
     void toggle() {
         done = !done;
         ++changesCount;
