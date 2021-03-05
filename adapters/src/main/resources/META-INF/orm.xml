@@ -39,4 +39,19 @@
             <basic name="name"/>
         </attributes>
     </entity>
+
+    <entity class="io.github.mat3e.project.ProjectStepSnapshot">
+        <table name="project_steps"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="description">
+                <column nullable="false"/>
+            </basic>
+            <basic name="daysToProjectDeadline">
+                <column nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
 </entity-mappings>
