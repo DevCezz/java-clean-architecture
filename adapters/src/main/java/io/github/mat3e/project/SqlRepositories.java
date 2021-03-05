@@ -43,20 +43,5 @@ interface SqlProjectStepRepository extends Repository<ProjectStepSnapshot, Integ
     void deleteById(int id);
 }
 
-@org.springframework.stereotype.Repository
-class ProjectStepRepositoryImpl implements ProjectStepRepository {
-
-    private final SqlProjectStepRepository sqlProjectStepRepository;
-
-    ProjectStepRepositoryImpl(final SqlProjectStepRepository sqlProjectStepRepository) {
-        this.sqlProjectStepRepository = sqlProjectStepRepository;
-    }
-
-    @Override
-    public void delete(final ProjectStep entity) {
-        sqlProjectStepRepository.deleteById(entity.getId());
-    }
-}
-
 interface SqlProjectQueryRepository extends ProjectQueryRepository, Repository<ProjectSnapshot, Integer> {
 }
