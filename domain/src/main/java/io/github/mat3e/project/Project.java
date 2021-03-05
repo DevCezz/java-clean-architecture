@@ -61,4 +61,8 @@ class Project {
         steps.remove(step);
         step.setProject(null);
     }
+
+    ProjectSnapshot getSnapshot() {
+        return new ProjectSnapshot(id, name, steps.stream().map(ProjectStep::getSnapshot).collect(Collectors.toSet()));
+    }
 }
