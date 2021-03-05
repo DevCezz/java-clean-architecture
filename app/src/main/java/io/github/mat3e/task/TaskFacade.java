@@ -38,7 +38,7 @@ public class TaskFacade {
                                     dtoToSave.getAdditionalComment()
                             );
                             return existingTask;
-                        }).orElseGet(() -> taskFactory.from(dtoToSave, null))
+                        }).orElseGet(() -> taskFactory.from(dtoToSave))
         );
         return toDto(toSave);
     }
