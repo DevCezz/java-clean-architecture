@@ -9,13 +9,10 @@ import io.github.mat3e.task.TaskQueryRepository;
 import io.github.mat3e.task.dto.TaskDto;
 
 import java.time.ZonedDateTime;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 public class ProjectFacade {
     private final ProjectFactory projectFactory;
