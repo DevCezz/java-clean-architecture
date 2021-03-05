@@ -34,7 +34,7 @@ class ProjectRepositoryImpl implements ProjectRepository {
 
     @Override
     public void delete(final Project.Step entity) {
-        sqlProjectStepRepository.deleteById(entity.getId());
+        sqlProjectStepRepository.deleteById(entity.getSnapshot().getId());
     }
 }
 
