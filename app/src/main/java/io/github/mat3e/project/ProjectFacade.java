@@ -45,43 +45,14 @@ public class ProjectFacade {
         return toDto(projectRepository.save(projectFactory.from(dtoToSave)));
     }
 
-    private Project saveWithId(Project toSave) {
-        return projectRepository.findById(toSave.getId())
-                .map(existingProject -> {
-                    Set<Project.Step> stepsToRemove = new HashSet<>();
-                    existingProject.setName(toSave.getName());
-                    existingProject.getSteps()
-                            .forEach(existingStep -> toSave.getSteps().stream()
-                                    .filter(potentialOverride -> existingStep.getId() == potentialOverride.getId())
-                                    .findFirst()
-                                    .ifPresentOrElse(
-                                            overridingStep -> {
-                                                existingStep.setDescription(overridingStep.getDescription());
-                                                existingStep.setDaysToProjectDeadline(overridingStep.getDaysToProjectDeadline());
-                                            },
-                                            () -> stepsToRemove.add(existingStep)
-                                    )
-                            );
-                    stepsToRemove.forEach(toRemove -> {
-                        existingProject.removeStep(toRemove);
-                        projectRepository.delete(toRemove);
-                    });
-                    toSave.getSteps().stream()
-                            .filter(newStep -> existingProject.getSteps().stream()
-                                    .noneMatch(existingStep -> existingStep.getId() == newStep.getId())
-                            ).collect(toSet())
-                            // collecting first to allow multiple id=0
-                            .forEach(existingProject::addStep);
-                    projectRepository.save(existingProject);
-                    return existingProject;
-                }).orElseGet(() -> {
-                    toSave.getSteps().forEach(step -> {
-                        if (step.getProject() == null) {
-                            step.setProject(toSave);
-                        }
-                    });
-                    return projectRepository.save(toSave);
-                });
+    private Project saveWithId(ProjectDto dtoToSave) {
+        return projectRepository.findById(dtoToSave.getId()).map(existingProject -> {
+            Project toSave = projectFactory.from(dtoToSave);
+            Set<Project.Step> removedSteps = existingProject.modifyStepsAs(toSave.getSnapshot().getSteps());
+            projectRepository.save(existingProject);
+            removedSteps.forEach(projectRepository::delete);
+            return existingProject;
+        }).orElseGet(() -> projectRepository.save(projectFactory.from(dtoToSave)));
     }
 
     List<TaskDto> createTasks(int projectId, ZonedDateTime projectDeadline) {
