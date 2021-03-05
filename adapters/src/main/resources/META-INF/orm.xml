@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+   http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                 version="1.0">
+
+    <description>XML Mapping file</description>
+
+    <entity class="io.github.mat3e.task.TaskSnapshot" access="FIELD">
+        <table name="tasks"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="description">
+                <column nullable="false"/>
+            </basic>
+            <basic name="done">
+                <column nullable="false"/>
+            </basic>
+            <basic name="deadline"/>
+            <basic name="changesCount">
+                <column nullable="false"/>
+            </basic>
+            <basic name="additionalComment"/>
+            <many-to-one name="project">
+                <join-column name="source_id"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>
