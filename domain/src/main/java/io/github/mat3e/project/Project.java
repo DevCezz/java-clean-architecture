@@ -1,5 +1,9 @@
 package io.github.mat3e.project;
 
+import io.github.mat3e.task.vo.TaskCreator;
+import io.github.mat3e.task.vo.TaskSourceId;
+
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -44,6 +48,16 @@ class Project {
 
     ProjectSnapshot getSnapshot() {
         return new ProjectSnapshot(id, name, steps.stream().map(Step::getSnapshot).collect(toSet()));
+    }
+
+    Set<TaskCreator> convertToTasks(final ZonedDateTime deadline) {
+        return steps.stream()
+                .map(step -> new TaskCreator(
+                                new TaskSourceId(String.valueOf(step.id)),
+                                step.description,
+                                deadline.plusDays(step.daysToProjectDeadline)
+                        )
+                ).collect(toSet());
     }
 
     Set<Step> modifyStepsAs(final Set<ProjectStepSnapshot> stepSnapshots) {
