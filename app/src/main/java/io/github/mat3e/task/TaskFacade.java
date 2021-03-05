@@ -31,9 +31,9 @@ public class TaskFacade {
                                 existingTask.toggle();
                             }
                             existingTask.updateInfo(
-                                    dtoToSave.getAdditionalComment(),
+                                    dtoToSave.getDescription(),
                                     dtoToSave.getDeadline(),
-                                    dtoToSave.getDescription()
+                                    dtoToSave.getAdditionalComment()
                             );
                             return existingTask;
                         }).orElseGet(() -> taskFactory.from(dtoToSave, null))
