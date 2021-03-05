@@ -31,6 +31,11 @@ class ProjectRepositoryImpl implements ProjectRepository {
     public Project save(final Project entity) {
         return Project.restore(sqlProjectRepository.save(entity.getSnapshot()));
     }
+
+    @Override
+    public void delete(final Project.Step entity) {
+        sqlProjectStepRepository.deleteById(entity.getId());
+    }
 }
 
 interface SqlProjectStepRepository extends Repository<ProjectStepSnapshot, Integer> {
