@@ -100,11 +100,15 @@ class Project {
         private final int id;
         private String description;
         private int daysToProjectDeadline;
+        private boolean hasCorrespondingTask;
+        private boolean isCorrespondingTaskDone;
 
-        private Step(final int id, final String description, final int daysToProjectDeadline) {
+        private Step(final int id, final String description, final int daysToProjectDeadline, final boolean hasCorrespondingTask, final boolean isCorrespondingTaskDone) {
             this.id = id;
             this.description = description;
             this.daysToProjectDeadline = daysToProjectDeadline;
+            this.hasCorrespondingTask = hasCorrespondingTask;
+            this.isCorrespondingTaskDone = isCorrespondingTaskDone;
         }
 
         void updateInfo(String description, int daysToProjectDeadline) {
