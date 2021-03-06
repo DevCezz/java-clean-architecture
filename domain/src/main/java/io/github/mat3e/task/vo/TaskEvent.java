@@ -11,20 +11,20 @@ public class TaskEvent implements DomainEvent {
         DONE, UNDONE, UPDATED, DELETED
     }
 
-    private final TaskSourceId id;
+    private final TaskSourceId sourceId;
     private final Instant occurredOn;
     private final Data data;
     private final State state;
 
-    public TaskEvent(final TaskSourceId id, final State state, final Data data) {
-        this.id = id;
+    public TaskEvent(final TaskSourceId sourceId, final State state, final Data data) {
+        this.sourceId = sourceId;
         this.occurredOn = Instant.now();
         this.state = state;
         this.data = data;
     }
 
-    public TaskSourceId getId() {
-        return id;
+    public TaskSourceId getSourceId() {
+        return sourceId;
     }
 
     @Override
