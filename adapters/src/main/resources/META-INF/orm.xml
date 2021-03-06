@@ -44,6 +44,12 @@
             <basic name="daysToProjectDeadline">
                 <column nullable="false"/>
             </basic>
+            <basic name="hasCorrespondingTask">
+                <column nullable="false"/>
+            </basic>
+            <basic name="isCorrespondingTaskDone">
+                <column nullable="false"/>
+            </basic>
         </attributes>
     </entity>
 
