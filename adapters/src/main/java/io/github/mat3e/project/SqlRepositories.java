@@ -28,6 +28,11 @@ class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
+    public Optional<Project> findByNestedStepId(final Integer id) {
+        return sqlProjectRepository.findWithNestedStepId(id).map(Project::restore);
+    }
+
+    @Override
     public Project save(final Project entity) {
         return Project.restore(sqlProjectRepository.save(entity.getSnapshot()));
     }
