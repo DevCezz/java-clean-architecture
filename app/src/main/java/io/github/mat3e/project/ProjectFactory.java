@@ -10,7 +10,13 @@ class ProjectFactory {
                 source.getId(),
                 source.getName(),
                 source.getSteps().stream().map(step ->
-                        new ProjectStepSnapshot(step.getId(), step.getDescription(), step.getDaysToProjectDeadline())
+                        new ProjectStepSnapshot(
+                                step.getId(),
+                                step.getDescription(),
+                                step.getDaysToProjectDeadline(),
+                                false,
+                                false
+                        )
                 ).collect(Collectors.toSet()));
 
         return Project.restore(result);
