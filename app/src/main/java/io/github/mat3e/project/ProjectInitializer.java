@@ -15,9 +15,9 @@ class ProjectInitializer {
     void init() {
         if (projectQueryRepository.count() == 0) {
             var steps = Set.of(
-                    new ProjectStepSnapshot(0, "First", -3),
-                    new ProjectStepSnapshot(0, "Second", -2),
-                    new ProjectStepSnapshot(0, "Third", 0)
+                    new ProjectStepSnapshot(0, "First", -3, false, false),
+                    new ProjectStepSnapshot(0, "Second", -2, false, false),
+                    new ProjectStepSnapshot(0, "Third", 0, false, false)
             );
             var project = Project.restore(new ProjectSnapshot(0, "Example project", steps));
 
