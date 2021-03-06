@@ -1,6 +1,8 @@
 package io.github.mat3e.project;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -9,6 +11,12 @@ interface SqlProjectRepository extends Repository<ProjectSnapshot, Integer> {
     Optional<ProjectSnapshot> findById(Integer id);
 
     ProjectSnapshot save(ProjectSnapshot entity);
+
+    @Query(
+            nativeQuery = true,
+            value = "SELECT * FROM projects p INNER JOIN project_steps ps ON p.id = ps.project_id WHERE ps.id = :id"
+    )
+    Optional<ProjectSnapshot> findWithNestedStepId(@Param("id") Integer id);
 }
 
 @org.springframework.stereotype.Repository
