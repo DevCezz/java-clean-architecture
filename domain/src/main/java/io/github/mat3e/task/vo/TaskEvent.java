@@ -13,10 +13,14 @@ public class TaskEvent implements DomainEvent {
 
     private final TaskSourceId id;
     private final Instant occurredOn;
+    private final Data data;
+    private final State state;
 
-    public TaskEvent(final TaskSourceId id, final Instant occurredOn) {
+    public TaskEvent(final TaskSourceId id, final Instant occurredOn, final Data data, final State state) {
         this.id = id;
         this.occurredOn = occurredOn;
+        this.data = data;
+        this.state = state;
     }
 
     public TaskSourceId getId() {
@@ -26,6 +30,14 @@ public class TaskEvent implements DomainEvent {
     @Override
     public Instant getOccurredOn() {
         return occurredOn;
+    }
+
+    public Data getData() {
+        return data;
+    }
+
+    public State getState() {
+        return state;
     }
 
     public static class Data {
