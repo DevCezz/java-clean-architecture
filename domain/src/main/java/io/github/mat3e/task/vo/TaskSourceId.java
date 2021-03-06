@@ -9,7 +9,7 @@ public class TaskSourceId {
         this.id = id;
     }
 
-    String getId() {
+    public String getId() {
         return id;
     }
 }
