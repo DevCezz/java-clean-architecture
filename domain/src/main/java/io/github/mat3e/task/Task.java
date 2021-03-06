@@ -1,6 +1,7 @@
 package io.github.mat3e.task;
 
 import io.github.mat3e.task.vo.TaskCreator;
+import io.github.mat3e.task.vo.TaskEvent;
 import io.github.mat3e.task.vo.TaskSourceId;
 
 import java.time.ZonedDateTime;
@@ -51,9 +52,14 @@ class Task {
         this.sourceId = sourceId;
     }
 
-    void toggle() {
+    TaskEvent toggle() {
         done = !done;
         ++changesCount;
+        return new TaskEvent(
+                sourceId,
+                done ? TaskEvent.State.DONE : TaskEvent.State.UNDONE,
+                null
+        );
     }
 
     void updateInfo(String description, ZonedDateTime deadline, String additionalComment) {
