@@ -11,7 +11,5 @@ public interface TaskQueryRepository {
 
     Optional<TaskDto> findDtoById(Integer id);
 
-    boolean existsByDoneIsFalseAndSourceId(Integer id);
-
     <T> Set<T> findBy(Class<T> type);
 }
