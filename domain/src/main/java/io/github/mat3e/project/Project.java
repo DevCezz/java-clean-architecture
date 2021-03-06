@@ -62,7 +62,10 @@ class Project {
                         )
                 ).collect(toSet());
         // FIXME: we are not sure yet if task was created; should be dedicated even for that
-        steps.forEach(step -> step.hasCorrespondingTask = true);
+        steps.forEach(step -> {
+            step.hasCorrespondingTask = true;
+            step.isCorrespondingTaskDone = false;
+        });
         return result;
     }
 
