@@ -1,15 +1,15 @@
 package io.github.mat3e.task.vo;
 
 public class TaskSourceId {
-    private String sourceId;
+    private String id;
 
     protected TaskSourceId() {}
 
-    public TaskSourceId(final String sourceId) {
-        this.sourceId = sourceId;
+    public TaskSourceId(final String id) {
+        this.id = id;
     }
 
-    String getSourceId() {
-        return sourceId;
+    String getId() {
+        return id;
     }
 }
