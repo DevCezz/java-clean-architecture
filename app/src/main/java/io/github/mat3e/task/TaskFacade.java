@@ -1,5 +1,6 @@
 package io.github.mat3e.task;
 
+import io.github.mat3e.DomainEventPublisher;
 import io.github.mat3e.task.dto.TaskDto;
 import io.github.mat3e.task.vo.TaskCreator;
 
@@ -12,10 +13,12 @@ import static java.util.stream.Collectors.toList;
 public class TaskFacade {
     private final TaskRepository taskRepository;
     private final TaskFactory taskFactory;
+    private final DomainEventPublisher publisher;
 
-    TaskFacade(final TaskFactory taskFactory, final TaskRepository taskRepository) {
+    TaskFacade(final TaskFactory taskFactory, final TaskRepository taskRepository, final DomainEventPublisher publisher) {
         this.taskFactory = taskFactory;
         this.taskRepository = taskRepository;
+        this.publisher = publisher;
     }
 
     public List<TaskDto> createTasks(final Set<TaskCreator> tasks) {
