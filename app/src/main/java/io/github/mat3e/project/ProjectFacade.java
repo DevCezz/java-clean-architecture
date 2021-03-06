@@ -6,6 +6,7 @@ import io.github.mat3e.task.TaskFacade;
 import io.github.mat3e.task.TaskQueryRepository;
 import io.github.mat3e.task.dto.TaskDto;
 import io.github.mat3e.task.vo.TaskCreator;
+import io.github.mat3e.task.vo.TaskEvent;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -29,6 +30,22 @@ public class ProjectFacade {
         this.projectRepository = projectRepository;
         this.taskFacade = taskFacade;
         this.taskQueryRepository = taskQueryRepository;
+    }
+
+    public void handle(TaskEvent event) {
+        int stepId = Integer.parseInt(event.getSourceId().getId());
+        switch (event.getState()) {
+            case DONE:
+            case DELETED:
+                updateStep(stepId, true);
+                break;
+            case UNDONE:
+                updateStep(stepId, false);
+                break;
+            case UPDATED:
+            default:
+                break;
+        }
     }
 
     void updateStep(int stepId, boolean done) {
