@@ -3,6 +3,7 @@ package io.github.mat3e.task.vo;
 import io.github.mat3e.DomainEvent;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
 
 public class TaskEvent implements DomainEvent {
 
@@ -21,5 +22,29 @@ public class TaskEvent implements DomainEvent {
     @Override
     public Instant getOccurredOn() {
         return occurredOn;
+    }
+
+    public static class Data {
+        private final String description;
+        private final ZonedDateTime deadline;
+        private final String additionalComment;
+
+        public Data(final String description, final ZonedDateTime deadline, final String additionalComment) {
+            this.description = description;
+            this.deadline = deadline;
+            this.additionalComment = additionalComment;
+        }
+
+        String getDescription() {
+            return description;
+        }
+
+        ZonedDateTime getDeadline() {
+            return deadline;
+        }
+
+        String getAdditionalComment() {
+            return additionalComment;
+        }
     }
 }
