@@ -7,6 +7,10 @@ import java.time.ZonedDateTime;
 
 public class TaskEvent implements DomainEvent {
 
+    public enum State {
+        DONE, UNDONE, UPDATED, DELETED
+    }
+
     private final TaskSourceId id;
     private final Instant occurredOn;
 
