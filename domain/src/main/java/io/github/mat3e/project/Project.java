@@ -51,6 +51,9 @@ class Project {
     }
 
     Set<TaskCreator> convertToTasks(final ZonedDateTime deadline) {
+        if (steps.stream().anyMatch(step -> step.hasCorrespondingTask && !step.isCorrespondingTaskDone)) {
+            throw new IllegalStateException("There are still some undone tasks from a previous project instance!");
+        }
         return steps.stream()
                 .map(step -> new TaskCreator(
                                 new TaskSourceId(String.valueOf(step.id)),
