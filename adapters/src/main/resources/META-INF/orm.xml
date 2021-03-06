@@ -32,16 +32,6 @@
         </attributes>
     </entity>
 
-    <entity class="io.github.mat3e.project.dto.SimpleProjectSnapshot" access="FIELD">
-        <table name="projects"/>
-        <attributes>
-            <id name="id">
-                <generated-value strategy="IDENTITY"/>
-            </id>
-            <basic name="name"/>
-        </attributes>
-    </entity>
-
     <entity class="io.github.mat3e.project.ProjectStepSnapshot" access="FIELD">
         <table name="project_steps"/>
         <attributes>
