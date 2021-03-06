@@ -16,9 +16,9 @@ public class TaskEvent implements DomainEvent {
     private final Data data;
     private final State state;
 
-    public TaskEvent(final TaskSourceId id, final Instant occurredOn, final Data data, final State state) {
+    public TaskEvent(final TaskSourceId id, final Data data, final State state) {
         this.id = id;
-        this.occurredOn = occurredOn;
+        this.occurredOn = Instant.now();
         this.data = data;
         this.state = state;
     }
