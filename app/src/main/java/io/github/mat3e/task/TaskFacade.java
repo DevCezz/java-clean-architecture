@@ -3,6 +3,7 @@ package io.github.mat3e.task;
 import io.github.mat3e.DomainEventPublisher;
 import io.github.mat3e.task.dto.TaskDto;
 import io.github.mat3e.task.vo.TaskCreator;
+import io.github.mat3e.task.vo.TaskEvent;
 
 import java.util.List;
 import java.util.Set;
@@ -46,7 +47,15 @@ public class TaskFacade {
     }
 
     void delete(int id) {
-        taskRepository.deleteById(id);
+        taskRepository.findById(id)
+                .ifPresent(task -> {
+                    taskRepository.deleteById(id);
+                    publisher.publish(new TaskEvent(
+                            task.getSnapshot().getSourceId(),
+                            TaskEvent.State.DELETED,
+                            null
+                    ));
+                });
     }
 
     private TaskDto toDto(Task task) {
