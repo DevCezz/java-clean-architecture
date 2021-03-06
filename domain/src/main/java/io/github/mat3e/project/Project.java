@@ -54,13 +54,15 @@ class Project {
         if (steps.stream().anyMatch(step -> step.hasCorrespondingTask && !step.isCorrespondingTaskDone)) {
             throw new IllegalStateException("There are still some undone tasks from a previous project instance!");
         }
-        return steps.stream()
+        var result = steps.stream()
                 .map(step -> new TaskCreator(
                                 new TaskSourceId(String.valueOf(step.id)),
                                 step.description,
                                 deadline.plusDays(step.daysToProjectDeadline)
                         )
                 ).collect(toSet());
+        steps.forEach(step -> step.hasCorrespondingTask = true);
+        return result;
     }
 
     Set<Step> modifyStepsAs(final Set<ProjectStepSnapshot> stepSnapshots) {
