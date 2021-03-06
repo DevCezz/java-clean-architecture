@@ -31,6 +31,14 @@ public class ProjectFacade {
         this.taskQueryRepository = taskQueryRepository;
     }
 
+    void updateStep(int stepId, boolean done) {
+        projectRepository.findByNestedStepId(stepId)
+                .ifPresent(project -> {
+                    project.update(stepId, done);
+                    projectRepository.save(project);
+                });
+    }
+
     public ProjectDto save(ProjectDto dtoToSave) {
         if (dtoToSave.getId() != 0) {
             return toDto(saveWithId(dtoToSave));
