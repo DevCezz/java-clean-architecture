@@ -136,7 +136,13 @@ class Project {
         }
 
         ProjectStepSnapshot getSnapshot() {
-            return new ProjectStepSnapshot(id, description, daysToProjectDeadline);
+            return new ProjectStepSnapshot(
+                    id,
+                    description,
+                    daysToProjectDeadline,
+                    hasCorrespondingTask,
+                    isCorrespondingTaskDone
+            );
         }
     }
 }
