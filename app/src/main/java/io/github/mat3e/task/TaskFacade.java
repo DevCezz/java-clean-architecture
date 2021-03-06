@@ -32,13 +32,13 @@ public class TaskFacade {
                 taskRepository.findById(dtoToSave.getId())
                         .map(existingTask -> {
                             if (existingTask.getSnapshot().isDone() != dtoToSave.isDone()) {
-                                existingTask.toggle();
+                                publisher.publish(existingTask.toggle());
                             }
-                            existingTask.updateInfo(
+                            publisher.publish(existingTask.updateInfo(
                                     dtoToSave.getDescription(),
                                     dtoToSave.getDeadline(),
                                     dtoToSave.getAdditionalComment()
-                            );
+                            ));
                             return existingTask;
                         }).orElseGet(() -> taskFactory.from(dtoToSave))
         );
