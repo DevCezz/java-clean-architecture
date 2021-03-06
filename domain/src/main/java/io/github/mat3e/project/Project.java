@@ -66,6 +66,12 @@ class Project {
         return result;
     }
 
+    void update(final int stepId, final boolean done) {
+        steps.stream()
+                .filter(step -> step.id == stepId)
+                .forEach(step -> step.isCorrespondingTaskDone = done);
+    }
+
     Set<Step> modifyStepsAs(final Set<ProjectStepSnapshot> stepSnapshots) {
         Set<Step> stepsToRemove = new HashSet<>();
         steps.forEach(existingStep -> stepSnapshots.stream()
