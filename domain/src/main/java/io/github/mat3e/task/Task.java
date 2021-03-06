@@ -62,10 +62,19 @@ class Task {
         );
     }
 
-    void updateInfo(String description, ZonedDateTime deadline, String additionalComment) {
+    TaskEvent updateInfo(String description, ZonedDateTime deadline, String additionalComment) {
         this.description = description;
         this.deadline = deadline;
         this.additionalComment = additionalComment;
+        return new TaskEvent(
+                sourceId,
+                TaskEvent.State.UPDATED,
+                new TaskEvent.Data(
+                        description,
+                        deadline,
+                        additionalComment
+                )
+        );
     }
 
     TaskSnapshot getSnapshot() {
