@@ -3,7 +3,6 @@ package io.github.mat3e.project;
 import io.github.mat3e.project.dto.ProjectDto;
 import io.github.mat3e.project.dto.ProjectStepDto;
 import io.github.mat3e.task.TaskFacade;
-import io.github.mat3e.task.TaskQueryRepository;
 import io.github.mat3e.task.dto.TaskDto;
 import io.github.mat3e.task.vo.TaskCreator;
 import io.github.mat3e.task.vo.TaskEvent;
@@ -18,18 +17,15 @@ public class ProjectFacade {
     private final ProjectFactory projectFactory;
     private final ProjectRepository projectRepository;
     private final TaskFacade taskFacade;
-    private final TaskQueryRepository taskQueryRepository;
 
     ProjectFacade(
             final ProjectFactory projectFactory,
             final ProjectRepository projectRepository,
-            final TaskFacade taskFacade,
-            final TaskQueryRepository taskQueryRepository
+            final TaskFacade taskFacade
     ) {
         this.projectFactory = projectFactory;
         this.projectRepository = projectRepository;
         this.taskFacade = taskFacade;
-        this.taskQueryRepository = taskQueryRepository;
     }
 
     public void handle(TaskEvent event) {
