@@ -94,7 +94,13 @@ class Project {
     static class Step {
 
         static Step restore(ProjectStepSnapshot snapshot) {
-            return new Step(snapshot.getId(), snapshot.getDescription(), snapshot.getDaysToProjectDeadline());
+            return new Step(
+                    snapshot.getId(),
+                    snapshot.getDescription(),
+                    snapshot.getDaysToProjectDeadline(),
+                    snapshot.hasCorrespondingTask(),
+                    snapshot.isCorrespondingTaskDone()
+            );
         }
 
         private final int id;
