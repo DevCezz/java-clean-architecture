@@ -17,4 +17,18 @@ class ProjectTest extends Specification {
             result.name == snapshot.name
             result.steps.size() == 3
     }
+
+    def "should add step to existing project when it does not contain one"() {
+        given:
+            def project = Project.restore(ProjectFixture.projectSnapshotWithoutSteps())
+            def step = Project.Step.restore(ProjectFixture.projectStepSnapshot())
+
+        when:
+            project.addStep(step)
+
+        then:
+            with(project.snapshot) {
+                it.steps.size() == 1
+            }
+    }
 }
