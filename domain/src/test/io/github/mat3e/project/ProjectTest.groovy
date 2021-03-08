@@ -46,4 +46,19 @@ class ProjectTest extends Specification {
                 it.steps.size() == 1
             }
     }
+
+    def "should remove step from existing project when it contains this one"() {
+        given:
+            def project = Project.restore(ProjectFixture.projectSnapshotWithoutSteps())
+            def step = Project.Step.restore(ProjectFixture.projectStepSnapshot())
+            project.addStep(step)
+
+        when:
+            project.removeStep(step)
+
+        then:
+            with(project.snapshot) {
+                it.steps.size() == 0
+            }
+    }
 }
