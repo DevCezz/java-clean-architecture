@@ -18,6 +18,10 @@ class TaskFixture {
         return new TaskSnapshot(12, "easy", true, DEADLINE, 5, "empty", sourceId("90"));
     }
 
+    static TaskSnapshot undoneTaskSnapshot() {
+        return new TaskSnapshot(12, "easy", false, DEADLINE, 5, "empty", sourceId("90"));
+    }
+
     static TaskCreator taskCreator() {
         return new TaskCreator(sourceId("15"), "long desc", DEADLINE);
     }
