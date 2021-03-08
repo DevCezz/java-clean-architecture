@@ -17,6 +17,18 @@ class ProjectFixture {
         );
     }
 
+    static ProjectSnapshot projectSnapshotWithStepsWithDoneTasks() {
+        return new ProjectSnapshot(95, "first", stepSnapshotsWithDoneTasks());
+    }
+
+    private static Set<ProjectStepSnapshot> stepSnapshotsWithDoneTasks() {
+        return Set.of(
+                new ProjectStepSnapshot(1, "1", -1, true, true),
+                new ProjectStepSnapshot(2, "2", -2, true, true),
+                new ProjectStepSnapshot(3, "3", -3, true, true)
+        );
+    }
+
     static ProjectSnapshot projectSnapshotWithoutSteps() {
         return new ProjectSnapshot(95, "first", Collections.emptySet());
     }
