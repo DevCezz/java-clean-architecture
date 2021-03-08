@@ -134,4 +134,17 @@ class ProjectTest extends Specification {
                 it.steps[0].correspondingTaskDone
             }
     }
+
+    def "should not update step with undone task to be done where step id is wrong"() {
+        given:
+            def project = Project.restore projectWithStepUndoneTask(102)
+
+        when:
+            project.update(104, true)
+
+        then:
+            with(project.snapshot) {
+                !it.steps[0].correspondingTaskDone
+            }
+    }
 }
