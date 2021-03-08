@@ -1,5 +1,6 @@
 package io.github.mat3e.task;
 
+import io.github.mat3e.task.vo.TaskCreator;
 import io.github.mat3e.task.vo.TaskSourceId;
 
 import java.time.LocalDate;
@@ -15,6 +16,10 @@ class TaskFixture {
 
     static TaskSnapshot taskSnapshot() {
         return new TaskSnapshot(12, "easy", true, DEADLINE, 5, "empty", sourceId("90"));
+    }
+
+    static TaskCreator taskCreator() {
+        return new TaskCreator(sourceId("15"), "long desc", DEADLINE);
     }
 
     private static TaskSourceId sourceId(String id) {
