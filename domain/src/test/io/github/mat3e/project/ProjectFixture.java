@@ -33,7 +33,7 @@ class ProjectFixture {
         return new ProjectSnapshot(95, "first", Collections.emptySet());
     }
 
-    static ProjectStepSnapshot stepSnapshotWithUndoneTask() {
-        return new ProjectStepSnapshot(50, "another", -3, false, false);
+    static ProjectStepSnapshot stepSnapshotWithCorrespondingTask(boolean taskIsDone) {
+        return new ProjectStepSnapshot(50, "another", -3, true, taskIsDone);
     }
 }
