@@ -4,6 +4,8 @@ import io.github.mat3e.task.vo.TaskEvent
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import java.time.ZonedDateTime
+
 class TaskTest extends Specification {
 
     def "should restore task from task snapshot"() {
@@ -70,5 +72,21 @@ class TaskTest extends Specification {
             source                              | result
             TaskFixture.undoneTaskSnapshot()    | TaskEvent.State.DONE
             TaskFixture.doneTaskSnapshot()      | TaskEvent.State.UNDONE
+    }
+
+    def "should update info about task"() {
+        given:
+            def now = ZonedDateTime.now();
+            def task = Task.restore TaskFixture.undoneTaskSnapshot()
+
+        when:
+            task.updateInfo("new desc", now, "new additional comment")
+
+        then:
+            with(task.snapshot) {
+                it.description == "new desc"
+                it.deadline == now
+                it.additionalComment == "new additional comment"
+            }
     }
 }
