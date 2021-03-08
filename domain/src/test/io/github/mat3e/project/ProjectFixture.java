@@ -18,14 +18,14 @@ class ProjectFixture {
     }
 
     static ProjectSnapshot projectSnapshotWithStepWithDoneTask() {
-        return new ProjectSnapshot(95, "first", Collections.singleton(stepSnapshotWithCorrespondingTask(true)));
+        return new ProjectSnapshot(95, "first", Collections.singleton(stepSnapshotId50WithCorrespondingTask(true)));
     }
 
     static ProjectSnapshot projectSnapshotWithoutSteps() {
         return new ProjectSnapshot(95, "first", Collections.emptySet());
     }
 
-    static ProjectStepSnapshot stepSnapshotWithCorrespondingTask(boolean taskIsDone) {
+    static ProjectStepSnapshot stepSnapshotId50WithCorrespondingTask(boolean taskIsDone) {
         return new ProjectStepSnapshot(50, "another", -3, true, taskIsDone);
     }
 }
