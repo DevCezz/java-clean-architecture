@@ -101,4 +101,24 @@ class ProjectTest extends Specification {
             def exception = thrown(IllegalStateException)
             exception.message.contains("undone tasks")
     }
+
+    def "should convert steps of project to new tasks"() {
+        given:
+            def currentDateTime = ZonedDateTime.now()
+            def project = Project.restore projectSnapshotWithStepWithDoneTask()
+
+        when:
+            def tasks = project.convertToTasks(currentDateTime)
+
+        then:
+            with(project.snapshot) {
+                tasks.size() == 1
+                tasks[0].sourceId.id == String.valueOf(it.steps[0].id)
+                tasks[0].description == it.steps[0].description
+                tasks[0].deadline.minusDays(it.steps[0].daysToProjectDeadline) == currentDateTime
+
+                it.steps[0].hasCorrespondingTask()
+                !it.steps[0].isCorrespondingTaskDone()
+            }
+    }
 }
