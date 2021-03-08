@@ -4,7 +4,7 @@ import java.util.Set;
 
 class ProjectFixture {
 
-    static ProjectSnapshot projectSnapshot() {
+    static ProjectSnapshot projectSnapshotWith3Steps() {
         return new ProjectSnapshot(95, "first", projectStepSnapshots());
     }
 
