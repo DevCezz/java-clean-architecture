@@ -25,12 +25,6 @@
             <version>1.3-groovy-2.5</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>3.0.7</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
