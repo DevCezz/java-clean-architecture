@@ -147,4 +147,35 @@ class ProjectTest extends Specification {
                 !it.steps[0].correspondingTaskDone
             }
     }
+
+    def "should modify existing steps"() {
+        given:
+            def modificationSteps = Set.of(
+                    new ProjectStepSnapshot(20, "test", -5, false, false),
+                    new ProjectStepSnapshot(30, "bar", -3, false, false)
+            )
+
+            def currentSteps = Set.of(
+                    new ProjectStepSnapshot(10, "foo", -2, false, false),
+                    new ProjectStepSnapshot(20, "bar", -3, false, false)
+            )
+            def snapshot = new ProjectSnapshot(100, "project", currentSteps)
+            def project = Project.restore snapshot
+
+        when:
+            def toRemove = project.modifyStepsAs(modificationSteps)
+
+        then:
+            with(project.snapshot) {
+                it.steps.size() == 2
+                it.steps.stream()
+                        .noneMatch({ step -> step.id == 10 })
+                it.steps.stream()
+                        .anyMatch({ step -> step.id == 30 })
+                it.steps.stream().filter({ step -> step.id == 20 })
+                        .allMatch({ step -> step.description == "test" && step.daysToProjectDeadline == -5 })
+
+                toRemove.stream().anyMatch({ step -> step.snapshot.id == 10 })
+            }
+    }
 }
