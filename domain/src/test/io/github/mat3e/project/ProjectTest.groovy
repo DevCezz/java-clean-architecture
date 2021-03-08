@@ -1,16 +1,18 @@
 package io.github.mat3e.project
 
-
 import spock.lang.Specification
+
+import static io.github.mat3e.project.Project.Step
+import static io.github.mat3e.project.ProjectFixture.*
 
 class ProjectTest extends Specification {
 
     def "should restore project from project snapshot"() {
         given:
-            def snapshot = ProjectFixture.projectSnapshotWith3Steps()
+            def snapshot = projectSnapshotWith3Steps()
 
         when:
-            def result = Project.restore(snapshot).snapshot
+            def result = Project.restore snapshot getSnapshot()
 
         then:
             result.id == snapshot.id
@@ -20,8 +22,8 @@ class ProjectTest extends Specification {
 
     def "should add step to existing project when it does not contain one"() {
         given:
-            def project = Project.restore(ProjectFixture.projectSnapshotWithoutSteps())
-            def step = Project.Step.restore(ProjectFixture.projectStepSnapshot())
+            def project = Project.restore projectSnapshotWithoutSteps()
+            def step = Step.restore projectStepSnapshot()
 
         when:
             project.addStep(step)
@@ -34,8 +36,8 @@ class ProjectTest extends Specification {
 
     def "should not add another step to existing project when it contains this one"() {
         given:
-            def project = Project.restore(ProjectFixture.projectSnapshotWithoutSteps())
-            def step = Project.Step.restore(ProjectFixture.projectStepSnapshot())
+            def project = Project.restore projectSnapshotWithoutSteps()
+            def step = Step.restore projectStepSnapshot()
 
         when:
             project.addStep(step)
@@ -49,8 +51,8 @@ class ProjectTest extends Specification {
 
     def "should remove step from existing project when it contains this one"() {
         given:
-            def project = Project.restore(ProjectFixture.projectSnapshotWithoutSteps())
-            def step = Project.Step.restore(ProjectFixture.projectStepSnapshot())
+            def project = Project.restore projectSnapshotWithoutSteps()
+            def step = Step.restore projectStepSnapshot()
             project.addStep(step)
 
         when:
