@@ -6,14 +6,19 @@ import spock.lang.Unroll
 
 import java.time.ZonedDateTime
 
+import static io.github.mat3e.task.Task.createFrom
+import static io.github.mat3e.task.Task.restore
+import static io.github.mat3e.task.TaskFixture.doneTaskSnapshot
+import static io.github.mat3e.task.TaskFixture.undoneTaskSnapshot
+
 class TaskTest extends Specification {
 
     def "should restore task from task snapshot"() {
         given:
-            def snapshot = TaskFixture.doneTaskSnapshot()
+            def snapshot = doneTaskSnapshot()
 
         when:
-            def result = Task.restore(snapshot).snapshot
+            def result = restore snapshot getSnapshot()
 
         then:
             result.id == snapshot.id
@@ -30,7 +35,7 @@ class TaskTest extends Specification {
             def creator = TaskFixture.taskCreator()
 
         when:
-            def result = Task.createFrom(creator).getSnapshot()
+            def result = createFrom creator getSnapshot()
 
         then:
             result.description == creator.description
@@ -40,8 +45,8 @@ class TaskTest extends Specification {
 
     def "should toggle task to invert done and increase counter"() {
         given:
-            def undoneTask = TaskFixture.undoneTaskSnapshot()
-            def task = Task.restore undoneTask
+            def undoneTask = undoneTaskSnapshot()
+            def task = restore undoneTask
 
         when:
             task.toggle()
@@ -56,7 +61,7 @@ class TaskTest extends Specification {
     @Unroll
     def "should event has state #result when task done set to #source.done before toggle"() {
         given:
-            def task = Task.restore source
+            def task = restore source
 
         when:
             def event = task.toggle()
@@ -69,15 +74,15 @@ class TaskTest extends Specification {
             }
 
         where:
-            source                              | result
-            TaskFixture.undoneTaskSnapshot()    | TaskEvent.State.DONE
-            TaskFixture.doneTaskSnapshot()      | TaskEvent.State.UNDONE
+            source                  | result
+            undoneTaskSnapshot()    | TaskEvent.State.DONE
+            doneTaskSnapshot()      | TaskEvent.State.UNDONE
     }
 
     def "should update info about task"() {
         given:
             def now = ZonedDateTime.now();
-            def task = Task.restore TaskFixture.undoneTaskSnapshot()
+            def task = restore undoneTaskSnapshot()
 
         when:
             task.updateInfo("new desc", now, "new additional comment")
