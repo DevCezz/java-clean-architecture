@@ -34,4 +34,19 @@ class TaskTest extends Specification {
             result.deadline == creator.deadline
             result.sourceId.id == creator.sourceId.id
     }
+
+    def "should toggle task to invert done and increase counter"() {
+        given:
+            def undoneTask = TaskFixture.undoneTaskSnapshot()
+            def task = Task.restore undoneTask
+
+        when:
+            task.toggle()
+
+        then:
+            with(task.snapshot) {
+                it.changesCount == undoneTask.changesCount + 1
+                it.done == !undoneTask.done
+            }
+    }
 }
