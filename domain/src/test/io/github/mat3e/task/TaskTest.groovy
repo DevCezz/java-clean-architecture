@@ -1,7 +1,8 @@
 package io.github.mat3e.task
 
-
+import io.github.mat3e.task.vo.TaskEvent
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class TaskTest extends Specification {
 
@@ -48,5 +49,26 @@ class TaskTest extends Specification {
                 it.changesCount == undoneTask.changesCount + 1
                 it.done == !undoneTask.done
             }
+    }
+
+    @Unroll
+    def "should event has state #result when task done set to #source.done before toggle"() {
+        given:
+            def task = Task.restore source
+
+        when:
+            def event = task.toggle()
+
+        then:
+            with(task.snapshot) {
+                event.sourceId == it.sourceId
+                event.state == result
+                event.data == null
+            }
+
+        where:
+            source                              | result
+            TaskFixture.undoneTaskSnapshot()    | TaskEvent.State.DONE
+            TaskFixture.doneTaskSnapshot()      | TaskEvent.State.UNDONE
     }
 }
