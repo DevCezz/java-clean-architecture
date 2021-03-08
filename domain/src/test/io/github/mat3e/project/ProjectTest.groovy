@@ -98,6 +98,7 @@ class ProjectTest extends Specification {
             project.convertToTasks(ZonedDateTime.now())
 
         then:
-            thrown(IllegalStateException)
+            def exception = thrown(IllegalStateException)
+            exception.message.contains("undone tasks")
     }
 }
