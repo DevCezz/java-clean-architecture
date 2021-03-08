@@ -21,6 +21,10 @@ class ProjectFixture {
         return new ProjectSnapshot(95, "first", Collections.singleton(stepWithDoneCorrespondingTask(50)));
     }
 
+    static ProjectSnapshot projectWithStepUndoneTask(int stepId) {
+        return new ProjectSnapshot(95, "first", Collections.singleton(stepWithUndoneCorrespondingTask(stepId)));
+    }
+
     static ProjectSnapshot projectWithoutSteps() {
         return new ProjectSnapshot(95, "first", Collections.emptySet());
     }
