@@ -37,11 +37,10 @@ class ProjectTest extends Specification {
     def "should not add another step to existing project when it contains this one"() {
         given:
             def project = Project.restore projectSnapshotWithoutSteps()
-            def step = Step.restore projectStepSnapshot()
 
         when:
-            project.addStep(step)
-            project.addStep(step)
+            project.addStep(Step.restore(projectStepSnapshot()))
+            project.addStep(Step.restore(projectStepSnapshot()))
 
         then:
             with(project.snapshot) {
@@ -52,11 +51,10 @@ class ProjectTest extends Specification {
     def "should remove step from existing project when it contains this one"() {
         given:
             def project = Project.restore projectSnapshotWithoutSteps()
-            def step = Step.restore projectStepSnapshot()
-            project.addStep(step)
+            project.addStep(Step.restore(projectStepSnapshot()))
 
         when:
-            project.removeStep(step)
+            project.removeStep(Step.restore(projectStepSnapshot()))
 
         then:
             with(project.snapshot) {
