@@ -5,6 +5,7 @@ import io.github.mat3e.task.vo.TaskSourceId;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
@@ -32,7 +33,7 @@ class Project {
     }
 
     void addStep(Step step) {
-        if (steps.contains(step)) {
+        if (!step.isNew() && steps.contains(step)) {
             return;
         }
         steps.add(step);
@@ -144,6 +145,23 @@ class Project {
                     hasCorrespondingTask,
                     isCorrespondingTaskDone
             );
+        }
+
+        private boolean isNew() {
+            return id == 0;
+        }
+
+        @Override
+        public boolean equals(final Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            final Step step = (Step) o;
+            return id == step.id;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id);
         }
     }
 }
