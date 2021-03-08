@@ -2,6 +2,8 @@ package io.github.mat3e.project
 
 import spock.lang.Specification
 
+import java.time.ZonedDateTime
+
 import static io.github.mat3e.project.Project.Step
 import static io.github.mat3e.project.ProjectFixture.*
 
@@ -86,5 +88,16 @@ class ProjectTest extends Specification {
             with(project.snapshot) {
                 it.name == "new name"
             }
+    }
+
+    def "should throw exception when creating new tasks where there are undone tasks"() {
+        given:
+            def project = Project.restore projectSnapshotWithStepsWithOneUndoneTask()
+
+        when:
+            project.convertToTasks(ZonedDateTime.now())
+
+        then:
+            thrown(IllegalStateException)
     }
 }
