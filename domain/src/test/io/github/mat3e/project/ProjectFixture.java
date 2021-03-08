@@ -5,15 +5,15 @@ import java.util.Set;
 
 class ProjectFixture {
 
-    static ProjectSnapshot projectSnapshotWith3Steps() {
-        return new ProjectSnapshot(95, "first", projectStepSnapshots());
+    static ProjectSnapshot projectSnapshotWithStepsWithOneUndoneTask() {
+        return new ProjectSnapshot(95, "first", stepSnapshotsWithOneUndoneTask());
     }
 
-    private static Set<ProjectStepSnapshot> projectStepSnapshots() {
+    private static Set<ProjectStepSnapshot> stepSnapshotsWithOneUndoneTask() {
         return Set.of(
-                new ProjectStepSnapshot(1, "1", -1, false, false),
-                new ProjectStepSnapshot(2, "2", -2, false, false),
-                new ProjectStepSnapshot(3, "3", -3, false, false)
+                new ProjectStepSnapshot(1, "1", -1, true, true),
+                new ProjectStepSnapshot(2, "2", -2, true, false),
+                new ProjectStepSnapshot(3, "3", -3, true, true)
         );
     }
 
@@ -21,7 +21,7 @@ class ProjectFixture {
         return new ProjectSnapshot(95, "first", Collections.emptySet());
     }
 
-    static ProjectStepSnapshot projectStepSnapshot() {
+    static ProjectStepSnapshot undoneStepSnapshot() {
         return new ProjectStepSnapshot(50, "another", -3, false, false);
     }
 }

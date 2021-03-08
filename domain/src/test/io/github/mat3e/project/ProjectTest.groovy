@@ -9,7 +9,7 @@ class ProjectTest extends Specification {
 
     def "should restore project from project snapshot"() {
         given:
-            def snapshot = projectSnapshotWith3Steps()
+            def snapshot = projectSnapshotWithStepsWithOneUndoneTask()
 
         when:
             def result = Project.restore snapshot getSnapshot()
@@ -23,7 +23,7 @@ class ProjectTest extends Specification {
     def "should add step to existing project when it does not contain one"() {
         given:
             def project = Project.restore projectSnapshotWithoutSteps()
-            def step = Step.restore projectStepSnapshot()
+            def step = Step.restore undoneStepSnapshot()
 
         when:
             project.addStep(step)
@@ -39,8 +39,8 @@ class ProjectTest extends Specification {
             def project = Project.restore projectSnapshotWithoutSteps()
 
         when:
-            project.addStep(Step.restore(projectStepSnapshot()))
-            project.addStep(Step.restore(projectStepSnapshot()))
+            project.addStep(Step.restore(undoneStepSnapshot()))
+            project.addStep(Step.restore(undoneStepSnapshot()))
 
         then:
             with(project.snapshot) {
@@ -51,10 +51,10 @@ class ProjectTest extends Specification {
     def "should remove step from existing project when it contains this one"() {
         given:
             def project = Project.restore projectSnapshotWithoutSteps()
-            project.addStep(Step.restore(projectStepSnapshot()))
+            project.addStep(Step.restore(undoneStepSnapshot()))
 
         when:
-            project.removeStep(Step.restore(projectStepSnapshot()))
+            project.removeStep(Step.restore(undoneStepSnapshot()))
 
         then:
             with(project.snapshot) {
@@ -67,7 +67,7 @@ class ProjectTest extends Specification {
             def project = Project.restore projectSnapshotWithoutSteps()
 
         when:
-            project.removeStep(Step.restore(projectStepSnapshot()))
+            project.removeStep(Step.restore(undoneStepSnapshot()))
 
         then:
             with(project.snapshot) {
