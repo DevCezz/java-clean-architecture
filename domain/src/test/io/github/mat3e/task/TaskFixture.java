@@ -14,7 +14,7 @@ class TaskFixture {
     private static final LocalTime TIME = LocalTime.of(12, 23);
     private static final ZonedDateTime DEADLINE = ZonedDateTime.of(DATE, TIME, ZoneId.of("Europe/Warsaw"));
 
-    static TaskSnapshot taskSnapshot() {
+    static TaskSnapshot doneTaskSnapshot() {
         return new TaskSnapshot(12, "easy", true, DEADLINE, 5, "empty", sourceId("90"));
     }
 

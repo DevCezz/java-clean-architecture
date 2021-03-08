@@ -7,7 +7,7 @@ class TaskTest extends Specification {
 
     def "should restore task from task snapshot"() {
         given:
-            def snapshot = TaskFixture.taskSnapshot()
+            def snapshot = TaskFixture.doneTaskSnapshot()
 
         when:
             def result = Task.restore(snapshot).getSnapshot()
