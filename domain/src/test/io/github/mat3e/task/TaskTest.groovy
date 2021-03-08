@@ -13,7 +13,7 @@ class TaskTest extends Specification {
             def snapshot = TaskFixture.doneTaskSnapshot()
 
         when:
-            def result = Task.restore(snapshot).getSnapshot()
+            def result = Task.restore(snapshot).snapshot
 
         then:
             result.id == snapshot.id
