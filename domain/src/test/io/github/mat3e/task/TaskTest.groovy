@@ -21,4 +21,17 @@ class TaskTest extends Specification {
             result.additionalComment == snapshot.additionalComment
             result.sourceId.id == snapshot.sourceId.id
     }
+
+    def "should create task from task creator"() {
+        given:
+            def creator = TaskFixture.taskCreator()
+
+        when:
+            def result = Task.createFrom(creator).getSnapshot()
+
+        then:
+            result.description == creator.description
+            result.deadline == creator.deadline
+            result.sourceId.id == creator.sourceId.id
+    }
 }
