@@ -33,7 +33,7 @@ class Project {
     }
 
     void addStep(Step step) {
-        if (steps.contains(step)) {
+        if (!step.isNew() && steps.contains(step)) {
             return;
         }
         steps.add(step);
