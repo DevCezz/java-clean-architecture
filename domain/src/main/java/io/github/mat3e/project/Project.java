@@ -78,7 +78,7 @@ class Project {
         Set<Step> stepsToRemove = new HashSet<>();
         steps.forEach(existingStep -> stepSnapshots.stream()
                 .map(Step::restore)
-                .filter(existingStep::equals)
+                .filter(stepSnapshot -> stepSnapshot.id == existingStep.id)
                 .findFirst()
                 .ifPresentOrElse(
                         overridingStep -> existingStep.updateInfo(
@@ -92,7 +92,7 @@ class Project {
         stepSnapshots.stream()
                 .map(Step::restore)
                 .filter(newStep -> steps.stream()
-                        .noneMatch(newStep::equals)
+                        .noneMatch(step -> step.id == newStep.id)
                 )
                 .collect(toSet())
                 // collecting first to allow multiple id=0
