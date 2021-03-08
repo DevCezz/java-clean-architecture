@@ -21,7 +21,7 @@ class ProjectFixture {
         return new ProjectSnapshot(95, "first", Collections.emptySet());
     }
 
-    static ProjectStepSnapshot undoneStepSnapshot() {
+    static ProjectStepSnapshot stepSnapshotWithUndoneTask() {
         return new ProjectStepSnapshot(50, "another", -3, false, false);
     }
 }
