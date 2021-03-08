@@ -121,4 +121,17 @@ class ProjectTest extends Specification {
                 !it.steps[0].isCorrespondingTaskDone()
             }
     }
+
+    def "should update step with undone task to be done"() {
+        given:
+            def project = Project.restore projectWithStepUndoneTask(102)
+
+        when:
+            project.update(102, true)
+
+        then:
+            with(project.snapshot) {
+                it.steps[0].correspondingTaskDone
+            }
+    }
 }
