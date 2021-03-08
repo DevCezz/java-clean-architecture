@@ -74,4 +74,17 @@ class ProjectTest extends Specification {
                 it.steps.size() == 0
             }
     }
+
+    def "should update info about project"() {
+        given:
+            def project = Project.restore projectSnapshotWithoutSteps()
+
+        when:
+            project.updateInfo("new name")
+
+        then:
+            with(project.snapshot) {
+                it.name == "new name"
+            }
+    }
 }
