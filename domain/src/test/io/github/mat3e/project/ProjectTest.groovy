@@ -11,7 +11,7 @@ class ProjectTest extends Specification {
 
     def "should restore project from project snapshot"() {
         given:
-            def snapshot = projectSnapshotWithStepsWithOneUndoneTask()
+            def snapshot = projectWithStepsWhereOneTaskIsUndone()
 
         when:
             def result = Project.restore snapshot getSnapshot()
@@ -24,8 +24,8 @@ class ProjectTest extends Specification {
 
     def "should add step to existing project when it does not contain one"() {
         given:
-            def project = Project.restore projectSnapshotWithoutSteps()
-            def step = Step.restore stepSnapshotId50WithCorrespondingTask(true)
+            def project = Project.restore projectWithoutSteps()
+            def step = Step.restore stepWithDoneCorrespondingTask(43)
 
         when:
             project.addStep(step)
@@ -38,11 +38,11 @@ class ProjectTest extends Specification {
 
     def "should not add another step to existing project when it contains this one"() {
         given:
-            def project = Project.restore projectSnapshotWithoutSteps()
+            def project = Project.restore projectWithoutSteps()
 
         when:
-            project.addStep(Step.restore(stepSnapshotId50WithCorrespondingTask(true)))
-            project.addStep(Step.restore(stepSnapshotId50WithCorrespondingTask(true)))
+            project.addStep(Step.restore(stepWithDoneCorrespondingTask(12)))
+            project.addStep(Step.restore(stepWithDoneCorrespondingTask(12)))
 
         then:
             with(project.snapshot) {
@@ -52,11 +52,11 @@ class ProjectTest extends Specification {
 
     def "should remove step from existing project when it contains this one"() {
         given:
-            def project = Project.restore projectSnapshotWithoutSteps()
-            project.addStep(Step.restore(stepSnapshotId50WithCorrespondingTask(true)))
+            def project = Project.restore projectWithoutSteps()
+            project.addStep(Step.restore(stepWithDoneCorrespondingTask(12)))
 
         when:
-            project.removeStep(Step.restore(stepSnapshotId50WithCorrespondingTask(true)))
+            project.removeStep(Step.restore(stepWithDoneCorrespondingTask(12)))
 
         then:
             with(project.snapshot) {
@@ -66,10 +66,10 @@ class ProjectTest extends Specification {
 
     def "should not remove step from existing project when it does not contain this one"() {
         given:
-            def project = Project.restore projectSnapshotWithoutSteps()
+            def project = Project.restore projectWithoutSteps()
 
         when:
-            project.removeStep(Step.restore(stepSnapshotId50WithCorrespondingTask(true)))
+            project.removeStep(Step.restore(stepWithDoneCorrespondingTask(12)))
 
         then:
             with(project.snapshot) {
@@ -79,7 +79,7 @@ class ProjectTest extends Specification {
 
     def "should update info about project"() {
         given:
-            def project = Project.restore projectSnapshotWithoutSteps()
+            def project = Project.restore projectWithoutSteps()
 
         when:
             project.updateInfo("new name")
@@ -92,7 +92,7 @@ class ProjectTest extends Specification {
 
     def "should throw exception when creating new tasks where there are undone tasks"() {
         given:
-            def project = Project.restore projectSnapshotWithStepsWithOneUndoneTask()
+            def project = Project.restore projectWithStepsWhereOneTaskIsUndone()
 
         when:
             project.convertToTasks(ZonedDateTime.now())
@@ -105,7 +105,7 @@ class ProjectTest extends Specification {
     def "should convert steps of project to new tasks"() {
         given:
             def currentDateTime = ZonedDateTime.now()
-            def project = Project.restore projectSnapshotWithStepWithDoneTask()
+            def project = Project.restore projectWithStepDoneTask()
 
         when:
             def tasks = project.convertToTasks(currentDateTime)
