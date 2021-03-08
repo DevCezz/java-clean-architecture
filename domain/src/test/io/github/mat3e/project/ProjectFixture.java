@@ -1,6 +1,5 @@
 package io.github.mat3e.project;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
