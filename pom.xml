@@ -15,4 +15,8 @@
         <module>app</module>
         <module>domain</module>
     </modules>
+
+    <properties>
+        <revision>0.0.1-SNAPSHOT</revision>
+    </properties>
 </project>

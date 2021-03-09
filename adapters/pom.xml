@@ -10,7 +10,7 @@
     </parent>
     <groupId>engineering.full-stack</groupId>
     <artifactId>adapters</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>adapters</name>
     <description>Example project for a Clean Architecture course - adapters.</description>
 

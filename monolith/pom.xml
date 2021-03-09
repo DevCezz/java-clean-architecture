@@ -10,7 +10,7 @@
     </parent>
     <groupId>engineering.full-stack</groupId>
     <artifactId>monolith</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>monolith</name>
     <description>Monolith Spring app for Clean Architecture course.</description>
 
