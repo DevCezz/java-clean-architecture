@@ -1,6 +1,5 @@
 package io.github.mat3e.task.dto;
 
-import javax.validation.constraints.NotNull;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
@@ -11,7 +10,6 @@ public class TaskDto {
     }
 
     private final int id;
-    @NotNull
     private final String description;
     private final boolean done;
     private final ZonedDateTime deadline;
@@ -19,7 +17,7 @@ public class TaskDto {
 
     public TaskDto(
             final int id,
-            @NotNull final String description,
+            final String description,
             final boolean done,
             final ZonedDateTime deadline,
             final String additionalComment
@@ -79,7 +77,6 @@ public class TaskDto {
 
     public static class Builder {
         private int id;
-        @NotNull
         private String description;
         private boolean done;
         private ZonedDateTime deadline;
