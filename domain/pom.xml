@@ -77,9 +77,6 @@
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
                 <version>1.12.1</version>
-                <configuration>
-                    <previewFeatures>true</previewFeatures>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>
