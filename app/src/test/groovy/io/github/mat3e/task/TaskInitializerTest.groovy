@@ -10,4 +10,15 @@ class TaskInitializerTest extends Specification {
 
     @Subject
     def initializer = new TaskInitializer(repository, queryRepository)
+
+    def "should invoke save when there is no task in repo"() {
+        given:
+            queryRepository.count() >> 0
+
+        when:
+            initializer.init()
+
+        then:
+            1 * repository.save(!null)
+    }
 }
