@@ -10,7 +10,7 @@
     </parent>
     <groupId>engineering.full-stack</groupId>
     <artifactId>domain</artifactId>
-    <version>${revision}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>domain</name>
     <description>Example project for a Clean Architecture course - domain.</description>
 

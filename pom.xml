@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>engineering.full-stack</groupId>
     <artifactId>java-clean-architecture</artifactId>
-    <version>${revision}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>java-clean-architecture</name>
     <description>Parent for a Clean Architecture project example app.</description>
     <packaging>pom</packaging>
@@ -15,8 +15,4 @@
         <module>app</module>
         <module>domain</module>
     </modules>
-
-    <properties>
-        <revision>0.0.1-SNAPSHOT</revision>
-    </properties>
 </project>
