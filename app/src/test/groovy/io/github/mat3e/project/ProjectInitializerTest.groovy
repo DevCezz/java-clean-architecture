@@ -1,6 +1,5 @@
 package io.github.mat3e.project
 
-
 import spock.lang.Specification
 import spock.lang.Subject
 
