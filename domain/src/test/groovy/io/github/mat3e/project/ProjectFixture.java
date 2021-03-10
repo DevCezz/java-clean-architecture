@@ -1,7 +1,9 @@
 package io.github.mat3e.project;
 
-import java.util.Collections;
-import java.util.Set;
+import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 
 class ProjectFixture {
 
@@ -9,8 +11,8 @@ class ProjectFixture {
         return new ProjectSnapshot(95, "first", stepsWhereOneTaskIsUndone());
     }
 
-    private static Set<ProjectStepSnapshot> stepsWhereOneTaskIsUndone() {
-        return Set.of(
+    private static List<ProjectStepSnapshot> stepsWhereOneTaskIsUndone() {
+        return List.of(
                 stepWithDoneCorrespondingTask(1),
                 stepWithUndoneCorrespondingTask(2),
                 stepWithDoneCorrespondingTask(3)
@@ -18,15 +20,15 @@ class ProjectFixture {
     }
 
     static ProjectSnapshot projectWithStepDoneTask() {
-        return new ProjectSnapshot(95, "first", Collections.singleton(stepWithDoneCorrespondingTask(50)));
+        return new ProjectSnapshot(95, "first", singletonList(stepWithDoneCorrespondingTask(50)));
     }
 
     static ProjectSnapshot projectWithStepUndoneTask(int stepId) {
-        return new ProjectSnapshot(95, "first", Collections.singleton(stepWithUndoneCorrespondingTask(stepId)));
+        return new ProjectSnapshot(95, "first", singletonList(stepWithUndoneCorrespondingTask(stepId)));
     }
 
     static ProjectSnapshot projectWithoutSteps() {
-        return new ProjectSnapshot(95, "first", Collections.emptySet());
+        return new ProjectSnapshot(95, "first", emptyList());
     }
 
     static ProjectStepSnapshot stepWithDoneCorrespondingTask(int id) {

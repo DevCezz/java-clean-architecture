@@ -1,6 +1,6 @@
 package io.github.mat3e.project;
 
-import java.util.Set;
+import java.util.List;
 
 class ProjectInitializer {
 
@@ -14,7 +14,7 @@ class ProjectInitializer {
 
     void init() {
         if (projectQueryRepository.count() == 0) {
-            var steps = Set.of(
+            var steps = List.of(
                     new ProjectStepSnapshot(0, "First", -3, false, false),
                     new ProjectStepSnapshot(0, "Second", -2, false, false),
                     new ProjectStepSnapshot(0, "Third", 0, false, false)

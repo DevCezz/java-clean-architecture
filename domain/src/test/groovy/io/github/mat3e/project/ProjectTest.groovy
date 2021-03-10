@@ -167,12 +167,12 @@ class ProjectTest extends Specification {
 
     def "should modify existing steps"() {
         given:
-            def modificationSteps = Set.of(
+            def modificationSteps = List.of(
                     new ProjectStepSnapshot(20, "test", -5, false, false),
                     new ProjectStepSnapshot(30, "bar", -3, false, false)
             )
 
-            def currentSteps = Set.of(
+            def currentSteps = List.of(
                     new ProjectStepSnapshot(10, "foo", -2, false, false),
                     new ProjectStepSnapshot(20, "bar", -3, false, false)
             )

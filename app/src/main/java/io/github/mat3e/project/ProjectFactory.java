@@ -2,7 +2,7 @@ package io.github.mat3e.project;
 
 import io.github.mat3e.project.dto.ProjectDto;
 
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 class ProjectFactory {
     Project from(ProjectDto source) {
@@ -17,7 +17,7 @@ class ProjectFactory {
                                 false,
                                 false
                         )
-                ).collect(Collectors.toSet()));
+                ).collect(toList()));
 
         return Project.restore(result);
     }

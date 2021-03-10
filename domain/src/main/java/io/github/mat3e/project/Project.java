@@ -5,7 +5,6 @@ import io.github.mat3e.task.vo.TaskSourceId;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +19,7 @@ class Project {
                 snapshot.getName(),
                 snapshot.getSteps().stream()
                         .map(Step::restore)
-                        .collect(toSet())
+                        .collect(toList())
         );
     }
 
@@ -28,7 +27,7 @@ class Project {
     private String name;
     private final List<Step> steps = new ArrayList<>();
 
-    private Project(final int id, final String name, final Set<Step> steps) {
+    private Project(final int id, final String name, final List<Step> steps) {
         this.id = id;
         this.name = name;
         steps.forEach(this::addStep);
@@ -48,7 +47,7 @@ class Project {
     }
 
     ProjectSnapshot getSnapshot() {
-        return new ProjectSnapshot(id, name, steps.stream().map(Step::getSnapshot).collect(toSet()));
+        return new ProjectSnapshot(id, name, steps.stream().map(Step::getSnapshot).collect(toList()));
     }
 
     Set<TaskCreator> convertToTasks(final ZonedDateTime deadline) {
@@ -76,8 +75,8 @@ class Project {
                 .forEach(step -> step.isCorrespondingTaskDone = done);
     }
 
-    Set<Step> modifyStepsAs(final Set<ProjectStepSnapshot> stepSnapshots) {
-        Set<Step> stepsToRemove = new HashSet<>();
+    List<Step> modifyStepsAs(final List<ProjectStepSnapshot> stepSnapshots) {
+        List<Step> stepsToRemove = new ArrayList<>();
         steps.forEach(existingStep -> stepSnapshots.stream()
                 .map(Step::restore)
                 .filter(stepSnapshot -> stepSnapshot.id == existingStep.id)
