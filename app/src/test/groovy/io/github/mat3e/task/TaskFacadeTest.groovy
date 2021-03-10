@@ -84,9 +84,11 @@ class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     Task save(final Task entity) {
-        def id = nextId++
-        database.put(id, entity)
-        return Task.restore(new TaskSnapshot(id, entity.snapshot))
+        def task = findById(entity.snapshot.id)
+                .map(task -> entity)
+                .orElseGet(() -> Task.restore(new TaskSnapshot(nextId++, entity.snapshot)))
+        database.put(task.snapshot.id, task)
+        return task
     }
 
     @Override
