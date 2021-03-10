@@ -83,14 +83,14 @@ class ProjectTest extends Specification {
 
     def "should not remove step from existing project when it does not contain this one"() {
         given:
-            def project = Project.restore projectWithoutSteps()
+            def project = Project.restore projectWithStepUndoneTask(23)
 
         when:
             project.removeStep(12)
 
         then:
             with(project.snapshot) {
-                it.steps.size() == 0
+                it.steps.size() == 1
             }
     }
 
