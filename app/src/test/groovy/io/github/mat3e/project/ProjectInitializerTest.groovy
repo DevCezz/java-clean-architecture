@@ -21,4 +21,15 @@ class ProjectInitializerTest extends Specification {
         then:
             1 * repository.save({ it.steps.size() == 3 })
     }
+
+    def "should not invoke save when there is project in repo"() {
+        given:
+            queryRepository.count() >> 1
+
+        when:
+            initializer.init()
+
+        then:
+            0 * repository.save(_)
+    }
 }
