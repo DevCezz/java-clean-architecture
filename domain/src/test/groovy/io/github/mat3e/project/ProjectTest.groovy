@@ -24,17 +24,17 @@ class ProjectTest extends Specification {
 
     def "should restore step from step snapshot"() {
         given:
-        def snapshot = stepWithDoneCorrespondingTask(10)
+            def snapshot = stepWithDoneCorrespondingTask(10)
 
         when:
-        def result = Step.restore snapshot getSnapshot()
+            def result = Step.restore snapshot getSnapshot()
 
         then:
-        result.id == snapshot.id
-        result.description == snapshot.description;
-        result.daysToProjectDeadline == snapshot.daysToProjectDeadline;
-        result.hasCorrespondingTask() == snapshot.hasCorrespondingTask();
-        result.isCorrespondingTaskDone() == snapshot.isCorrespondingTaskDone();
+            result.id == snapshot.id
+            result.description == snapshot.description;
+            result.daysToProjectDeadline == snapshot.daysToProjectDeadline;
+            result.hasCorrespondingTask() == snapshot.hasCorrespondingTask();
+            result.isCorrespondingTaskDone() == snapshot.isCorrespondingTaskDone();
     }
 
     def "should add step to existing project when it does not contain one"() {
