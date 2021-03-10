@@ -21,4 +21,15 @@ class TaskInitializerTest extends Specification {
         then:
             1 * repository.save(!null)
     }
+
+    def "should not invoke save when there is task in repo"() {
+        given:
+            queryRepository.count() >> 1
+
+        when:
+            initializer.init()
+
+        then:
+            0 * repository.save(_)
+    }
 }
