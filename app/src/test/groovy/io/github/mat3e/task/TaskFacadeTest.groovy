@@ -3,6 +3,7 @@ package io.github.mat3e.task
 import io.github.mat3e.DomainEventPublisher
 import io.github.mat3e.task.dto.TaskDto
 import io.github.mat3e.task.vo.TaskCreator
+import io.github.mat3e.task.vo.TaskEvent
 import io.github.mat3e.task.vo.TaskSourceId
 import org.junit.jupiter.api.BeforeEach
 import spock.lang.Specification
@@ -94,6 +95,27 @@ class TaskFacadeTest extends Specification {
                 it.deadline == task.deadline
                 it.additionalComment == task.additionalComment
             }
+    }
+
+    def "should publish events when task is updated to be undone"() {
+        given:
+            def deadline = ZonedDateTime.of(
+                    LocalDate.of(2020, 02, 02),
+                    LocalTime.of(14, 45),
+                    ZoneId.of("Europe/Warsaw")
+            )
+            def saved = repository.save(Task.restore(
+                    new TaskSnapshot(0, "desc", true, deadline.minusDays(4), 10, "foo", new TaskSourceId("97"))
+            )).getSnapshot()
+            def task = new TaskDto(saved.id, "desc-new", false, deadline, "bar")
+
+        when:
+            facade.save(task)
+
+        then:
+            0 * publisher.publish({ it.state == TaskEvent.State.DONE })
+            1 * publisher.publish({ it.state == TaskEvent.State.UNDONE })
+            1 * publisher.publish({ it.state == TaskEvent.State.UPDATED })
     }
 }
 
