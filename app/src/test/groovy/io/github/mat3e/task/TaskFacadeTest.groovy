@@ -70,6 +70,31 @@ class TaskFacadeTest extends Specification {
                 it.additionalComment == task.additionalComment
             }
     }
+
+    def "should update task in repository when there is such task"() {
+        given:
+            def deadline = ZonedDateTime.of(
+                    LocalDate.of(2020, 02, 02),
+                    LocalTime.of(14, 45),
+                    ZoneId.of("Europe/Warsaw")
+            )
+            def saved = repository.save(Task.restore(
+                    new TaskSnapshot(0, "desc", true, deadline.minusDays(4), 10, "foo", new TaskSourceId("97"))
+            )).getSnapshot()
+            def task = new TaskDto(saved.id, "desc-new", true, deadline, "bar")
+
+        when:
+            def result = facade.save(task)
+
+        then:
+            repository.count() == 1
+            with(result) {
+                it.description == task.description
+                it.done == task.done
+                it.deadline == task.deadline
+                it.additionalComment == task.additionalComment
+            }
+    }
 }
 
 class TaskRepositoryImpl implements TaskRepository {
