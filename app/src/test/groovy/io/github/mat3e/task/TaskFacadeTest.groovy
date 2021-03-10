@@ -71,4 +71,8 @@ class TaskRepositoryImpl implements TaskRepository {
     void deleteById(final Integer id) {
         database.remove(id)
     }
+
+    int count() {
+        return database.size();
+    }
 }
