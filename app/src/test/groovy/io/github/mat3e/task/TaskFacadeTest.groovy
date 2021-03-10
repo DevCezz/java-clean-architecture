@@ -1,7 +1,6 @@
 package io.github.mat3e.task
 
 import io.github.mat3e.DomainEventPublisher
-import io.github.mat3e.task.dto.TaskDto
 import io.github.mat3e.task.vo.TaskCreator
 import io.github.mat3e.task.vo.TaskSourceId
 import spock.lang.Specification
@@ -22,6 +21,26 @@ class TaskFacadeTest extends Specification {
 
     @Subject
     def facade = new TaskFacade(factory, repository, publisher)
+
+    def "should return task dtos when tasks are created"() {
+        given:
+            def datetime = ZonedDateTime.of(
+                    LocalDate.of(2020, 02, 02),
+                    LocalTime.of(14, 45),
+                    ZoneId.of("Europe/Warsaw")
+            )
+            def tasks = Set.of(
+                    new TaskCreator(new TaskSourceId("1"), "desc1", datetime.minusDays(1)),
+                    new TaskCreator(new TaskSourceId("2"), "desc2", datetime.minusHours(4))
+            )
+
+        when:
+            def result = facade.createTasks(tasks)
+
+        then:
+            result.stream().anyMatch(dto -> dto.description == tasks[0].description && dto.deadline == tasks[0].deadline)
+            result.stream().anyMatch(dto -> dto.description == tasks[1].description && dto.deadline == tasks[1].deadline)
+    }
 }
 
 class TaskRepositoryImpl implements TaskRepository {
