@@ -74,7 +74,7 @@ class TaskRepositoryImpl implements TaskRepository {
     }
 
     int count() {
-        return database.size();
+        return database.size()
     }
 
     void clear() {
