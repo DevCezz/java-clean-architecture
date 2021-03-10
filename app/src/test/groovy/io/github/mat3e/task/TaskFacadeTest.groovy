@@ -38,6 +38,7 @@ class TaskFacadeTest extends Specification {
             def result = facade.createTasks(tasks)
 
         then:
+            repository.count() == 2
             result.stream().anyMatch(dto -> dto.description == tasks[0].description && dto.deadline == tasks[0].deadline)
             result.stream().anyMatch(dto -> dto.description == tasks[1].description && dto.deadline == tasks[1].deadline)
     }
