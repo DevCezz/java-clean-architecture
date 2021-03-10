@@ -4,8 +4,9 @@ import io.github.mat3e.task.vo.TaskCreator;
 import io.github.mat3e.task.vo.TaskSourceId;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Objects;
+import java.util.List;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
@@ -24,7 +25,7 @@ class Project {
 
     private final int id;
     private String name;
-    private final Set<Step> steps = new HashSet<>();
+    private final List<Step> steps = new ArrayList<>();
 
     private Project(final int id, final String name, final Set<Step> steps) {
         this.id = id;
