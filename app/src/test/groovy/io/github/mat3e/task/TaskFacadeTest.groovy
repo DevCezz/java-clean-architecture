@@ -156,6 +156,24 @@ class TaskFacadeTest extends Specification {
         then:
             repository.count() == 0
     }
+
+    def "should publish event when task is deleted from repository"() {
+        given:
+            def deadline = ZonedDateTime.of(
+                    LocalDate.of(2020, 02, 02),
+                    LocalTime.of(14, 45),
+                    ZoneId.of("Europe/Warsaw")
+            )
+            def saved = repository.save(Task.restore(
+                    new TaskSnapshot(0, "desc", false, deadline.minusDays(4), 10, "foo", new TaskSourceId("97"))
+            )).getSnapshot()
+
+        when:
+            facade.delete(saved.id)
+
+        then:
+            1 * publisher.publish({ it.state == TaskEvent.State.DELETED })
+    }
 }
 
 class TaskRepositoryImpl implements TaskRepository {
