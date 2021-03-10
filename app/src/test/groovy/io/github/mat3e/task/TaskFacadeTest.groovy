@@ -1,6 +1,7 @@
 package io.github.mat3e.task
 
 import io.github.mat3e.DomainEventPublisher
+import io.github.mat3e.task.dto.TaskDto
 import io.github.mat3e.task.vo.TaskCreator
 import io.github.mat3e.task.vo.TaskSourceId
 import org.junit.jupiter.api.BeforeEach
@@ -45,6 +46,28 @@ class TaskFacadeTest extends Specification {
             with(result.find()) {
                 it.description == task.description
                 it.deadline == task.deadline
+            }
+    }
+
+    def "should save task in repository when there is no such task"() {
+        given:
+            def deadline = ZonedDateTime.of(
+                    LocalDate.of(2020, 02, 02),
+                    LocalTime.of(14, 45),
+                    ZoneId.of("Europe/Warsaw")
+            )
+            def task = new TaskDto(14, "desc", true, deadline, "foo")
+
+        when:
+            def result = facade.save(task)
+
+        then:
+            repository.count() == 1
+            with(result) {
+                it.description == task.description
+                it.done == task.done
+                it.deadline == task.deadline
+                it.additionalComment == task.additionalComment
             }
     }
 }
