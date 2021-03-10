@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 class Project {
@@ -34,17 +35,16 @@ class Project {
     }
 
     void addStep(Step step) {
-        if (!step.isNew() && steps.contains(step)) {
-            return;
+        if (step.isNew() || steps.stream().noneMatch(existingStep -> existingStep.id == step.id)) {
+            steps.add(step);
         }
-        steps.add(step);
     }
 
     void removeStep(Step step) {
-        if (!steps.contains(step)) {
-            return;
-        }
-        steps.remove(step);
+        List<Step> toRemove = steps.stream()
+                .filter(existingStep -> existingStep.id == step.id)
+                .collect(toList());
+        steps.removeAll(toRemove);
     }
 
     ProjectSnapshot getSnapshot() {
