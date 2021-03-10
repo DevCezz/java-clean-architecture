@@ -16,6 +16,16 @@ class TaskSnapshot {
 
     TaskSnapshot() {}
 
+    TaskSnapshot(final int id, final TaskSnapshot snapshot) {
+        this.id = id;
+        this.description = snapshot.description;
+        this.done = snapshot.done;
+        this.deadline = snapshot.deadline;
+        this.changesCount = snapshot.changesCount;
+        this.additionalComment = snapshot.additionalComment;
+        this.sourceId = snapshot.sourceId;
+    }
+
     TaskSnapshot(final int id, final String description, final boolean done, final ZonedDateTime deadline, final int changesCount, final String additionalComment, final TaskSourceId sourceId) {
         this.id = id;
         this.description = description;
