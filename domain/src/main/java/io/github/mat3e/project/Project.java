@@ -39,9 +39,9 @@ class Project {
         }
     }
 
-    void removeStep(Step step) {
+    void removeStep(int stepId) {
         List<Step> toRemove = steps.stream()
-                .filter(existingStep -> existingStep.id == step.id)
+                .filter(existingStep -> existingStep.id == stepId)
                 .collect(toList());
         steps.removeAll(toRemove);
     }
@@ -89,7 +89,7 @@ class Project {
                         () -> stepsToRemove.add(existingStep)
                 )
         );
-        stepsToRemove.forEach(this::removeStep);
+        stepsToRemove.forEach(step -> removeStep(step.id));
         stepSnapshots.stream()
                 .map(Step::restore)
                 .filter(newStep -> steps.stream()
