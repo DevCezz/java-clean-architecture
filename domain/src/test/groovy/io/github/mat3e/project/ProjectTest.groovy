@@ -73,7 +73,7 @@ class ProjectTest extends Specification {
             project.addStep(Step.restore(stepWithDoneCorrespondingTask(12)))
 
         when:
-            project.removeStep(Step.restore(stepWithDoneCorrespondingTask(12)))
+            project.removeStep(12)
 
         then:
             with(project.snapshot) {
@@ -86,7 +86,7 @@ class ProjectTest extends Specification {
             def project = Project.restore projectWithoutSteps()
 
         when:
-            project.removeStep(Step.restore(stepWithDoneCorrespondingTask(12)))
+            project.removeStep(12)
 
         then:
             with(project.snapshot) {
