@@ -11,7 +11,7 @@ class ProjectInitializerTest extends Specification {
     @Subject
     def initializer = new ProjectInitializer(repository, queryRepository)
 
-    def "should invoke save three times when there is no task in repo"() {
+    def "should invoke save for project with 3 steps when there is no project in repo"() {
         given:
             queryRepository.count() >> 0
 
