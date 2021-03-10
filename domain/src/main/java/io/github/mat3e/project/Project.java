@@ -96,8 +96,6 @@ class Project {
                 .filter(newStep -> steps.stream()
                         .noneMatch(step -> step.id == newStep.id)
                 )
-                .collect(toSet())
-                // collecting first to allow multiple id=0
                 .forEach(this::addStep);
 
         return stepsToRemove;
