@@ -3,6 +3,7 @@ package io.github.mat3e.task
 import io.github.mat3e.DomainEventPublisher
 import io.github.mat3e.task.vo.TaskCreator
 import io.github.mat3e.task.vo.TaskSourceId
+import org.junit.jupiter.api.BeforeEach
 import spock.lang.Specification
 import spock.lang.Subject
 
@@ -21,6 +22,11 @@ class TaskFacadeTest extends Specification {
 
     @Subject
     def facade = new TaskFacade(factory, repository, publisher)
+
+    @BeforeEach
+    void clearDatabase() {
+        repository.clear();
+    }
 
     def "should return task dtos when tasks are created"() {
         given:
