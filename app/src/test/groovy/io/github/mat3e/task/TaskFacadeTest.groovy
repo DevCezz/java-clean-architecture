@@ -35,18 +35,17 @@ class TaskFacadeTest extends Specification {
                     LocalTime.of(14, 45),
                     ZoneId.of("Europe/Warsaw")
             )
-            def tasks = Set.of(
-                    new TaskCreator(new TaskSourceId("1"), "desc1", datetime.minusDays(1)),
-                    new TaskCreator(new TaskSourceId("2"), "desc2", datetime.minusHours(4))
-            )
+            def task = new TaskCreator(new TaskSourceId("1"), "desc1", datetime)
 
         when:
-            def result = facade.createTasks(tasks)
+            def result = facade.createTasks(Collections.singleton(task))
 
         then:
-            repository.count() == 2
-            result.stream().anyMatch(dto -> dto.description == tasks[0].description && dto.deadline == tasks[0].deadline)
-            result.stream().anyMatch(dto -> dto.description == tasks[1].description && dto.deadline == tasks[1].deadline)
+            repository.count() == 1
+            with(result.find()) {
+                it.description == task.description
+                it.deadline == task.deadline
+            }
     }
 }
 
