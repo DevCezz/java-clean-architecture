@@ -7,8 +7,8 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
-import static io.github.mat3e.project.ProjectFixture.projectWithStepDoneTaskWithId
-import static io.github.mat3e.project.ProjectFixture.projectWithStepUndoneTaskWithId
+import static io.github.mat3e.project.ProjectFixture.projectWithStepDoneTaskWithStepId
+import static io.github.mat3e.project.ProjectFixture.projectWithStepUndoneTaskWithStepId
 
 class ProjectFacadeTest extends Specification {
 
@@ -21,7 +21,7 @@ class ProjectFacadeTest extends Specification {
 
     def "should update project step to have done corresponding task"() {
         given:
-            repository.save(projectWithStepUndoneTaskWithId(93))
+            repository.save(projectWithStepUndoneTaskWithStepId(93))
 
         when:
             facade.updateStep(93, true)
@@ -37,7 +37,7 @@ class ProjectFacadeTest extends Specification {
     @Unroll
     def "should handle #state event to set task to be done"() {
         given:
-            repository.save(projectWithStepUndoneTaskWithId(93))
+            repository.save(projectWithStepUndoneTaskWithStepId(93))
 
         when:
             facade.handle(new TaskEvent(new TaskSourceId("93"), state, null))
@@ -56,7 +56,7 @@ class ProjectFacadeTest extends Specification {
     @Unroll
     def "should handle UNDONE event to set task to be undone"() {
         given:
-            repository.save(projectWithStepDoneTaskWithId(93))
+            repository.save(projectWithStepDoneTaskWithStepId(93))
 
         when:
             facade.handle(new TaskEvent(new TaskSourceId("93"), TaskEvent.State.UNDONE, null))

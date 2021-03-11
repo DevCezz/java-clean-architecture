@@ -4,34 +4,34 @@ import static java.util.Collections.singletonList;
 
 class ProjectFixture {
 
-    static Project projectWithStepUndoneTaskWithId(int id) {
+    static Project projectWithStepUndoneTaskWithStepId(int stepId) {
         return Project.restore(
-                new ProjectSnapshot(10, "20", singletonList(stepUndoneTaskWithId(id).getSnapshot()))
+                new ProjectSnapshot(10, "20", singletonList(stepUndoneTaskWithStepId(stepId).getSnapshot()))
         );
     }
 
-    static Project.Step stepUndoneTaskWithId(int id) {
+    static Project.Step stepUndoneTaskWithStepId(int stepId) {
         return Project.Step.restore(
-                new ProjectStepSnapshot(id, "desc", -2, true, false)
+                new ProjectStepSnapshot(stepId, "desc", -2, true, false)
         );
     }
 
 
-    static Project projectWithStepDoneTaskWithId(int id) {
+    static Project projectWithStepDoneTaskWithStepId(int stepId) {
         return Project.restore(
-                new ProjectSnapshot(10, "20", singletonList(stepDoneTaskWithId(id).getSnapshot()))
+                new ProjectSnapshot(10, "20", singletonList(stepDoneTaskWithStepId(stepId).getSnapshot()))
         );
     }
 
-    static Project.Step stepDoneTaskWithId(int id) {
+    static Project.Step stepDoneTaskWithStepId(int stepId) {
         return Project.Step.restore(
-                new ProjectStepSnapshot(id, "desc", -2, true, true)
+                new ProjectStepSnapshot(stepId, "desc", -2, true, true)
         );
     }
 
-    static Project projectWithStepDoneTask(int projectId) {
+    static Project projectWithStepDoneTaskWithProjectId(int projectId) {
         return Project.restore(
-                new ProjectSnapshot(projectId, "20", singletonList(stepDoneTaskWithId(85).getSnapshot()))
+                new ProjectSnapshot(projectId, "20", singletonList(stepDoneTaskWithStepId(85).getSnapshot()))
         );
     }
 }
