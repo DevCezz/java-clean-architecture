@@ -32,9 +32,9 @@ class ProjectFixture {
         );
     }
 
-    static ProjectDto projectDtoWithStepDoneTaskOfProjectId(int projectId) {
+    static ProjectDto projectDtoWithStepDoneTaskOfProjectIdAndStepId(int projectId, int stepId) {
         return ProjectDto.create(
-                projectId, "new project", singletonList(stepDtoDoneTaskOfStepId(85))
+                projectId, "new project", singletonList(stepDtoDoneTaskOfStepId(stepId))
         );
     }
 
