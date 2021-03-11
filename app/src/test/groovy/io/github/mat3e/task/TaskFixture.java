@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 
 class TaskFixture {
 
-    private static final ZonedDateTime DATETIME = ZonedDateTime.of(
+    public static final ZonedDateTime DATETIME = ZonedDateTime.of(
             LocalDate.of(2020, 12, 16),
             LocalTime.of(14, 45),
             ZoneId.of("Europe/Warsaw")
@@ -23,5 +23,21 @@ class TaskFixture {
 
     static TaskDto taskDto() {
         return new TaskDto(14, "desc", true, DATETIME, "foo");
+    }
+
+    static TaskDto doneTaskDtoWithId(int id, String description, ZonedDateTime deadline, String comment) {
+        return new TaskDto(id, description, true, deadline, comment);
+    }
+
+    static TaskDto undoneTaskDtoWithId(int id, String description, ZonedDateTime deadline, String comment) {
+        return new TaskDto(id, description, false, deadline, comment);
+    }
+
+    static Task doneTask(String description, ZonedDateTime deadline, String comment) {
+        return Task.restore(new TaskSnapshot(0, description, true, deadline, 10, comment, new TaskSourceId("97")));
+    }
+
+    static Task undoneTask(String description, ZonedDateTime deadline, String comment) {
+        return Task.restore(new TaskSnapshot(0, description, false, deadline, 10, comment, new TaskSourceId("97")));
     }
 }
