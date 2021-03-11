@@ -10,7 +10,10 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
+import java.time.ZonedDateTime
+
 import static io.github.mat3e.project.ProjectFixture.*
+import static java.util.Collections.emptyList
 
 class ProjectFacadeTest extends Specification {
 
@@ -140,6 +143,24 @@ class ProjectFacadeTest extends Specification {
                             step -> step.description == "new-desc20" && step.daysToProjectDeadline == -3
                         })
             }
+    }
+
+    def "should create task for project with all done task"() {
+        given:
+            def saved = repository.save(
+                    Project.restore(
+                            new ProjectSnapshot(87, "project", List.of(
+                                    new ProjectStepSnapshot(10, "desc10", -76, true, true),
+                                    new ProjectStepSnapshot(20, "desc20", -45, true, true)
+                            ))
+                    )
+            )
+
+        when:
+            facade.createTasks(saved.snapshot.id, ZonedDateTime.now())
+
+        then:
+            1 * taskFacade.createTasks(_) >> emptyList()
     }
 }
 
