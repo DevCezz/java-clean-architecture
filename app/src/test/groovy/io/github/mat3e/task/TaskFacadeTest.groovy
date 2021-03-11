@@ -178,7 +178,7 @@ class TaskFacadeTest extends Specification {
 
 class TaskRepositoryImpl implements TaskRepository {
 
-    private int nextId = 1;
+    private int nextId = 1
     private Map<Integer, Task> database = new HashMap<>()
 
     @Override
