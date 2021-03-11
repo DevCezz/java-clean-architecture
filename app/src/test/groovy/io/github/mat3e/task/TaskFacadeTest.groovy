@@ -29,10 +29,10 @@ class TaskFacadeTest extends Specification {
 
     @BeforeEach
     void clearDatabase() {
-        repository.clear();
+        repository.clear()
     }
 
-    def "should return task dtos when tasks are created"() {
+    def "should return task dto list when tasks are created"() {
         given:
             def taskCreator = taskCreator()
 
