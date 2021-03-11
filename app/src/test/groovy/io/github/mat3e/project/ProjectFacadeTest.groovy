@@ -8,9 +8,7 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
-import static io.github.mat3e.project.ProjectFixture.projectDtoWithStepDoneTaskOfProjectId
-import static io.github.mat3e.project.ProjectFixture.projectWithStepDoneTaskWithStepId
-import static io.github.mat3e.project.ProjectFixture.projectWithStepUndoneTaskWithStepId
+import static io.github.mat3e.project.ProjectFixture.*
 
 class ProjectFacadeTest extends Specification {
 
@@ -73,10 +71,19 @@ class ProjectFacadeTest extends Specification {
 
     def "should save project with id when there is not such in repository"() {
         when:
-            def result = facade.save(projectDtoWithStepDoneTaskOfProjectId(45))
+            def result = facade.save(projectDtoWithStepDoneTaskOfProjectIdAndStepId(45, 90))
 
         then:
             repository.findById(result.id).isPresent()
+    }
+
+    def "should throw exception when saving non-existing project with existing step"() {
+        when:
+            facade.save(projectDtoWithStepDoneTaskOfProjectIdAndStepId(0, 89))
+
+        then:
+            def exception = thrown(IllegalStateException)
+            exception.message.contains("existing steps")
     }
 }
 
