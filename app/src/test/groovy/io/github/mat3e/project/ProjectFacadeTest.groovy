@@ -1,8 +1,11 @@
 package io.github.mat3e.project
 
 import io.github.mat3e.task.TaskFacade
+import io.github.mat3e.task.vo.TaskEvent
+import io.github.mat3e.task.vo.TaskSourceId
 import spock.lang.Specification
 import spock.lang.Subject
+import spock.lang.Unroll
 
 import static io.github.mat3e.project.ProjectFixture.projectWithStepUndoneTaskWithId
 
@@ -28,6 +31,25 @@ class ProjectFacadeTest extends Specification {
                         .filter(step -> step.id == 93)
                         .allMatch(step -> step.correspondingTaskDone)
             }
+    }
+
+    @Unroll
+    def "should handle #state event to set task to be done"() {
+        given:
+            repository.save(projectWithStepUndoneTaskWithId(93))
+
+        when:
+            facade.handle(new TaskEvent(new TaskSourceId("93"), state, null))
+
+        then:
+            with(repository.findByNestedStepId(93).get()) {
+                it.snapshot.steps.stream()
+                        .filter(step -> step.id == 93)
+                        .allMatch(step -> step.correspondingTaskDone)
+            }
+
+        where:
+            state << [TaskEvent.State.DELETED, TaskEvent.State.DONE]
     }
 }
 
