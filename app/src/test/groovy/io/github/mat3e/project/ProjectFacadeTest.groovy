@@ -13,6 +13,14 @@ class ProjectFacadeTest extends Specification {
 
     @Subject
     def facade = new ProjectFacade(factory, repository, taskFacade)
+
+    def "should not save project when not find one while updating step"() {
+        when:
+            facade.updateStep(10, true)
+
+        then:
+            0 * repository.save(_)
+    }
 }
 
 class ProjectRepositoryImpl implements ProjectRepository {
