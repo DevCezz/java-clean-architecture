@@ -5,6 +5,8 @@ import io.github.mat3e.task.TaskFacade
 import spock.lang.Specification
 import spock.lang.Subject
 
+import static java.util.Collections.singletonList
+
 class ProjectFacadeTest extends Specification {
 
     def factory = new ProjectFactory()
@@ -14,12 +16,20 @@ class ProjectFacadeTest extends Specification {
     @Subject
     def facade = new ProjectFacade(factory, repository, taskFacade)
 
-    def "should not save project when not find one while updating step"() {
+    def "should update project step to have done corresponding task"() {
+        given:
+            repository.save(Project.restore(new ProjectSnapshot(10, "20", singletonList(
+                    new ProjectStepSnapshot(93, "desc", -2, true, false)
+            ))))
+
         when:
-            facade.updateStep(10, true)
+            facade.updateStep(93, true)
 
         then:
-            0 * repository.save(_)
+            with(repository.findByNestedStepId(93).get().snapshot) {
+                it.steps.stream().filter(step -> step.id == 93)
+                    .allMatch(step -> step.correspondingTaskDone)
+            }
     }
 }
 
