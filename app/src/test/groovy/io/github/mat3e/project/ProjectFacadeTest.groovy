@@ -7,6 +7,7 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
+import static io.github.mat3e.project.ProjectFixture.projectWithStepDoneTaskWithId
 import static io.github.mat3e.project.ProjectFixture.projectWithStepUndoneTaskWithId
 
 class ProjectFacadeTest extends Specification {
@@ -50,6 +51,22 @@ class ProjectFacadeTest extends Specification {
 
         where:
             state << [TaskEvent.State.DELETED, TaskEvent.State.DONE]
+    }
+
+    @Unroll
+    def "should handle UNDONE event to set task to be undone"() {
+        given:
+            repository.save(projectWithStepDoneTaskWithId(93))
+
+        when:
+            facade.handle(new TaskEvent(new TaskSourceId("93"), TaskEvent.State.UNDONE, null))
+
+        then:
+            with(repository.findByNestedStepId(93).get()) {
+                it.snapshot.steps.stream()
+                        .filter(step -> step.id == 93)
+                        .allMatch(step -> !step.correspondingTaskDone)
+            }
     }
 }
 
