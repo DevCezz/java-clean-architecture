@@ -1,6 +1,6 @@
 package io.github.mat3e.project
 
-
+import io.github.mat3e.project.dto.ProjectDto
 import io.github.mat3e.task.TaskFacade
 import io.github.mat3e.task.vo.TaskEvent
 import io.github.mat3e.task.vo.TaskSourceId
@@ -84,6 +84,16 @@ class ProjectFacadeTest extends Specification {
         then:
             def exception = thrown(IllegalStateException)
             exception.message.contains("existing steps")
+    }
+
+    def "should save non-existing project with non-existing step"() {
+        when:
+            def result = facade.save(projectDtoWithStepDoneTaskOfProjectIdAndStepId(0, 0))
+
+        then:
+            with(repository.findById(result.id).get()) {
+                it.snapshot.steps.size() == 1
+            }
     }
 }
 
