@@ -28,4 +28,10 @@ class ProjectFixture {
                 new ProjectStepSnapshot(id, "desc", -2, true, true)
         );
     }
+
+    static Project projectWithStepDoneTask(int projectId) {
+        return Project.restore(
+                new ProjectSnapshot(projectId, "20", singletonList(stepDoneTaskWithId(85).getSnapshot()))
+        );
+    }
 }
