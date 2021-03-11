@@ -1,6 +1,7 @@
 package io.github.mat3e.project
 
 import io.github.mat3e.project.dto.ProjectDto
+import io.github.mat3e.project.dto.ProjectStepDto
 import io.github.mat3e.task.TaskFacade
 import io.github.mat3e.task.vo.TaskEvent
 import io.github.mat3e.task.vo.TaskSourceId
@@ -99,6 +100,45 @@ class ProjectFacadeTest extends Specification {
         then:
             with(repository.findById(result.id).get()) {
                 it.snapshot.steps.size() == 1
+            }
+    }
+
+    def "should update project data when saving existing one"() {
+        given:
+            def saved = repository.save(
+                    Project.restore(
+                            new ProjectSnapshot(99, "old project", List.of(
+                                    new ProjectStepSnapshot(20, "desc20", -76, true, false),
+                                    new ProjectStepSnapshot(30, "desc30", -45, true, false)
+                            ))
+                    )
+            )
+        and:
+            def stepsToSave = List.of(
+                    ProjectStepDto.create(10, "desc10", -2),
+                    ProjectStepDto.create(20, "new-desc20", -3)
+            )
+            def dtoToSave = ProjectDto.create(saved.snapshot.id, "newproject", stepsToSave)
+
+        when:
+            def result = facade.save(dtoToSave)
+
+        then:
+            repository.count() == 1
+            result.name == "newproject"
+
+            with(repository.findById(result.id).get().snapshot) {
+                it.steps.size() == 2
+                it.steps.stream()
+                        .noneMatch({ step -> step.id == 30 })
+                it.steps.stream().filter({ step -> step.id == 10 })
+                        .allMatch({
+                            step -> step.description == "desc10" && step.daysToProjectDeadline == -2
+                        })
+                it.steps.stream().filter({ step -> step.id == 20 })
+                        .allMatch({
+                            step -> step.description == "new-desc20" && step.daysToProjectDeadline == -3
+                        })
             }
     }
 }
