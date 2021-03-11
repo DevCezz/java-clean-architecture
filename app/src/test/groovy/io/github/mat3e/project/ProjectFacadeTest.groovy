@@ -177,9 +177,9 @@ class ProjectRepositoryImpl implements ProjectRepository {
     @Override
     Optional<Project> findByNestedStepId(final Integer id) {
         return database.values().stream()
-            .filter(project -> project.snapshot.steps.stream()
-                    .anyMatch(step -> step.id == id)
-            ).findFirst()
+                .filter(project -> project.snapshot.steps.stream()
+                        .anyMatch(step -> step.id == id)
+                ).findFirst()
     }
 
     @Override
@@ -194,7 +194,7 @@ class ProjectRepositoryImpl implements ProjectRepository {
     @Override
     void delete(final Project.Step entity) {
         findByNestedStepId(entity.snapshot.id)
-            .ifPresent(project -> project.removeStep(entity.snapshot.id))
+                .ifPresent(project -> project.removeStep(entity.snapshot.id))
     }
 
     int count() {
