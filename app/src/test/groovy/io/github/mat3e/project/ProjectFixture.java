@@ -1,5 +1,8 @@
 package io.github.mat3e.project;
 
+import io.github.mat3e.project.dto.ProjectDto;
+import io.github.mat3e.project.dto.ProjectStepDto;
+
 import static java.util.Collections.singletonList;
 
 class ProjectFixture {
@@ -29,9 +32,15 @@ class ProjectFixture {
         );
     }
 
-    static Project projectWithStepDoneTaskWithProjectId(int projectId) {
-        return Project.restore(
-                new ProjectSnapshot(projectId, "20", singletonList(stepDoneTaskWithStepId(85).getSnapshot()))
+    static ProjectDto projectDtoWithStepDoneTaskOfProjectId(int projectId) {
+        return ProjectDto.create(
+                projectId, "new project", singletonList(stepDtoDoneTaskOfStepId(85))
+        );
+    }
+
+    static ProjectStepDto stepDtoDoneTaskOfStepId(int stepId) {
+        return ProjectStepDto.create(
+                stepId, "new step", -10
         );
     }
 }
