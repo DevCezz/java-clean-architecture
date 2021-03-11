@@ -4,6 +4,7 @@ import io.github.mat3e.project.dto.ProjectDto
 import io.github.mat3e.task.TaskFacade
 import io.github.mat3e.task.vo.TaskEvent
 import io.github.mat3e.task.vo.TaskSourceId
+import org.junit.jupiter.api.BeforeEach
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -18,6 +19,11 @@ class ProjectFacadeTest extends Specification {
 
     @Subject
     def facade = new ProjectFacade(factory, repository, taskFacade)
+
+    @BeforeEach
+    void clearDatabase() {
+        repository.clear()
+    }
 
     def "should update project step to have done corresponding task"() {
         given:
