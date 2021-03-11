@@ -1,11 +1,10 @@
 package io.github.mat3e.project
 
-
 import io.github.mat3e.task.TaskFacade
 import spock.lang.Specification
 import spock.lang.Subject
 
-import static java.util.Collections.singletonList
+import static io.github.mat3e.project.ProjectFixture.projectWithStepUndoneTaskWithId
 
 class ProjectFacadeTest extends Specification {
 
@@ -18,17 +17,16 @@ class ProjectFacadeTest extends Specification {
 
     def "should update project step to have done corresponding task"() {
         given:
-            repository.save(Project.restore(new ProjectSnapshot(10, "20", singletonList(
-                    new ProjectStepSnapshot(93, "desc", -2, true, false)
-            ))))
+            repository.save(projectWithStepUndoneTaskWithId(93))
 
         when:
             facade.updateStep(93, true)
 
         then:
-            with(repository.findByNestedStepId(93).get().snapshot) {
-                it.steps.stream().filter(step -> step.id == 93)
-                    .allMatch(step -> step.correspondingTaskDone)
+            with(repository.findByNestedStepId(93).get()) {
+                it.snapshot.steps.stream()
+                        .filter(step -> step.id == 93)
+                        .allMatch(step -> step.correspondingTaskDone)
             }
     }
 }
