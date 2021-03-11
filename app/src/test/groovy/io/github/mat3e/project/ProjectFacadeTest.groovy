@@ -1,5 +1,6 @@
 package io.github.mat3e.project
 
+
 import io.github.mat3e.task.TaskFacade
 import io.github.mat3e.task.vo.TaskEvent
 import io.github.mat3e.task.vo.TaskSourceId
@@ -7,6 +8,7 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
+import static io.github.mat3e.project.ProjectFixture.projectDtoWithStepDoneTaskOfProjectId
 import static io.github.mat3e.project.ProjectFixture.projectWithStepDoneTaskWithStepId
 import static io.github.mat3e.project.ProjectFixture.projectWithStepUndoneTaskWithStepId
 
@@ -67,6 +69,14 @@ class ProjectFacadeTest extends Specification {
                         .filter(step -> step.id == 93)
                         .allMatch(step -> !step.correspondingTaskDone)
             }
+    }
+
+    def "should save project with id when there is not such in repository"() {
+        when:
+            def result = facade.save(projectDtoWithStepDoneTaskOfProjectId(45))
+
+        then:
+            repository.findById(result.id).isPresent()
     }
 }
 
