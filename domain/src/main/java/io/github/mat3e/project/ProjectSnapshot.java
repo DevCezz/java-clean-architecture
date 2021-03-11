@@ -11,6 +11,12 @@ class ProjectSnapshot {
 
     ProjectSnapshot() {}
 
+    ProjectSnapshot(final int id, final ProjectSnapshot snapshot) {
+        this.id = id;
+        this.name = snapshot.name;
+        this.steps.addAll(snapshot.steps);
+    }
+
     ProjectSnapshot(final int id, final String name, final List<ProjectStepSnapshot> steps) {
         this.id = id;
         this.name = name;
