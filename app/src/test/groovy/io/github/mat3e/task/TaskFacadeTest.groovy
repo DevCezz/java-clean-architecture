@@ -2,7 +2,6 @@ package io.github.mat3e.task
 
 import io.github.mat3e.DomainEventPublisher
 import io.github.mat3e.task.dto.TaskDto
-import io.github.mat3e.task.vo.TaskCreator
 import io.github.mat3e.task.vo.TaskEvent
 import io.github.mat3e.task.vo.TaskSourceId
 import org.junit.jupiter.api.BeforeEach
@@ -15,6 +14,9 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.stream.Collectors
 import java.util.stream.StreamSupport
+
+import static io.github.mat3e.task.TaskFixture.taskCreator
+import static io.github.mat3e.task.TaskFixture.taskDto
 
 class TaskFacadeTest extends Specification {
 
@@ -32,43 +34,33 @@ class TaskFacadeTest extends Specification {
 
     def "should return task dtos when tasks are created"() {
         given:
-            def datetime = ZonedDateTime.of(
-                    LocalDate.of(2020, 02, 02),
-                    LocalTime.of(14, 45),
-                    ZoneId.of("Europe/Warsaw")
-            )
-            def task = new TaskCreator(new TaskSourceId("1"), "desc1", datetime)
+            def taskCreator = taskCreator()
 
         when:
-            def result = facade.createTasks(Collections.singleton(task))
+            def result = facade.createTasks Collections.singleton(taskCreator)
 
         then:
             repository.count() == 1
             with(result.find()) {
-                it.description == task.description
-                it.deadline == task.deadline
+                it.description == taskCreator.description
+                it.deadline == taskCreator.deadline
             }
     }
 
     def "should save task in repository when there is no such task"() {
         given:
-            def deadline = ZonedDateTime.of(
-                    LocalDate.of(2020, 02, 02),
-                    LocalTime.of(14, 45),
-                    ZoneId.of("Europe/Warsaw")
-            )
-            def task = new TaskDto(14, "desc", true, deadline, "foo")
+            def dto = taskDto()
 
         when:
-            def result = facade.save(task)
+            def result = facade.save dto
 
         then:
             repository.count() == 1
             with(result) {
-                it.description == task.description
-                it.done == task.done
-                it.deadline == task.deadline
-                it.additionalComment == task.additionalComment
+                it.description == dto.description
+                it.done == dto.done
+                it.deadline == dto.deadline
+                it.additionalComment == dto.additionalComment
             }
     }
 
