@@ -1,22 +1,21 @@
 package io.github.mat3e.task
 
 import io.github.mat3e.DomainEventPublisher
-import io.github.mat3e.task.dto.TaskDto
 import io.github.mat3e.task.vo.TaskEvent
-import io.github.mat3e.task.vo.TaskSourceId
 import org.junit.jupiter.api.BeforeEach
 import spock.lang.Specification
 import spock.lang.Subject
 
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.util.stream.Collectors
 import java.util.stream.StreamSupport
 
+import static io.github.mat3e.task.TaskFixture.DATETIME
 import static io.github.mat3e.task.TaskFixture.taskCreator
 import static io.github.mat3e.task.TaskFixture.taskDto
+import static io.github.mat3e.task.TaskFixture.doneTask
+import static io.github.mat3e.task.TaskFixture.doneTaskDtoWithId
+import static io.github.mat3e.task.TaskFixture.undoneTask
+import static io.github.mat3e.task.TaskFixture.undoneTaskDtoWithId
 
 class TaskFacadeTest extends Specification {
 
@@ -66,15 +65,8 @@ class TaskFacadeTest extends Specification {
 
     def "should update task in repository when there is such task"() {
         given:
-            def deadline = ZonedDateTime.of(
-                    LocalDate.of(2020, 02, 02),
-                    LocalTime.of(14, 45),
-                    ZoneId.of("Europe/Warsaw")
-            )
-            def saved = repository.save(Task.restore(
-                    new TaskSnapshot(0, "desc", true, deadline.minusDays(4), 10, "foo", new TaskSourceId("97"))
-            )).getSnapshot()
-            def task = new TaskDto(saved.id, "desc-new", true, deadline, "bar")
+            def saved = repository.save doneTask("desc", DATETIME.minusDays(4), "foo")
+            def task = doneTaskDtoWithId(saved.snapshot.id, "desc-new", DATETIME, "bar")
 
         when:
             def result = facade.save(task)
@@ -91,15 +83,8 @@ class TaskFacadeTest extends Specification {
 
     def "should publish events when task is updated to be undone"() {
         given:
-            def deadline = ZonedDateTime.of(
-                    LocalDate.of(2020, 02, 02),
-                    LocalTime.of(14, 45),
-                    ZoneId.of("Europe/Warsaw")
-            )
-            def saved = repository.save(Task.restore(
-                    new TaskSnapshot(0, "desc", true, deadline.minusDays(4), 10, "foo", new TaskSourceId("97"))
-            )).getSnapshot()
-            def task = new TaskDto(saved.id, "desc-new", false, deadline, "bar")
+            def saved = repository.save(doneTask("desc", DATETIME.minusDays(4), "foo"))
+            def task = undoneTaskDtoWithId(saved.snapshot.id, "desc-new", DATETIME, "bar")
 
         when:
             facade.save(task)
@@ -112,15 +97,8 @@ class TaskFacadeTest extends Specification {
 
     def "should publish events when task is updated to be done"() {
         given:
-            def deadline = ZonedDateTime.of(
-                    LocalDate.of(2020, 02, 02),
-                    LocalTime.of(14, 45),
-                    ZoneId.of("Europe/Warsaw")
-            )
-            def saved = repository.save(Task.restore(
-                    new TaskSnapshot(0, "desc", false, deadline.minusDays(4), 10, "foo", new TaskSourceId("97"))
-            )).getSnapshot()
-            def task = new TaskDto(saved.id, "desc-new", true, deadline, "bar")
+            def saved = repository.save(undoneTask("desc", DATETIME.minusDays(4), "foo"))
+            def task = doneTaskDtoWithId(saved.snapshot.id, "desc-new", DATETIME, "bar")
 
         when:
             facade.save(task)
@@ -133,17 +111,10 @@ class TaskFacadeTest extends Specification {
 
     def "should delete task when there is such task in repository"() {
         given:
-            def deadline = ZonedDateTime.of(
-                    LocalDate.of(2020, 02, 02),
-                    LocalTime.of(14, 45),
-                    ZoneId.of("Europe/Warsaw")
-            )
-            def saved = repository.save(Task.restore(
-                    new TaskSnapshot(0, "desc", false, deadline.minusDays(4), 10, "foo", new TaskSourceId("97"))
-            )).getSnapshot()
+            def saved = repository.save(doneTask("desc", DATETIME, "foo"))
 
         when:
-            facade.delete(saved.id)
+            facade.delete(saved.snapshot.id)
 
         then:
             repository.count() == 0
@@ -151,17 +122,10 @@ class TaskFacadeTest extends Specification {
 
     def "should publish event when task is deleted from repository"() {
         given:
-            def deadline = ZonedDateTime.of(
-                    LocalDate.of(2020, 02, 02),
-                    LocalTime.of(14, 45),
-                    ZoneId.of("Europe/Warsaw")
-            )
-            def saved = repository.save(Task.restore(
-                    new TaskSnapshot(0, "desc", false, deadline.minusDays(4), 10, "foo", new TaskSourceId("97"))
-            )).getSnapshot()
+            def saved = repository.save(doneTask("desc", DATETIME, "foo"))
 
         when:
-            facade.delete(saved.id)
+            facade.delete(saved.snapshot.id)
 
         then:
             1 * publisher.publish({ it.state == TaskEvent.State.DELETED })
