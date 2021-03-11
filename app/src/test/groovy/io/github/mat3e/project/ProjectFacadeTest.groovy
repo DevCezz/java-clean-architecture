@@ -129,4 +129,12 @@ class ProjectRepositoryImpl implements ProjectRepository {
         findByNestedStepId(entity.snapshot.id)
             .ifPresent(project -> project.removeStep(entity.snapshot.id))
     }
+
+    int count() {
+        return database.size()
+    }
+
+    void clear() {
+        database.clear()
+    }
 }
