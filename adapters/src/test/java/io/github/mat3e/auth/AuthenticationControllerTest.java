@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.User;
@@ -47,7 +46,6 @@ class AuthenticationControllerTest {
     }
 }
 
-@Configuration
 class TestConfiguration {
 
     @Bean
@@ -72,7 +70,6 @@ class TestConfiguration {
     }
 }
 
-@Configuration
 class TestSecurityConfiguration extends SecurityConfiguration {
 
     TestSecurityConfiguration(@Autowired final TokenService tokenService) {
