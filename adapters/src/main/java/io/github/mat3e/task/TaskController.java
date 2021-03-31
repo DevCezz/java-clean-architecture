@@ -4,6 +4,7 @@ import io.github.mat3e.task.dto.TaskDto;
 import io.github.mat3e.task.dto.TaskWithChangesDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,5 +64,10 @@ class TaskController {
     ResponseEntity<TaskDto> delete(@PathVariable int id) {
         taskFacade.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    ResponseEntity<String> handleClientError(IllegalStateException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
