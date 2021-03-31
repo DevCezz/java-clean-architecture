@@ -19,6 +19,11 @@ interface SqlProjectRepository extends Repository<ProjectSnapshot, Integer> {
     Optional<ProjectSnapshot> findWithNestedStepId(@Param("id") Integer id);
 }
 
+interface SqlProjectStepRepository extends Repository<ProjectStepSnapshot, Integer> {
+
+    void deleteById(int id);
+}
+
 @org.springframework.stereotype.Repository
 class ProjectRepositoryImpl implements ProjectRepository {
 
@@ -49,11 +54,6 @@ class ProjectRepositoryImpl implements ProjectRepository {
     public void delete(final Project.Step entity) {
         sqlProjectStepRepository.deleteById(entity.getSnapshot().getId());
     }
-}
-
-interface SqlProjectStepRepository extends Repository<ProjectStepSnapshot, Integer> {
-
-    void deleteById(int id);
 }
 
 interface SqlProjectQueryRepository extends ProjectQueryRepository, Repository<ProjectSnapshot, Integer> {
