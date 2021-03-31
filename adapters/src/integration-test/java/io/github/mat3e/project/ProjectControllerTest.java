@@ -1,6 +1,5 @@
 package io.github.mat3e.project;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.mat3e.project.dto.ProjectDto;
 import io.github.mat3e.project.dto.ProjectStepDto;
 import io.github.mat3e.task.dto.TaskDto;
